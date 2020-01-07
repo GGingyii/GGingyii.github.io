@@ -99,11 +99,12 @@ $ npm install -g hexo-cli</code></pre>
 <li>package.json：项目所需模块项目的配置信息</li>
 </ul>
 <h4 id="3-设置配置文件-config-yml："><a href="#3-设置配置文件-config-yml：" class="headerlink" title="3. 设置配置文件_config.yml："></a>3. 设置配置文件_config.yml：</h4><h5 id="3-1-以文本的方式打开-config-yml文件，并修改网站标题、作者名字等等："><a href="#3-1-以文本的方式打开-config-yml文件，并修改网站标题、作者名字等等：" class="headerlink" title="3.1 以文本的方式打开_config.yml文件，并修改网站标题、作者名字等等："></a>3.1 以文本的方式打开_config.yml文件，并修改网站标题、作者名字等等：</h5><p><img src="/2019/%E4%BD%BF%E7%94%A8github%E6%90%AD%E5%BB%BAhexo%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2%E7%9A%84%E6%95%99%E7%A8%8B/7.png" alt></p>
-<h5 id="3-2-若需要网站页面引入图片，启动资源-Asset-文件夹，设置配置文件的post-asset-folder为true："><a href="#3-2-若需要网站页面引入图片，启动资源-Asset-文件夹，设置配置文件的post-asset-folder为true：" class="headerlink" title="3.2 若需要网站页面引入图片，启动资源(Asset)文件夹，设置配置文件的post_asset_folder为true："></a>3.2 若需要网站页面引入图片，启动资源(Asset)文件夹，设置配置文件的post_asset_folder为true：</h5><pre><code>启动资源(Asset)，首先安装hexo-asset-image：
-$ npm install hexo-asset-image --save
-
-并使用以下语句在md文件添加图片：
-{% asset_img 图片名字 %}
+<h5 id="3-2-若需要网站页面引入图片，启动资源-Asset-文件夹，设置配置文件的post-asset-folder为true："><a href="#3-2-若需要网站页面引入图片，启动资源-Asset-文件夹，设置配置文件的post-asset-folder为true：" class="headerlink" title="3.2 若需要网站页面引入图片，启动资源(Asset)文件夹，设置配置文件的post_asset_folder为true："></a>3.2 若需要网站页面引入图片，启动资源(Asset)文件夹，设置配置文件的post_asset_folder为true：</h5><p>启动资源(Asset)，首先安装或下载hexo-asset-image：</p>
+<p>安装：</p>
+<pre><code>$ npm install hexo-asset-image --save</code></pre><p>下载：</p>
+<p><a href="hexo-asset-image(博客上传图片).zip">hexo-asset-image.zip</a> </p>
+<p>并使用以下语句在md文件添加图片：</p>
+<pre><code>{% asset_img 图片名字 %}
 ![](图片名字.png)</code></pre><h5 id="3-3-使用数据文件，使网页具有下载功能："><a href="#3-3-使用数据文件，使网页具有下载功能：" class="headerlink" title="3.3 使用数据文件，使网页具有下载功能："></a>3.3 使用数据文件，使网页具有下载功能：</h5><pre><code>并使用以下语句在md文件添加工具：
 [Node.js](Git-2.23.0-64-bit.exe) </code></pre><h5 id="3-4-连接GitHub需要设置Deployment项的参数："><a href="#3-4-连接GitHub需要设置Deployment项的参数：" class="headerlink" title="3.4 连接GitHub需要设置Deployment项的参数："></a>3.4 连接GitHub需要设置Deployment项的参数：</h5><p><img src="/2019/%E4%BD%BF%E7%94%A8github%E6%90%AD%E5%BB%BAhexo%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2%E7%9A%84%E6%95%99%E7%A8%8B/8.png" alt></p>
 <h4 id="4-搭建github："><a href="#4-搭建github：" class="headerlink" title="4. 搭建github："></a>4. 搭建github：</h4><h5 id="4-1-登录github官网，没有账号需要创建账号，有账号的新建repository："><a href="#4-1-登录github官网，没有账号需要创建账号，有账号的新建repository：" class="headerlink" title="4.1 登录github官网，没有账号需要创建账号，有账号的新建repository："></a>4.1 登录github官网，没有账号需要创建账号，有账号的新建repository：</h5><p><img src="/2019/%E4%BD%BF%E7%94%A8github%E6%90%AD%E5%BB%BAhexo%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2%E7%9A%84%E6%95%99%E7%A8%8B/9.png" alt><br>注意：注册时填写的邮箱需要接收验证码，确保能正常使用。</p>
@@ -130,7 +131,7 @@ $ git config --global user.email  &quot;xxx@hotmail.com&quot;// 填写你的gith
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/%E4%BD%BF%E7%94%A8github%E6%90%AD%E5%BB%BAhexo%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2%E7%9A%84%E6%95%99%E7%A8%8B/" data-id="ck53lk40c00033wwrebee0w9q"
+      <a data-url="http://yoursite.com/2019/%E4%BD%BF%E7%94%A8github%E6%90%AD%E5%BB%BAhexo%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2%E7%9A%84%E6%95%99%E7%A8%8B/" data-id="ck53me47c00037kwrfqc63jkc"
         class="article-share-link">Share</a>
       
     </footer>
