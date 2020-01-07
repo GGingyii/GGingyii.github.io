@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    墨者学院-MongoDB数据库攻略 |  Tranquillity
+    墨者学院-Apache Struts2远程代码执行漏洞攻略 |  Tranquillity
   </title>
   
   <link rel="shortcut icon" href="/feiji.ico" />
@@ -31,7 +31,7 @@
   <div id="app">
     <main class="content">
       <section class="outer">
-  <article id="post-墨者学院-MongoDB数据库攻略" class="article article-type-post" itemscope
+  <article id="post-墨者学院-Apache-Struts2远程代码执行漏洞攻略" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
   <div class="article-inner">
@@ -39,7 +39,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  墨者学院-MongoDB数据库攻略
+  墨者学院-Apache Struts2远程代码执行漏洞攻略
 </h1>
   
 
@@ -48,8 +48,8 @@
 
     
     <div class="article-meta">
-      <a href="/2020/%E5%A2%A8%E8%80%85%E5%AD%A6%E9%99%A2-MongoDB%E6%95%B0%E6%8D%AE%E5%BA%93%E6%94%BB%E7%95%A5/" class="article-date">
-  <time datetime="2020-01-07T08:36:33.000Z" itemprop="datePublished">2020-01-07</time>
+      <a href="/2020/%E5%A2%A8%E8%80%85%E5%AD%A6%E9%99%A2-Apache-Struts2%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E%E6%94%BB%E7%95%A5/" class="article-date">
+  <time datetime="2020-01-07T09:44:56.000Z" itemprop="datePublished">2020-01-07</time>
 </a>
       
     </div>
@@ -72,18 +72,16 @@
       
 
       
-      <h4 id="1-判断是否存在注入点："><a href="#1-判断是否存在注入点：" class="headerlink" title="1. 判断是否存在注入点："></a>1. 判断是否存在注入点：</h4><p><img src="/2020/%E5%A2%A8%E8%80%85%E5%AD%A6%E9%99%A2-MongoDB%E6%95%B0%E6%8D%AE%E5%BA%93%E6%94%BB%E7%95%A5/61ebbbbbef2ad1194f99d2812aafc8b7.png" alt></p>
-<h4 id="2-根据题目和HTML页面上数据显示位置，构建语句："><a href="#2-根据题目和HTML页面上数据显示位置，构建语句：" class="headerlink" title="2. 根据题目和HTML页面上数据显示位置，构建语句："></a>2. 根据题目和HTML页面上数据显示位置，构建语句：</h4><p><img src="/2020/%E5%A2%A8%E8%80%85%E5%AD%A6%E9%99%A2-MongoDB%E6%95%B0%E6%8D%AE%E5%BA%93%E6%94%BB%E7%95%A5/0551458e06d4dd234d91626cc79667bc.png" alt></p>
-<h5 id="通过getCollectionNames-获得集合："><a href="#通过getCollectionNames-获得集合：" class="headerlink" title="通过getCollectionNames()获得集合："></a>通过getCollectionNames()获得集合：</h5><p><img src="/2020/%E5%A2%A8%E8%80%85%E5%AD%A6%E9%99%A2-MongoDB%E6%95%B0%E6%8D%AE%E5%BA%93%E6%94%BB%E7%95%A5/5efe4764aa79bfcc5fc9e051be22eab8.png" alt></p>
-<h5 id="通过修改-1-获取不同的数据："><a href="#通过修改-1-获取不同的数据：" class="headerlink" title="通过修改[1]获取不同的数据："></a>通过修改[1]获取不同的数据：</h5><p><img src="/2020/%E5%A2%A8%E8%80%85%E5%AD%A6%E9%99%A2-MongoDB%E6%95%B0%E6%8D%AE%E5%BA%93%E6%94%BB%E7%95%A5/4200bb5052f02199f4e3712e893370e2.png" alt></p>
-<h4 id="3-md5解密："><a href="#3-md5解密：" class="headerlink" title="3. md5解密："></a>3. md5解密：</h4><p><img src="/2020/%E5%A2%A8%E8%80%85%E5%AD%A6%E9%99%A2-MongoDB%E6%95%B0%E6%8D%AE%E5%BA%93%E6%94%BB%E7%95%A5/0e0d5c7619d74031b2569f477eaa1996.png" alt></p>
-<h4 id="4-通过首页登录后获得KEY，完成。"><a href="#4-通过首页登录后获得KEY，完成。" class="headerlink" title="4. 通过首页登录后获得KEY，完成。"></a>4. 通过首页登录后获得KEY，完成。</h4>
+      <h4 id="1-使用工具扫描发现存在漏洞"><a href="#1-使用工具扫描发现存在漏洞" class="headerlink" title="1. 使用工具扫描发现存在漏洞"></a>1. 使用工具扫描发现存在漏洞</h4><p><img src="/2020/%E5%A2%A8%E8%80%85%E5%AD%A6%E9%99%A2-Apache-Struts2%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E%E6%94%BB%E7%95%A5/05ecf230979c66893599fee8ee34b6d9.png" alt></p>
+<h4 id="2-利用漏洞通过命令执行，执行ls命令获得数据，发现“key-txt”文件。"><a href="#2-利用漏洞通过命令执行，执行ls命令获得数据，发现“key-txt”文件。" class="headerlink" title="2. 利用漏洞通过命令执行，执行ls命令获得数据，发现“key.txt”文件。"></a>2. 利用漏洞通过命令执行，执行ls命令获得数据，发现“key.txt”文件。</h4><p><img src="/2020/%E5%A2%A8%E8%80%85%E5%AD%A6%E9%99%A2-Apache-Struts2%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E%E6%94%BB%E7%95%A5/d2314d0cbee3162df73a090bd11d6c47.png" alt></p>
+<h4 id="3-通过cat命令查看“key-txt”文件内容，得到KEY，完成。"><a href="#3-通过cat命令查看“key-txt”文件内容，得到KEY，完成。" class="headerlink" title="3. 通过cat命令查看“key.txt”文件内容，得到KEY，完成。"></a>3. 通过cat命令查看“key.txt”文件内容，得到KEY，完成。</h4><p><img src="/2020/%E5%A2%A8%E8%80%85%E5%AD%A6%E9%99%A2-Apache-Struts2%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E%E6%94%BB%E7%95%A5/5ad1bb5cbc5ed81e89f6f0622c896c30.png" alt></p>
+
       
       <!-- 打赏 -->
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/%E5%A2%A8%E8%80%85%E5%AD%A6%E9%99%A2-MongoDB%E6%95%B0%E6%8D%AE%E5%BA%93%E6%94%BB%E7%95%A5/" data-id="ck53owi0l0005yowr88a0hyoy"
+      <a data-url="http://yoursite.com/2020/%E5%A2%A8%E8%80%85%E5%AD%A6%E9%99%A2-Apache-Struts2%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E%E6%94%BB%E7%95%A5/" data-id="ck53owi040004yowrgce05cqh"
         class="article-share-link">Share</a>
       
     </footer>
@@ -94,19 +92,10 @@
   
   <nav class="article-nav">
     
+    
       <a href="/2020/%E5%A2%A8%E8%80%85%E5%AD%A6%E9%99%A2-MySQL%E6%95%B0%E6%8D%AE%E5%BA%93%E6%94%BB%E7%95%A5/" class="article-nav-link">
-        <strong class="article-nav-caption">上一篇</strong>
-        <div class="article-nav-title">
-          
-            墨者学院-MySQL数据库攻略
-          
-        </div>
-      </a>
-    
-    
-      <a href="/2019/XSS%E9%97%AF%E5%85%B3%E5%B0%8F%E6%B8%B8%E6%88%8F%E9%80%9A%E8%BF%87%E6%94%BB%E7%95%A5/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">XSS闯关小游戏通过攻略</div>
+        <div class="article-nav-title">墨者学院-MySQL数据库攻略</div>
       </a>
     
   </nav>
