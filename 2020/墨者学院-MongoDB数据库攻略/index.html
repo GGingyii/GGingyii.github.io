@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    Hello World |  Tranquillity
+    墨者学院-MongoDB数据库攻略 |  Tranquillity
   </title>
   
   <link rel="shortcut icon" href="/feiji.ico" />
@@ -31,7 +31,7 @@
   <div id="app">
     <main class="content">
       <section class="outer">
-  <article id="post-hello-world" class="article article-type-post" itemscope
+  <article id="post-墨者学院-MongoDB数据库攻略" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
   <div class="article-inner">
@@ -39,7 +39,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  Hello World
+  墨者学院-MongoDB数据库攻略
 </h1>
   
 
@@ -48,8 +48,8 @@
 
     
     <div class="article-meta">
-      <a href="/2019/hello-world/" class="article-date">
-  <time datetime="2019-10-24T12:55:12.000Z" itemprop="datePublished">2019-10-24</time>
+      <a href="/2020/%E5%A2%A8%E8%80%85%E5%AD%A6%E9%99%A2-MongoDB%E6%95%B0%E6%8D%AE%E5%BA%93%E6%94%BB%E7%95%A5/" class="article-date">
+  <time datetime="2020-01-07T09:36:10.000Z" itemprop="datePublished">2020-01-07</time>
 </a>
       
     </div>
@@ -72,24 +72,19 @@
       
 
       
-      <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre><code class="bash">$ hexo new &quot;My New Post&quot;</code></pre>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<a id="more"></a>
-
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre><code class="bash">$ hexo server</code></pre>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre><code class="bash">$ hexo generate</code></pre>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre><code class="bash">$ hexo deploy</code></pre>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
+      <p>墨者学院-MongoDB数据库攻略</p>
+<h4 id="1-判断是否存在注入点："><a href="#1-判断是否存在注入点：" class="headerlink" title="1. 判断是否存在注入点："></a>1. 判断是否存在注入点：</h4><p><img src="/2020/%E5%A2%A8%E8%80%85%E5%AD%A6%E9%99%A2-MongoDB%E6%95%B0%E6%8D%AE%E5%BA%93%E6%94%BB%E7%95%A5/61ebbbbbef2ad1194f99d2812aafc8b7.png" alt></p>
+<h4 id="2-根据题目和HTML页面上数据显示位置，构建语句："><a href="#2-根据题目和HTML页面上数据显示位置，构建语句：" class="headerlink" title="2. 根据题目和HTML页面上数据显示位置，构建语句："></a>2. 根据题目和HTML页面上数据显示位置，构建语句：</h4><p><img src="/2020/%E5%A2%A8%E8%80%85%E5%AD%A6%E9%99%A2-MongoDB%E6%95%B0%E6%8D%AE%E5%BA%93%E6%94%BB%E7%95%A5/0551458e06d4dd234d91626cc79667bc.png" alt></p>
+<h5 id="通过-getCollectionNames-获得集合："><a href="#通过-getCollectionNames-获得集合：" class="headerlink" title="通过****getCollectionNames()获得集合："></a>通过****getCollectionNames()获得集合：</h5><p><img src="/2020/%E5%A2%A8%E8%80%85%E5%AD%A6%E9%99%A2-MongoDB%E6%95%B0%E6%8D%AE%E5%BA%93%E6%94%BB%E7%95%A5/5efe4764aa79bfcc5fc9e051be22eab8.png" alt></p>
+<h5 id="通过修改-1-获取不同的数据："><a href="#通过修改-1-获取不同的数据：" class="headerlink" title="通过修改[1]获取不同的数据："></a>通过修改[1]获取不同的数据：</h5><p><img src="/2020/%E5%A2%A8%E8%80%85%E5%AD%A6%E9%99%A2-MongoDB%E6%95%B0%E6%8D%AE%E5%BA%93%E6%94%BB%E7%95%A5/4200bb5052f02199f4e3712e893370e2.png" alt></p>
+<h4 id="3-md5解密："><a href="#3-md5解密：" class="headerlink" title="3. md5解密："></a>3. md5解密：</h4><p><img src="/2020/%E5%A2%A8%E8%80%85%E5%AD%A6%E9%99%A2-MongoDB%E6%95%B0%E6%8D%AE%E5%BA%93%E6%94%BB%E7%95%A5/0e0d5c7619d74031b2569f477eaa1996.png" alt></p>
+<h4 id="4-通过首页登录后获得KEY，完成。"><a href="#4-通过首页登录后获得KEY，完成。" class="headerlink" title="4. 通过首页登录后获得KEY，完成。"></a>4. 通过首页登录后获得KEY，完成。</h4>
       
       <!-- 打赏 -->
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/hello-world/" data-id="ck53omdi40002okwrhsw575lx"
+      <a data-url="http://yoursite.com/2020/%E5%A2%A8%E8%80%85%E5%AD%A6%E9%99%A2-MongoDB%E6%95%B0%E6%8D%AE%E5%BA%93%E6%94%BB%E7%95%A5/" data-id="ck53omdib0004okwr3p4dfdpe"
         class="article-share-link">Share</a>
       
     </footer>
@@ -100,15 +95,11 @@
   
   <nav class="article-nav">
     
-      <a href="/2019/%E4%BD%BF%E7%94%A8github%E6%90%AD%E5%BB%BAhexo%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2%E7%9A%84%E6%95%99%E7%A8%8B/" class="article-nav-link">
-        <strong class="article-nav-caption">上一篇</strong>
-        <div class="article-nav-title">
-          
-            使用github搭建hexo静态博客的教程
-          
-        </div>
-      </a>
     
+      <a href="/2020/%E5%A2%A8%E8%80%85%E5%AD%A6%E9%99%A2-MySQL%E6%95%B0%E6%8D%AE%E5%BA%93%E6%94%BB%E7%95%A5/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">墨者学院-MySQL数据库攻略</div>
+      </a>
     
   </nav>
 
