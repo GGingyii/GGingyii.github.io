@@ -5636,8 +5636,7 @@ button {
 .article-entry ul,
 .article-entry ol,
 .article-entry dl {
-  margin: 1.5rem 0;
-  line-height: line-height;
+  margin: 1.5rem 0 1.5rem 2rem;
 }
 .article-entry p,
 .article-entry table,
@@ -5845,6 +5844,7 @@ button {
 .tag-list > .tag-list-item {
   display: inline-block;
   padding: 0.5rem 1rem;
+  font-size: 120%;
 }
 .tag-list > .tag-list-item:before {
   content: "\eec3";
@@ -5926,6 +5926,12 @@ button {
   background-color: rgba(0,0,0,0.8);
   z-index: 9998;
   display: none;
+}
+.word_count {
+  margin-top: 5px;
+  color: #717f8c;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #efefef;
 }
 @media (max-width: 768px) {
   .cover-inner {
@@ -6128,7 +6134,7 @@ button {
 }
 .article-entry {
   font-size: 110%;
-  margin-top: 1rem;
+  margin-top: 0.5rem;
   color: #403e3e;
 }
 .article-entry::before,
@@ -6784,18 +6790,21 @@ a.toc-link {
 }
 .article-entry pre,
 .article-entry .highlight {
-  background: #f6f8fa;
+  background: #2d2d2d;
   padding: 1.5rem;
   margin: 1.5rem 0;
   -webkit-border-radius: 0.4rem;
   -moz-border-radius: 0.4rem;
   border-radius: 0.4rem;
   overflow: auto;
-  color: #4d4d4c;
+  color: #dedede;
 }
 .article-entry .highlight .gutter pre,
 .article-entry .gist .gist-file .gist-data .line-numbers {
   color: #8e908c;
+}
+.article-entry ol>li>ul {
+  padding-inline-start: 2rem;
 }
 .article-entry pre,
 .article-entry code {
@@ -6803,8 +6812,9 @@ a.toc-link {
   text-shadow: none;
 }
 .article-entry code {
-  background: #f6f8fa;
-  padding: 0.25rem;
+  color: #c7254e;
+  background: #f2f2f2;
+  padding: 0.25rem 0.6rem;
   -webkit-border-radius: 0.4rem;
   -moz-border-radius: 0.4rem;
   border-radius: 0.4rem;
@@ -6856,10 +6866,10 @@ a.toc-link {
   height: inherit;
 }
 .article-entry .highlight .line.marked {
-  background: #d6d6d6;
+  background: #000;
 }
 .article-entry .gist {
-  background: #f6f8fa;
+  background: #2d2d2d;
 }
 .article-entry .gist .gist-file {
   border: none;
@@ -6882,7 +6892,7 @@ a.toc-link {
   border: none;
 }
 .article-entry .gist .gist-file .gist-meta {
-  background: #f6f8fa;
+  background: #2d2d2d;
   color: #8e908c;
   padding: 0;
   margin-top: 1rem;
