@@ -5704,7 +5704,7 @@ button {
 }
 .cover .forkMe {
   position: absolute;
-  z-index: 999;
+  z-index: 0;
   top: 0;
   right: 0;
 }
