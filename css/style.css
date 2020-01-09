@@ -5819,22 +5819,6 @@ button {
   padding-left: 0;
   margin-left: 0;
 }
-.category-list {
-  list-style: none;
-  padding-left: 0;
-  margin-left: 0;
-  margin-right: -0.5rem;
-  margin-left: -0.5rem;
-}
-.category-list > .category-list-item {
-  display: inline-block;
-  padding: 0.5rem 1rem;
-}
-.category-list > .category-list-item:before {
-  content: "\efde";
-  font-family: remixicon;
-  margin-right: 0.5rem;
-}
 .tag-list {
   list-style: none;
   padding-left: 0;
