@@ -5526,7 +5526,7 @@ body {
   height: 100%;
 }
 html {
-  font-size: 62.5%;
+  font-size: 70.5%;
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
   -ms-overflow-style: scrollbar;
@@ -5788,12 +5788,12 @@ button {
   }
   .wrap,
   .outer {
-    width: 120rem;
+    width: 80rem;
     padding-right: 0;
     padding-left: 0;
   }
   .local-search {
-    width: 120rem;
+    width: 80rem;
   }
   .content.on {
     transform: none;
@@ -6376,7 +6376,7 @@ button {
 .tocbot {
   position: fixed;
   top: 10rem;
-  left: calc((100vw - 50rem) / 2 + 90rem);
+  left: calc((100vw - 50rem) / 2 + 70rem);
   font-size: 80%;
   opacity: 0.8;
 }
