@@ -5827,15 +5827,12 @@ button {
 }
 .category-list > .category-list-item {
   display: inline-block;
-  padding: 0.5rem 5rem;
+  padding: 0.5rem 3rem;
 }
 .category-list > .category-list-item:before {
   content: "\efde";
   font-family: remixicon;
-  margin-right: 0.5rem;
-}
-.category-list > .category-list-item > .category-list-child {
-  padding: 0.5rem;
+  margin-right: 0rem;
 }
 .tag-list {
   list-style: none;
