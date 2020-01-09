@@ -5834,8 +5834,8 @@ button {
   font-family: remixicon;
   margin-right: 0.5rem;
 }
-.category-list > .category-list-child {
-  padding: 0rem 1rem;
+.category-list > .category-list-item > .category-list-child {
+  padding: 0.1rem 3rem;
 }
 .tag-list {
   list-style: none;
