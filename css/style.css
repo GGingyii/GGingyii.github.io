@@ -5788,12 +5788,12 @@ button {
   }
   .wrap,
   .outer {
-    width: 70rem;
+    width: 120rem;
     padding-right: 0;
     padding-left: 0;
   }
   .local-search {
-    width: 70rem;
+    width: 120rem;
   }
   .content.on {
     transform: none;
@@ -5827,7 +5827,7 @@ button {
 }
 .category-list > .category-list-item {
   display: inline-block;
-  padding: 0.5rem 3rem;
+  padding: 0.5rem 4rem;
 }
 .category-list > .category-list-item:before {
   content: "\efde";
@@ -6375,8 +6375,8 @@ button {
 }
 .tocbot {
   position: fixed;
-  top: 14rem;
-  left: calc((100vw - 70rem) / 2 + 70rem);
+  top: 10rem;
+  left: calc((100vw - 50rem) / 2 + 90rem);
   font-size: 80%;
   opacity: 0.8;
 }
