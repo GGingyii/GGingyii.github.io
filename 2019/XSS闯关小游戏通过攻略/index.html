@@ -10,11 +10,13 @@
   <title>
     XSS闯关小游戏通过攻略 |  Tranquillity
   </title>
+  <meta name="generator" content="hexo-theme-yilia-plus">
   
   <link rel="shortcut icon" href="/feiji.ico" />
   
   
 <link rel="stylesheet" href="/css/style.css">
+
   
 <script src="/js/pace.min.js"></script>
 
@@ -23,7 +25,7 @@
 
   
 
-<meta name="generator" content="Hexo 4.2.0"></head>
+</head>
 
 </html>
 
@@ -51,6 +53,28 @@
       <a href="/2019/XSS%E9%97%AF%E5%85%B3%E5%B0%8F%E6%B8%B8%E6%88%8F%E9%80%9A%E8%BF%87%E6%94%BB%E7%95%A5/" class="article-date">
   <time datetime="2019-12-24T02:21:44.000Z" itemprop="datePublished">2019-12-24</time>
 </a>
+      
+      
+      
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">687字</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">3分钟</span>
+        </span>
+    </span>
+</div>
+
       
     </div>
     
@@ -120,9 +144,13 @@
       
       <!-- 打赏 -->
       
+      <div id="reward-btn">
+        打赏
+      </div>
+      
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/XSS%E9%97%AF%E5%85%B3%E5%B0%8F%E6%B8%B8%E6%88%8F%E9%80%9A%E8%BF%87%E6%94%BB%E7%95%A5/" data-id="ck566psog0001awwr3hhk7p1d"
+      <a data-url="http://yoursite.com/2019/XSS%E9%97%AF%E5%85%B3%E5%B0%8F%E6%B8%B8%E6%88%8F%E9%80%9A%E8%BF%87%E6%94%BB%E7%95%A5/" data-id="ck567dg760001g8wra2fw2otk"
         class="article-share-link">Share</a>
       
     </footer>
@@ -154,8 +182,6 @@
   
 
   
-  
-  
 
   
   
@@ -172,6 +198,11 @@
         GGingyii
       </li>
       <li>
+        
+          Powered by
+        
+        
+        <a href="https://hexo.io" target="_blank">Hexo</a> Theme <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
         
       </li>
     </ul>
@@ -293,6 +324,10 @@
       positionFixedSelector: '.tocbot',
       positionFixedClass: 'is-position-fixed',
       fixedSidebarOffset: 'auto',
+			onClick: (e) => {
+      	document.getElementById(e.target.innerText).scrollIntoView()
+      	return false;
+    	}
     });
   </script>
 
@@ -315,6 +350,7 @@
 <script type="text/javascript" src="https://js.users.51.la/20544303.js"></script>
   
   
+
   </div>
 </body>
 

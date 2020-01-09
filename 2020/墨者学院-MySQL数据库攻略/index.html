@@ -10,11 +10,13 @@
   <title>
     墨者学院-MySQL数据库攻略 |  Tranquillity
   </title>
+  <meta name="generator" content="hexo-theme-yilia-plus">
   
   <link rel="shortcut icon" href="/feiji.ico" />
   
   
 <link rel="stylesheet" href="/css/style.css">
+
   
 <script src="/js/pace.min.js"></script>
 
@@ -23,7 +25,7 @@
 
   
 
-<meta name="generator" content="Hexo 4.2.0"></head>
+</head>
 
 </html>
 
@@ -51,6 +53,28 @@
       <a href="/2020/%E5%A2%A8%E8%80%85%E5%AD%A6%E9%99%A2-MySQL%E6%95%B0%E6%8D%AE%E5%BA%93%E6%94%BB%E7%95%A5/" class="article-date">
   <time datetime="2020-01-07T08:43:11.000Z" itemprop="datePublished">2020-01-07</time>
 </a>
+      
+      
+      
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">289字</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">1分钟</span>
+        </span>
+    </span>
+</div>
+
       
     </div>
     
@@ -88,9 +112,13 @@
       
       <!-- 打赏 -->
       
+      <div id="reward-btn">
+        打赏
+      </div>
+      
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/%E5%A2%A8%E8%80%85%E5%AD%A6%E9%99%A2-MySQL%E6%95%B0%E6%8D%AE%E5%BA%93%E6%94%BB%E7%95%A5/" data-id="ck566psqi0006awwrgodp0qi9"
+      <a data-url="http://yoursite.com/2020/%E5%A2%A8%E8%80%85%E5%AD%A6%E9%99%A2-MySQL%E6%95%B0%E6%8D%AE%E5%BA%93%E6%94%BB%E7%95%A5/" data-id="ck567dg990006g8wrb9oh1sne"
         class="article-share-link">Share</a>
       
     </footer>
@@ -122,8 +150,6 @@
   
 
   
-  
-  
 
   
   
@@ -140,6 +166,11 @@
         GGingyii
       </li>
       <li>
+        
+          Powered by
+        
+        
+        <a href="https://hexo.io" target="_blank">Hexo</a> Theme <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
         
       </li>
     </ul>
@@ -261,6 +292,10 @@
       positionFixedSelector: '.tocbot',
       positionFixedClass: 'is-position-fixed',
       fixedSidebarOffset: 'auto',
+			onClick: (e) => {
+      	document.getElementById(e.target.innerText).scrollIntoView()
+      	return false;
+    	}
     });
   </script>
 
@@ -283,6 +318,7 @@
 <script type="text/javascript" src="https://js.users.51.la/20544303.js"></script>
   
   
+
   </div>
 </body>
 

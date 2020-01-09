@@ -10,11 +10,13 @@
   <title>
     Sqli-labs通关攻略 |  Tranquillity
   </title>
+  <meta name="generator" content="hexo-theme-yilia-plus">
   
   <link rel="shortcut icon" href="/feiji.ico" />
   
   
 <link rel="stylesheet" href="/css/style.css">
+
   
 <script src="/js/pace.min.js"></script>
 
@@ -23,7 +25,7 @@
 
   
 
-<meta name="generator" content="Hexo 4.2.0"></head>
+</head>
 
 </html>
 
@@ -51,6 +53,28 @@
       <a href="/2019/Sqli-labs%E9%80%9A%E5%85%B3%E6%94%BB%E7%95%A5/" class="article-date">
   <time datetime="2019-12-19T14:59:12.000Z" itemprop="datePublished">2019-12-19</time>
 </a>
+      
+      
+      
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">3.4k字</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">16分钟</span>
+        </span>
+    </span>
+</div>
+
       
     </div>
     
@@ -238,9 +262,13 @@ Cookie: uname=admin&quot; union select 1,username,password from users limit 2,1#
       
       <!-- 打赏 -->
       
+      <div id="reward-btn">
+        打赏
+      </div>
+      
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/Sqli-labs%E9%80%9A%E5%85%B3%E6%94%BB%E7%95%A5/" data-id="ck566pso00000awwr3bih9vns"
+      <a data-url="http://yoursite.com/2019/Sqli-labs%E9%80%9A%E5%85%B3%E6%94%BB%E7%95%A5/" data-id="ck567dg6l0000g8wrd2dp2y2d"
         class="article-share-link">Share</a>
       
     </footer>
@@ -272,8 +300,6 @@ Cookie: uname=admin&quot; union select 1,username,password from users limit 2,1#
   
 
   
-  
-  
 
   
   
@@ -290,6 +316,11 @@ Cookie: uname=admin&quot; union select 1,username,password from users limit 2,1#
         GGingyii
       </li>
       <li>
+        
+          Powered by
+        
+        
+        <a href="https://hexo.io" target="_blank">Hexo</a> Theme <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
         
       </li>
     </ul>
@@ -411,6 +442,10 @@ Cookie: uname=admin&quot; union select 1,username,password from users limit 2,1#
       positionFixedSelector: '.tocbot',
       positionFixedClass: 'is-position-fixed',
       fixedSidebarOffset: 'auto',
+			onClick: (e) => {
+      	document.getElementById(e.target.innerText).scrollIntoView()
+      	return false;
+    	}
     });
   </script>
 
@@ -433,6 +468,7 @@ Cookie: uname=admin&quot; union select 1,username,password from users limit 2,1#
 <script type="text/javascript" src="https://js.users.51.la/20544303.js"></script>
   
   
+
   </div>
 </body>
 

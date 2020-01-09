@@ -10,11 +10,13 @@
   <title>
     使用github搭建hexo静态博客的教程 |  Tranquillity
   </title>
+  <meta name="generator" content="hexo-theme-yilia-plus">
   
   <link rel="shortcut icon" href="/feiji.ico" />
   
   
 <link rel="stylesheet" href="/css/style.css">
+
   
 <script src="/js/pace.min.js"></script>
 
@@ -23,7 +25,7 @@
 
   
 
-<meta name="generator" content="Hexo 4.2.0"></head>
+</head>
 
 </html>
 
@@ -51,6 +53,28 @@
       <a href="/2019/%E4%BD%BF%E7%94%A8github%E6%90%AD%E5%BB%BAhexo%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2%E7%9A%84%E6%95%99%E7%A8%8B/" class="article-date">
   <time datetime="2019-10-26T05:54:33.000Z" itemprop="datePublished">2019-10-26</time>
 </a>
+      
+      
+      
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">1.2k字</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">4分钟</span>
+        </span>
+    </span>
+</div>
+
       
     </div>
     
@@ -129,9 +153,13 @@ $ git config --global user.email  &quot;xxx@hotmail.com&quot;// 填写你的gith
       
       <!-- 打赏 -->
       
+      <div id="reward-btn">
+        打赏
+      </div>
+      
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/%E4%BD%BF%E7%94%A8github%E6%90%AD%E5%BB%BAhexo%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2%E7%9A%84%E6%95%99%E7%A8%8B/" data-id="ck566psou0003awwrajy44wlh"
+      <a data-url="http://yoursite.com/2019/%E4%BD%BF%E7%94%A8github%E6%90%AD%E5%BB%BAhexo%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2%E7%9A%84%E6%95%99%E7%A8%8B/" data-id="ck567dg7h0003g8wra0zh1fvk"
         class="article-share-link">Share</a>
       
     </footer>
@@ -163,8 +191,6 @@ $ git config --global user.email  &quot;xxx@hotmail.com&quot;// 填写你的gith
   
 
   
-  
-  
 
   
   
@@ -181,6 +207,11 @@ $ git config --global user.email  &quot;xxx@hotmail.com&quot;// 填写你的gith
         GGingyii
       </li>
       <li>
+        
+          Powered by
+        
+        
+        <a href="https://hexo.io" target="_blank">Hexo</a> Theme <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
         
       </li>
     </ul>
@@ -302,6 +333,10 @@ $ git config --global user.email  &quot;xxx@hotmail.com&quot;// 填写你的gith
       positionFixedSelector: '.tocbot',
       positionFixedClass: 'is-position-fixed',
       fixedSidebarOffset: 'auto',
+			onClick: (e) => {
+      	document.getElementById(e.target.innerText).scrollIntoView()
+      	return false;
+    	}
     });
   </script>
 
@@ -324,6 +359,7 @@ $ git config --global user.email  &quot;xxx@hotmail.com&quot;// 填写你的gith
 <script type="text/javascript" src="https://js.users.51.la/20544303.js"></script>
   
   
+
   </div>
 </body>
 
