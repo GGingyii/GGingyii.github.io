@@ -65,7 +65,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">286字</span>
+            <span class="post-count">280字</span>
         </span>
     </span>
 
@@ -102,10 +102,12 @@
       
       <h4 id="实验环境："><a href="#实验环境：" class="headerlink" title="实验环境："></a>实验环境：</h4><ol>
 <li>Windows、火绒</li>
-<li>网站 <a href="http://192.168.5.157/login/" target="_blank" rel="noopener">http://192.168.5.157/login/</a> （由于目标主机）</li>
+<li>网站 <a href="http://192.168.5.157/login/" target="_blank" rel="noopener">http://192.168.5.157/login/</a></li>
 <li>实验工具：nmap、hydra、Xftp6、DBeaver、cobaltstrike3.14</li>
 </ol>
 <h4 id="实验步骤："><a href="#实验步骤：" class="headerlink" title="实验步骤："></a>实验步骤：</h4><h5 id="1-首先使用nmap工具对IP（192-168-5-157）进行扫描。"><a href="#1-首先使用nmap工具对IP（192-168-5-157）进行扫描。" class="headerlink" title="1. 首先使用nmap工具对IP（192.168.5.157）进行扫描。"></a>1. 首先使用nmap工具对IP（192.168.5.157）进行扫描。</h5><p><img src="/2020/%E7%BB%95%E8%BF%87%E7%81%AB%E7%BB%92%E9%9D%B6%E6%9C%BA%E8%8E%B7%E5%8F%96%E7%AE%A1%E7%90%86%E5%91%98%E8%B4%A6%E5%8F%B7%E5%AF%86%E7%A0%81-%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/%E7%81%AB%E7%BB%92-1.png" alt></p>
+<a id="more"></a>
+
 <h5 id="2-利用hydra工具对ftp等服务进行爆破，发现ftp可以匿名登录。"><a href="#2-利用hydra工具对ftp等服务进行爆破，发现ftp可以匿名登录。" class="headerlink" title="2. 利用hydra工具对ftp等服务进行爆破，发现ftp可以匿名登录。"></a>2. 利用hydra工具对ftp等服务进行爆破，发现ftp可以匿名登录。</h5><p><img src="/2020/%E7%BB%95%E8%BF%87%E7%81%AB%E7%BB%92%E9%9D%B6%E6%9C%BA%E8%8E%B7%E5%8F%96%E7%AE%A1%E7%90%86%E5%91%98%E8%B4%A6%E5%8F%B7%E5%AF%86%E7%A0%81-%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/%E7%81%AB%E7%BB%92-2.png" alt></p>
 <h5 id="3-使用Xftp6工具以ftp方式连接，发现-global-asa-文件下存在mssql账号密码。"><a href="#3-使用Xftp6工具以ftp方式连接，发现-global-asa-文件下存在mssql账号密码。" class="headerlink" title="3. 使用Xftp6工具以ftp方式连接，发现 global.asa 文件下存在mssql账号密码。"></a>3. 使用Xftp6工具以ftp方式连接，发现 global.asa 文件下存在mssql账号密码。</h5><p><img src="/2020/%E7%BB%95%E8%BF%87%E7%81%AB%E7%BB%92%E9%9D%B6%E6%9C%BA%E8%8E%B7%E5%8F%96%E7%AE%A1%E7%90%86%E5%91%98%E8%B4%A6%E5%8F%B7%E5%AF%86%E7%A0%81-%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/%E7%81%AB%E7%BB%92-3.png" alt><br><img src="/2020/%E7%BB%95%E8%BF%87%E7%81%AB%E7%BB%92%E9%9D%B6%E6%9C%BA%E8%8E%B7%E5%8F%96%E7%AE%A1%E7%90%86%E5%91%98%E8%B4%A6%E5%8F%B7%E5%AF%86%E7%A0%81-%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/%E7%81%AB%E7%BB%92-4.png" alt></p>
 <h5 id="4-下载文件，在本地以文本方式查看文件。"><a href="#4-下载文件，在本地以文本方式查看文件。" class="headerlink" title="4. 下载文件，在本地以文本方式查看文件。"></a>4. 下载文件，在本地以文本方式查看文件。</h5><p><img src="/2020/%E7%BB%95%E8%BF%87%E7%81%AB%E7%BB%92%E9%9D%B6%E6%9C%BA%E8%8E%B7%E5%8F%96%E7%AE%A1%E7%90%86%E5%91%98%E8%B4%A6%E5%8F%B7%E5%AF%86%E7%A0%81-%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/%E7%81%AB%E7%BB%92-5.png" alt></p>
@@ -122,7 +124,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/%E7%BB%95%E8%BF%87%E7%81%AB%E7%BB%92%E9%9D%B6%E6%9C%BA%E8%8E%B7%E5%8F%96%E7%AE%A1%E7%90%86%E5%91%98%E8%B4%A6%E5%8F%B7%E5%AF%86%E7%A0%81-%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/" data-id="ck58aroc0000browr03d487a0"
+      <a data-url="http://yoursite.com/2020/%E7%BB%95%E8%BF%87%E7%81%AB%E7%BB%92%E9%9D%B6%E6%9C%BA%E8%8E%B7%E5%8F%96%E7%AE%A1%E7%90%86%E5%91%98%E8%B4%A6%E5%8F%B7%E5%AF%86%E7%A0%81-%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/" data-id="ck58buku9000b28wrcaqa9htp"
         class="article-share-link">Share</a>
       
     </footer>
