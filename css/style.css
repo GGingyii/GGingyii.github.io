@@ -5826,8 +5826,7 @@ button {
   margin-left: -0.5rem;
 }
 .category-list > .category-list-item {
-  display: inline-block;
-  padding: 0.5rem 4rem;
+  padding: 1rem 4rem;
 }
 .category-list > .category-list-item:before {
   content: "\efde";
