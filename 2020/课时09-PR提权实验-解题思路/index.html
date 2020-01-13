@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    课时9-PR提权实验-解题思路 |  Tranquillity
+    课时09-PR提权实验-解题思路 |  Tranquillity
   </title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   
@@ -33,7 +33,7 @@
   <div id="app">
     <main class="content">
       <section class="outer">
-  <article id="post-课时9-PR提权实验-解题思路" class="article article-type-post" itemscope
+  <article id="post-课时09-PR提权实验-解题思路" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
   <div class="article-inner">
@@ -41,7 +41,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  课时9-PR提权实验-解题思路
+  课时09-PR提权实验-解题思路
 </h1>
   
 
@@ -50,7 +50,7 @@
 
     
     <div class="article-meta">
-      <a href="/2020/%E8%AF%BE%E6%97%B69-PR%E6%8F%90%E6%9D%83%E5%AE%9E%E9%AA%8C-%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/" class="article-date">
+      <a href="/2020/%E8%AF%BE%E6%97%B609-PR%E6%8F%90%E6%9D%83%E5%AE%9E%E9%AA%8C-%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/" class="article-date">
   <time datetime="2020-01-10T18:38:10.000Z" itemprop="datePublished">2020-01-11</time>
 </a>
       
@@ -65,7 +65,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">203字</span>
+            <span class="post-count">201字</span>
         </span>
     </span>
 
@@ -100,25 +100,25 @@
       
 
       
-      <h4 id="实验环境："><a href="#实验环境：" class="headerlink" title="实验环境："></a>实验环境：</h4><h5 id="实验工具：3389-reg、cmd-exe、pr-exe、中国菜刀"><a href="#实验工具：3389-reg、cmd-exe、pr-exe、中国菜刀" class="headerlink" title="实验工具：3389.reg、cmd.exe、pr.exe、中国菜刀"></a>实验工具：3389.reg、cmd.exe、pr.exe、中国菜刀</h5><p><img src="/2020/%E8%AF%BE%E6%97%B69-PR%E6%8F%90%E6%9D%83%E5%AE%9E%E9%AA%8C-%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/pr%E6%8F%90%E6%9D%83-1.png" alt></p>
+      <h4 id="实验环境："><a href="#实验环境：" class="headerlink" title="实验环境："></a>实验环境：</h4><h5 id="实验工具：3389-reg、cmd-exe、pr-exe、中国菜刀"><a href="#实验工具：3389-reg、cmd-exe、pr-exe、中国菜刀" class="headerlink" title="实验工具：3389.reg、cmd.exe、pr.exe、中国菜刀"></a>实验工具：3389.reg、cmd.exe、pr.exe、中国菜刀</h5><p><img src="/2020/%E8%AF%BE%E6%97%B609-PR%E6%8F%90%E6%9D%83%E5%AE%9E%E9%AA%8C-%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/pr%E6%8F%90%E6%9D%83-1.png" alt></p>
 <a id="more"></a>
 
-<h4 id="实验过程："><a href="#实验过程：" class="headerlink" title="实验过程："></a>实验过程：</h4><h5 id="1-按照实验步骤访问-file-ichunqiu-com-363q5eyp-下载实验工具"><a href="#1-按照实验步骤访问-file-ichunqiu-com-363q5eyp-下载实验工具" class="headerlink" title="1. 按照实验步骤访问 file.ichunqiu.com/363q5eyp 下载实验工具"></a>1. 按照实验步骤访问 file.ichunqiu.com/363q5eyp 下载实验工具</h5><p><img src="/2020/%E8%AF%BE%E6%97%B69-PR%E6%8F%90%E6%9D%83%E5%AE%9E%E9%AA%8C-%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/pr%E6%8F%90%E6%9D%83-2.png" alt></p>
-<h5 id="2-使用菜刀连接，并按要求填写主机信息及密码："><a href="#2-使用菜刀连接，并按要求填写主机信息及密码：" class="headerlink" title="2. 使用菜刀连接，并按要求填写主机信息及密码："></a>2. 使用菜刀连接，并按要求填写主机信息及密码：</h5><p><img src="/2020/%E8%AF%BE%E6%97%B69-PR%E6%8F%90%E6%9D%83%E5%AE%9E%E9%AA%8C-%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/pr%E6%8F%90%E6%9D%83-3.png" alt></p>
-<h5 id="3-打开虚拟终端，输入whoami命令，出现-Err-拒绝访问。权限不够需要提权，利用RPCSS服务隔离本地权限提升漏洞（pr提权）提高权限。"><a href="#3-打开虚拟终端，输入whoami命令，出现-Err-拒绝访问。权限不够需要提权，利用RPCSS服务隔离本地权限提升漏洞（pr提权）提高权限。" class="headerlink" title="3. 打开虚拟终端，输入whoami命令，出现 [Err] 拒绝访问。权限不够需要提权，利用RPCSS服务隔离本地权限提升漏洞（pr提权）提高权限。"></a>3. 打开虚拟终端，输入whoami命令，出现 [Err] 拒绝访问。权限不够需要提权，利用RPCSS服务隔离本地权限提升漏洞（pr提权）提高权限。</h5><p><img src="/2020/%E8%AF%BE%E6%97%B69-PR%E6%8F%90%E6%9D%83%E5%AE%9E%E9%AA%8C-%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/pr%E6%8F%90%E6%9D%83-4.png" alt><br><img src="/2020/%E8%AF%BE%E6%97%B69-PR%E6%8F%90%E6%9D%83%E5%AE%9E%E9%AA%8C-%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/pr%E6%8F%90%E6%9D%83-5.png" alt></p>
-<h5 id="4-将pr-exe、cmd-exe和3389-reg-文件通过中国菜刀上传到目标主机上。"><a href="#4-将pr-exe、cmd-exe和3389-reg-文件通过中国菜刀上传到目标主机上。" class="headerlink" title="4. 将pr.exe、cmd.exe和3389.reg 文件通过中国菜刀上传到目标主机上。"></a>4. 将pr.exe、cmd.exe和3389.reg 文件通过中国菜刀上传到目标主机上。</h5><p><img src="/2020/%E8%AF%BE%E6%97%B69-PR%E6%8F%90%E6%9D%83%E5%AE%9E%E9%AA%8C-%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/pr%E6%8F%90%E6%9D%83-6.png" alt></p>
-<h5 id="5-右击cmd-exe打开虚拟终端，执行-pr-exe-“命令”-，添加管理员用户test。"><a href="#5-右击cmd-exe打开虚拟终端，执行-pr-exe-“命令”-，添加管理员用户test。" class="headerlink" title="5. 右击cmd.exe打开虚拟终端，执行 pr.exe “命令” ，添加管理员用户test。"></a>5. 右击cmd.exe打开虚拟终端，执行 pr.exe “命令” ，添加管理员用户test。</h5><p><img src="/2020/%E8%AF%BE%E6%97%B69-PR%E6%8F%90%E6%9D%83%E5%AE%9E%E9%AA%8C-%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/pr%E6%8F%90%E6%9D%83-7.png" alt><br><img src="/2020/%E8%AF%BE%E6%97%B69-PR%E6%8F%90%E6%9D%83%E5%AE%9E%E9%AA%8C-%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/pr%E6%8F%90%E6%9D%83-8.png" alt></p>
-<h5 id="6-执行-pr-exe-“regedit-s-3389-reg”-命令，开启-3389-端口。"><a href="#6-执行-pr-exe-“regedit-s-3389-reg”-命令，开启-3389-端口。" class="headerlink" title="6. 执行 pr.exe “regedit /s 3389.reg” 命令，开启 3389 端口。"></a>6. 执行 pr.exe “regedit /s 3389.reg” 命令，开启 3389 端口。</h5><p><img src="/2020/%E8%AF%BE%E6%97%B69-PR%E6%8F%90%E6%9D%83%E5%AE%9E%E9%AA%8C-%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/pr%E6%8F%90%E6%9D%83-9.png" alt></p>
-<h5 id="7-运用新添加的管理员用户远程连接到目标主机。"><a href="#7-运用新添加的管理员用户远程连接到目标主机。" class="headerlink" title="7. 运用新添加的管理员用户远程连接到目标主机。"></a>7. 运用新添加的管理员用户远程连接到目标主机。</h5><p><img src="/2020/%E8%AF%BE%E6%97%B69-PR%E6%8F%90%E6%9D%83%E5%AE%9E%E9%AA%8C-%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/pr%E6%8F%90%E6%9D%83-10.png" alt></p>
-<h5 id="8-成功。"><a href="#8-成功。" class="headerlink" title="8. 成功。"></a>8. 成功。</h5><p><img src="/2020/%E8%AF%BE%E6%97%B69-PR%E6%8F%90%E6%9D%83%E5%AE%9E%E9%AA%8C-%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/pr%E6%8F%90%E6%9D%83-11.png" alt></p>
-<h4 id="实验试题："><a href="#实验试题：" class="headerlink" title="实验试题："></a>实验试题：</h4><p><img src="/2020/%E8%AF%BE%E6%97%B69-PR%E6%8F%90%E6%9D%83%E5%AE%9E%E9%AA%8C-%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/pr%E6%8F%90%E6%9D%83-12.png" alt></p>
+<h4 id="实验过程："><a href="#实验过程：" class="headerlink" title="实验过程："></a>实验过程：</h4><h5 id="1-按照实验步骤访问-file-ichunqiu-com-363q5eyp-下载实验工具。"><a href="#1-按照实验步骤访问-file-ichunqiu-com-363q5eyp-下载实验工具。" class="headerlink" title="1. 按照实验步骤访问 file.ichunqiu.com/363q5eyp 下载实验工具。"></a>1. 按照实验步骤访问 file.ichunqiu.com/363q5eyp 下载实验工具。</h5><p><img src="/2020/%E8%AF%BE%E6%97%B609-PR%E6%8F%90%E6%9D%83%E5%AE%9E%E9%AA%8C-%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/pr%E6%8F%90%E6%9D%83-2.png" alt></p>
+<h5 id="2-使用菜刀连接，并按要求填写主机信息及密码。"><a href="#2-使用菜刀连接，并按要求填写主机信息及密码。" class="headerlink" title="2. 使用菜刀连接，并按要求填写主机信息及密码。"></a>2. 使用菜刀连接，并按要求填写主机信息及密码。</h5><p><img src="/2020/%E8%AF%BE%E6%97%B609-PR%E6%8F%90%E6%9D%83%E5%AE%9E%E9%AA%8C-%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/pr%E6%8F%90%E6%9D%83-3.png" alt></p>
+<h5 id="3-打开虚拟终端，输入whoami命令，出现-Err-拒绝访问。权限不够需要提权，利用RPCSS服务隔离本地权限提升漏洞（pr提权）提高权限。"><a href="#3-打开虚拟终端，输入whoami命令，出现-Err-拒绝访问。权限不够需要提权，利用RPCSS服务隔离本地权限提升漏洞（pr提权）提高权限。" class="headerlink" title="3. 打开虚拟终端，输入whoami命令，出现 [Err] 拒绝访问。权限不够需要提权，利用RPCSS服务隔离本地权限提升漏洞（pr提权）提高权限。"></a>3. 打开虚拟终端，输入whoami命令，出现 [Err] 拒绝访问。权限不够需要提权，利用RPCSS服务隔离本地权限提升漏洞（pr提权）提高权限。</h5><p><img src="/2020/%E8%AF%BE%E6%97%B609-PR%E6%8F%90%E6%9D%83%E5%AE%9E%E9%AA%8C-%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/pr%E6%8F%90%E6%9D%83-4.png" alt><br><img src="/2020/%E8%AF%BE%E6%97%B609-PR%E6%8F%90%E6%9D%83%E5%AE%9E%E9%AA%8C-%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/pr%E6%8F%90%E6%9D%83-5.png" alt></p>
+<h5 id="4-将pr-exe、cmd-exe和3389-reg-文件通过中国菜刀上传到目标主机上。"><a href="#4-将pr-exe、cmd-exe和3389-reg-文件通过中国菜刀上传到目标主机上。" class="headerlink" title="4. 将pr.exe、cmd.exe和3389.reg 文件通过中国菜刀上传到目标主机上。"></a>4. 将pr.exe、cmd.exe和3389.reg 文件通过中国菜刀上传到目标主机上。</h5><p><img src="/2020/%E8%AF%BE%E6%97%B609-PR%E6%8F%90%E6%9D%83%E5%AE%9E%E9%AA%8C-%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/pr%E6%8F%90%E6%9D%83-6.png" alt></p>
+<h5 id="5-右击cmd-exe打开虚拟终端，执行-pr-exe-“命令”-，添加管理员用户test。"><a href="#5-右击cmd-exe打开虚拟终端，执行-pr-exe-“命令”-，添加管理员用户test。" class="headerlink" title="5. 右击cmd.exe打开虚拟终端，执行 pr.exe “命令” ，添加管理员用户test。"></a>5. 右击cmd.exe打开虚拟终端，执行 pr.exe “命令” ，添加管理员用户test。</h5><p><img src="/2020/%E8%AF%BE%E6%97%B609-PR%E6%8F%90%E6%9D%83%E5%AE%9E%E9%AA%8C-%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/pr%E6%8F%90%E6%9D%83-7.png" alt><br><img src="/2020/%E8%AF%BE%E6%97%B609-PR%E6%8F%90%E6%9D%83%E5%AE%9E%E9%AA%8C-%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/pr%E6%8F%90%E6%9D%83-8.png" alt></p>
+<h5 id="6-执行-pr-exe-“regedit-s-3389-reg”-命令，开启-3389-端口。"><a href="#6-执行-pr-exe-“regedit-s-3389-reg”-命令，开启-3389-端口。" class="headerlink" title="6. 执行 pr.exe “regedit /s 3389.reg” 命令，开启 3389 端口。"></a>6. 执行 pr.exe “regedit /s 3389.reg” 命令，开启 3389 端口。</h5><p><img src="/2020/%E8%AF%BE%E6%97%B609-PR%E6%8F%90%E6%9D%83%E5%AE%9E%E9%AA%8C-%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/pr%E6%8F%90%E6%9D%83-9.png" alt></p>
+<h5 id="7-使用新增的管理员用户远程连接目标主机。"><a href="#7-使用新增的管理员用户远程连接目标主机。" class="headerlink" title="7. 使用新增的管理员用户远程连接目标主机。"></a>7. 使用新增的管理员用户远程连接目标主机。</h5><p><img src="/2020/%E8%AF%BE%E6%97%B609-PR%E6%8F%90%E6%9D%83%E5%AE%9E%E9%AA%8C-%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/pr%E6%8F%90%E6%9D%83-10.png" alt></p>
+<h5 id="8-成功。"><a href="#8-成功。" class="headerlink" title="8. 成功。"></a>8. 成功。</h5><p><img src="/2020/%E8%AF%BE%E6%97%B609-PR%E6%8F%90%E6%9D%83%E5%AE%9E%E9%AA%8C-%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/pr%E6%8F%90%E6%9D%83-11.png" alt></p>
+<h4 id="实验试题："><a href="#实验试题：" class="headerlink" title="实验试题："></a>实验试题：</h4><p><img src="/2020/%E8%AF%BE%E6%97%B609-PR%E6%8F%90%E6%9D%83%E5%AE%9E%E9%AA%8C-%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/pr%E6%8F%90%E6%9D%83-12.png" alt></p>
 
       
       <!-- 打赏 -->
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/%E8%AF%BE%E6%97%B69-PR%E6%8F%90%E6%9D%83%E5%AE%9E%E9%AA%8C-%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/" data-id="ck5bc0s4r000ecwwr6kogdqxi"
+      <a data-url="http://yoursite.com/2020/%E8%AF%BE%E6%97%B609-PR%E6%8F%90%E6%9D%83%E5%AE%9E%E9%AA%8C-%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/" data-id="ck5c0azg9000exowr0dnmh7uq"
         class="article-share-link">Share</a>
       
     </footer>
