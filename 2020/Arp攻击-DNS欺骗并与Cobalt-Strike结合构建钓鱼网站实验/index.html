@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+    
+  <meta name="description" content="A tranquility that belongs to you only!" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    Arp攻击-DNS欺骗并与Cobalt Strike结合构建钓鱼网站实验 |  Tranquillity
+  </title>
+  <meta name="generator" content="hexo-theme-yilia-plus">
+  
+  <link rel="shortcut icon" href="/feiji.ico" />
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<script src="/js/pace.min.js"></script>
+
+
+  
+
+  
+
+</head>
+
+</html>
+
+<body>
+  <div id="app">
+    <main class="content">
+      <section class="outer">
+  <article id="post-Arp攻击-DNS欺骗并与Cobalt-Strike结合构建钓鱼网站实验" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  Arp攻击-DNS欺骗并与Cobalt Strike结合构建钓鱼网站实验
+</h1>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/Arp%E6%94%BB%E5%87%BB-DNS%E6%AC%BA%E9%AA%97%E5%B9%B6%E4%B8%8ECobalt-Strike%E7%BB%93%E5%90%88%E6%9E%84%E5%BB%BA%E9%92%93%E9%B1%BC%E7%BD%91%E7%AB%99%E5%AE%9E%E9%AA%8C/" class="article-date">
+  <time datetime="2020-02-19T12:56:12.000Z" itemprop="datePublished">2020-02-19</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%95%99%E7%A8%8B/">教程</a> / <a class="article-category-link" href="/categories/%E6%95%99%E7%A8%8B/%E5%AE%9E%E9%AA%8C/">实验</a>
+  </div>
+
+      
+      
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">305字</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">1分钟</span>
+        </span>
+    </span>
+</div>
+
+      
+    </div>
+    
+
+    
+    
+    <div class="tocbot"></div>
+
+
+
+
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <h3 id="0x01-实验前需要准备的环境及工具"><a href="#0x01-实验前需要准备的环境及工具" class="headerlink" title="0x01 实验前需要准备的环境及工具"></a>0x01 实验前需要准备的环境及工具</h3><h4 id="实验工具："><a href="#实验工具：" class="headerlink" title="实验工具："></a>实验工具：</h4><ol>
+<li>ettercap</li>
+<li>Cobalt Strike</li>
+</ol>
+<h4 id="实验环境："><a href="#实验环境：" class="headerlink" title="实验环境："></a>实验环境：</h4><ol>
+<li>靶机（Windows）</li>
+<li>攻击机（kali，IP：192.168.233.129）并与靶机处于互能ping通状态。</li>
+</ol>
+<h3 id="0x02-实验步骤"><a href="#0x02-实验步骤" class="headerlink" title="0x02 实验步骤"></a>0x02 实验步骤</h3><h4 id="DNS欺骗"><a href="#DNS欺骗" class="headerlink" title="DNS欺骗"></a>DNS欺骗</h4><h5 id="1-设置一个DNS：vi-etc-ettercap-etter-dns"><a href="#1-设置一个DNS：vi-etc-ettercap-etter-dns" class="headerlink" title="1. 设置一个DNS：vi /etc/ettercap/etter.dns"></a>1. 设置一个DNS：vi /etc/ettercap/etter.dns</h5><p><img src="/2020/Arp%E6%94%BB%E5%87%BB-DNS%E6%AC%BA%E9%AA%97%E5%B9%B6%E4%B8%8ECobalt-Strike%E7%BB%93%E5%90%88%E6%9E%84%E5%BB%BA%E9%92%93%E9%B1%BC%E7%BD%91%E7%AB%99%E5%AE%9E%E9%AA%8C/dns%E6%AC%BA%E9%AA%97-1.png" alt></p>
+<h5 id="2-启动apache服务"><a href="#2-启动apache服务" class="headerlink" title="2. 启动apache服务"></a>2. 启动apache服务</h5><p><img src="/2020/Arp%E6%94%BB%E5%87%BB-DNS%E6%AC%BA%E9%AA%97%E5%B9%B6%E4%B8%8ECobalt-Strike%E7%BB%93%E5%90%88%E6%9E%84%E5%BB%BA%E9%92%93%E9%B1%BC%E7%BD%91%E7%AB%99%E5%AE%9E%E9%AA%8C/dns%E6%AC%BA%E9%AA%97-2.png" alt></p>
+<h5 id="3-打开ettercap工具，使用-ettercap-G-命令"><a href="#3-打开ettercap工具，使用-ettercap-G-命令" class="headerlink" title="3. 打开ettercap工具，使用 ettercap -G 命令"></a>3. 打开ettercap工具，使用 ettercap -G 命令</h5><p><img src="/2020/Arp%E6%94%BB%E5%87%BB-DNS%E6%AC%BA%E9%AA%97%E5%B9%B6%E4%B8%8ECobalt-Strike%E7%BB%93%E5%90%88%E6%9E%84%E5%BB%BA%E9%92%93%E9%B1%BC%E7%BD%91%E7%AB%99%E5%AE%9E%E9%AA%8C/dns%E6%AC%BA%E9%AA%97-3.png" alt></p>
+<h5 id="4-启动后，先点击hosts，再搜索存在的目标"><a href="#4-启动后，先点击hosts，再搜索存在的目标" class="headerlink" title="4. 启动后，先点击hosts，再搜索存在的目标"></a>4. 启动后，先点击hosts，再搜索存在的目标</h5><p><img src="/2020/Arp%E6%94%BB%E5%87%BB-DNS%E6%AC%BA%E9%AA%97%E5%B9%B6%E4%B8%8ECobalt-Strike%E7%BB%93%E5%90%88%E6%9E%84%E5%BB%BA%E9%92%93%E9%B1%BC%E7%BD%91%E7%AB%99%E5%AE%9E%E9%AA%8C/dns%E6%AC%BA%E9%AA%97-4.png" alt></p>
+<h5 id="5-选择攻击对象"><a href="#5-选择攻击对象" class="headerlink" title="5. 选择攻击对象"></a>5. 选择攻击对象</h5><p><img src="/2020/Arp%E6%94%BB%E5%87%BB-DNS%E6%AC%BA%E9%AA%97%E5%B9%B6%E4%B8%8ECobalt-Strike%E7%BB%93%E5%90%88%E6%9E%84%E5%BB%BA%E9%92%93%E9%B1%BC%E7%BD%91%E7%AB%99%E5%AE%9E%E9%AA%8C/dns%E6%AC%BA%E9%AA%97-5.png" alt></p>
+<h5 id="6-添加成功后，Targets的Target1会出现目标IP"><a href="#6-添加成功后，Targets的Target1会出现目标IP" class="headerlink" title="6. 添加成功后，Targets的Target1会出现目标IP"></a>6. 添加成功后，Targets的Target1会出现目标IP</h5><p><img src="/2020/Arp%E6%94%BB%E5%87%BB-DNS%E6%AC%BA%E9%AA%97%E5%B9%B6%E4%B8%8ECobalt-Strike%E7%BB%93%E5%90%88%E6%9E%84%E5%BB%BA%E9%92%93%E9%B1%BC%E7%BD%91%E7%AB%99%E5%AE%9E%E9%AA%8C/dns%E6%AC%BA%E9%AA%97-6.png" alt></p>
+<h5 id="7-添加-dns-spoof-嗅探模块"><a href="#7-添加-dns-spoof-嗅探模块" class="headerlink" title="7. 添加 dns_spoof 嗅探模块"></a>7. 添加 dns_spoof 嗅探模块</h5><p><img src="/2020/Arp%E6%94%BB%E5%87%BB-DNS%E6%AC%BA%E9%AA%97%E5%B9%B6%E4%B8%8ECobalt-Strike%E7%BB%93%E5%90%88%E6%9E%84%E5%BB%BA%E9%92%93%E9%B1%BC%E7%BD%91%E7%AB%99%E5%AE%9E%E9%AA%8C/dns%E6%AC%BA%E9%AA%97-7-1.png" alt><br><img src="/2020/Arp%E6%94%BB%E5%87%BB-DNS%E6%AC%BA%E9%AA%97%E5%B9%B6%E4%B8%8ECobalt-Strike%E7%BB%93%E5%90%88%E6%9E%84%E5%BB%BA%E9%92%93%E9%B1%BC%E7%BD%91%E7%AB%99%E5%AE%9E%E9%AA%8C/dns%E6%AC%BA%E9%AA%97-7-2.png" alt></p>
+<h5 id="8-当靶机ping-www-icloud-com-时会解析到-攻击机IP，访问-www-icloud-com-时会解析到攻击机搭建的网站上。"><a href="#8-当靶机ping-www-icloud-com-时会解析到-攻击机IP，访问-www-icloud-com-时会解析到攻击机搭建的网站上。" class="headerlink" title="8. 当靶机ping www.icloud.com 时会解析到 攻击机IP，访问 www.icloud.com 时会解析到攻击机搭建的网站上。"></a>8. 当靶机ping <a href="http://www.icloud.com" target="_blank" rel="noopener">www.icloud.com</a> 时会解析到 攻击机IP，访问 <a href="http://www.icloud.com" target="_blank" rel="noopener">www.icloud.com</a> 时会解析到攻击机搭建的网站上。</h5><p><img src="/2020/Arp%E6%94%BB%E5%87%BB-DNS%E6%AC%BA%E9%AA%97%E5%B9%B6%E4%B8%8ECobalt-Strike%E7%BB%93%E5%90%88%E6%9E%84%E5%BB%BA%E9%92%93%E9%B1%BC%E7%BD%91%E7%AB%99%E5%AE%9E%E9%AA%8C/dns%E6%AC%BA%E9%AA%97-8.png" alt></p>
+<h4 id="与-Cobalt-Strike-结合，Cobalt-Strike-构建-“钓鱼”-网站，ettercap工具实现-DNS欺骗。所以当靶机浏览-“www-icloud-com“-时会解析到-192-168-233-129（攻击机）上-Cobalt-Strike-构建-“www-icloud-com”-网站。"><a href="#与-Cobalt-Strike-结合，Cobalt-Strike-构建-“钓鱼”-网站，ettercap工具实现-DNS欺骗。所以当靶机浏览-“www-icloud-com“-时会解析到-192-168-233-129（攻击机）上-Cobalt-Strike-构建-“www-icloud-com”-网站。" class="headerlink" title="与 Cobalt Strike 结合，Cobalt Strike 构建 “钓鱼” 网站，ettercap工具实现 DNS欺骗。所以当靶机浏览 “www.icloud.com“ 时会解析到 192.168.233.129（攻击机）上 Cobalt Strike 构建 “www.icloud.com” 网站。"></a>与 Cobalt Strike 结合，Cobalt Strike 构建 “钓鱼” 网站，ettercap工具实现 DNS欺骗。所以当靶机浏览 “<a href="http://www.icloud.com“" target="_blank" rel="noopener">www.icloud.com“</a> 时会解析到 192.168.233.129（攻击机）上 Cobalt Strike 构建 “<a href="http://www.icloud.com”" target="_blank" rel="noopener">www.icloud.com”</a> 网站。</h4><h5 id="1-关闭apache服务"><a href="#1-关闭apache服务" class="headerlink" title="1. 关闭apache服务"></a>1. 关闭apache服务</h5><p><img src="/2020/Arp%E6%94%BB%E5%87%BB-DNS%E6%AC%BA%E9%AA%97%E5%B9%B6%E4%B8%8ECobalt-Strike%E7%BB%93%E5%90%88%E6%9E%84%E5%BB%BA%E9%92%93%E9%B1%BC%E7%BD%91%E7%AB%99%E5%AE%9E%E9%AA%8C/dns%E6%AC%BA%E9%AA%97-9-1.png" alt></p>
+<h5 id="2-搭建-“钓鱼”-网站，首先需要使用-Cobalt-Strike工具搭建团队服务器，命令：-teamserver-团队服务器IP-团队服务器密码"><a href="#2-搭建-“钓鱼”-网站，首先需要使用-Cobalt-Strike工具搭建团队服务器，命令：-teamserver-团队服务器IP-团队服务器密码" class="headerlink" title="2. 搭建 “钓鱼” 网站，首先需要使用 Cobalt Strike工具搭建团队服务器，命令：./teamserver 团队服务器IP 团队服务器密码"></a>2. 搭建 “钓鱼” 网站，首先需要使用 Cobalt Strike工具搭建团队服务器，命令：./teamserver 团队服务器IP 团队服务器密码</h5><p><img src="/2020/Arp%E6%94%BB%E5%87%BB-DNS%E6%AC%BA%E9%AA%97%E5%B9%B6%E4%B8%8ECobalt-Strike%E7%BB%93%E5%90%88%E6%9E%84%E5%BB%BA%E9%92%93%E9%B1%BC%E7%BD%91%E7%AB%99%E5%AE%9E%E9%AA%8C/dns%E6%AC%BA%E9%AA%97-9-2.png" alt></p>
+<h5 id="3-连接-Cobalt-Strike-客户端"><a href="#3-连接-Cobalt-Strike-客户端" class="headerlink" title="3. 连接 Cobalt Strike 客户端"></a>3. 连接 Cobalt Strike 客户端</h5><p><img src="/2020/Arp%E6%94%BB%E5%87%BB-DNS%E6%AC%BA%E9%AA%97%E5%B9%B6%E4%B8%8ECobalt-Strike%E7%BB%93%E5%90%88%E6%9E%84%E5%BB%BA%E9%92%93%E9%B1%BC%E7%BD%91%E7%AB%99%E5%AE%9E%E9%AA%8C/dns%E6%AC%BA%E9%AA%97-9-3.png" alt></p>
+<h5 id="4-选择Attacks-gt-Web-Drive-by-gt-Clone-Site"><a href="#4-选择Attacks-gt-Web-Drive-by-gt-Clone-Site" class="headerlink" title="4. 选择Attacks -&gt; Web Drive-by -&gt; Clone Site"></a>4. 选择Attacks -&gt; Web Drive-by -&gt; Clone Site</h5><p><img src="/2020/Arp%E6%94%BB%E5%87%BB-DNS%E6%AC%BA%E9%AA%97%E5%B9%B6%E4%B8%8ECobalt-Strike%E7%BB%93%E5%90%88%E6%9E%84%E5%BB%BA%E9%92%93%E9%B1%BC%E7%BD%91%E7%AB%99%E5%AE%9E%E9%AA%8C/dns%E6%AC%BA%E9%AA%97-9-4.png" alt></p>
+<h5 id="5-设置克隆的-“www-icloud-com”-网站作为-“钓鱼”-网站"><a href="#5-设置克隆的-“www-icloud-com”-网站作为-“钓鱼”-网站" class="headerlink" title="5. 设置克隆的 “www.icloud.com” 网站作为 “钓鱼” 网站"></a>5. 设置克隆的 “<a href="http://www.icloud.com”" target="_blank" rel="noopener">www.icloud.com”</a> 网站作为 “钓鱼” 网站</h5><p><img src="/2020/Arp%E6%94%BB%E5%87%BB-DNS%E6%AC%BA%E9%AA%97%E5%B9%B6%E4%B8%8ECobalt-Strike%E7%BB%93%E5%90%88%E6%9E%84%E5%BB%BA%E9%92%93%E9%B1%BC%E7%BD%91%E7%AB%99%E5%AE%9E%E9%AA%8C/dns%E6%AC%BA%E9%AA%97-9-5.png" alt></p>
+<h5 id="6-实验成功"><a href="#6-实验成功" class="headerlink" title="6. 实验成功"></a>6. 实验成功</h5><p><img src="/2020/Arp%E6%94%BB%E5%87%BB-DNS%E6%AC%BA%E9%AA%97%E5%B9%B6%E4%B8%8ECobalt-Strike%E7%BB%93%E5%90%88%E6%9E%84%E5%BB%BA%E9%92%93%E9%B1%BC%E7%BD%91%E7%AB%99%E5%AE%9E%E9%AA%8C/dns%E6%AC%BA%E9%AA%97-9-6.png" alt></p>
+
+      
+      <!-- 打赏 -->
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/Arp%E6%94%BB%E5%87%BB-DNS%E6%AC%BA%E9%AA%97%E5%B9%B6%E4%B8%8ECobalt-Strike%E7%BB%93%E5%90%88%E6%9E%84%E5%BB%BA%E9%92%93%E9%B1%BC%E7%BD%91%E7%AB%99%E5%AE%9E%E9%AA%8C/" data-id="ck6tcm1pz0002gkwrdsdg7pf7"
+        class="article-share-link">Share</a>
+      
+    </footer>
+
+  </div>
+
+  
+  
+  <nav class="article-nav">
+    
+    
+      <a href="/2020/Arp%E6%94%BB%E5%87%BB-Mac%E6%AC%BA%E9%AA%97%E5%AE%9E%E9%AA%8C/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">Arp攻击-Mac欺骗实验</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+  
+  
+
+  
+  
+  
+
+</article>
+</section>
+      <footer class="footer" display=none>
+</footer>
+    <div class="to_top">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+      </div>
+    </main>
+    
+    <aside class="sidebar">
+      
+        <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/feiji.png" alt="Tranquillity"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">目录</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+      </aside>
+      <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+      
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/jquery.justifiedGallery.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+  
+<script src="/js/tocbot.min.js"></script>
+
+  <script>
+    // Tocbot_v4.7.0  http://tscanlin.github.io/tocbot/
+    tocbot.init({
+      tocSelector: '.tocbot',
+      contentSelector: '.article-entry',
+      headingSelector: 'h1, h2, h3, h4, h5, h6',
+      hasInnerContainers: true,
+      scrollSmooth: true,
+      positionFixedSelector: '.tocbot',
+      positionFixedClass: 'is-position-fixed',
+      fixedSidebarOffset: 'auto',
+			onClick: (e) => {
+      	document.getElementById(e.target.innerText).scrollIntoView()
+      	return false;
+    	}
+    });
+  </script>
+
+
+<script>
+  var ayerConfig = {
+    mathjax: 
+  }
+</script>
+
+
+<script src="/js/ayer.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+
+
+
+<script type="text/javascript" src="https://js.users.51.la/20544303.js"></script>
+  
+  
+
+  </div>
+</body>
+
+</html>

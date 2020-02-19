@@ -65,7 +65,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">347字</span>
+            <span class="post-count">389字</span>
         </span>
     </span>
 
@@ -106,6 +106,8 @@
 <li>tcpdump</li>
 <li>wireshark</li>
 </ol>
+<a id="more"></a>
+
 <h4 id="实验环境："><a href="#实验环境：" class="headerlink" title="实验环境："></a>实验环境：</h4><ol>
 <li>准备三台设备，分别是靶机（Windows）、攻击机（kali）和FTP服务器（Ubuntu），并处于互能ping通状态。</li>
 <li>Ubuntu安装 FTP：apt install vsftpd，并配置ftp文件（vi /etc/vsftpd.conf）<br><img src="/2020/Arp%E6%94%BB%E5%87%BB-Mac%E6%AC%BA%E9%AA%97%E5%AE%9E%E9%AA%8C/arp-2.png" alt></li>
@@ -116,21 +118,25 @@
 #arpspoof -i eth0 -t 192.168.233.128 192.168.233.168
 #arpspoof -i eth0 -t 192.168.233.168 192.168.233.128</code></pre><p><img src="/2020/Arp%E6%94%BB%E5%87%BB-Mac%E6%AC%BA%E9%AA%97%E5%AE%9E%E9%AA%8C/arp-4.png" alt></p>
 <h4 id="3-攻击机使用tcpdump工具监听ftp端口（21端口）或者使用Wireshark监听ftp流量"><a href="#3-攻击机使用tcpdump工具监听ftp端口（21端口）或者使用Wireshark监听ftp流量" class="headerlink" title="3. 攻击机使用tcpdump工具监听ftp端口（21端口）或者使用Wireshark监听ftp流量"></a>3. 攻击机使用tcpdump工具监听ftp端口（21端口）或者使用Wireshark监听ftp流量</h4><pre><code>#tcpdump -i eth0 -X tcp port 21</code></pre><p>tcpdump工具监听21端口：<br><img src="/2020/Arp%E6%94%BB%E5%87%BB-Mac%E6%AC%BA%E9%AA%97%E5%AE%9E%E9%AA%8C/arp-5-1.png" alt></p>
-<p>wireshark工具监听并筛选ftp：<br><img src="/2020/Arp%E6%94%BB%E5%87%BB-Mac%E6%AC%BA%E9%AA%97%E5%AE%9E%E9%AA%8C/arp-5-2.png" alt></p>
+<p>Wireshark工具监听并筛选ftp：<br><img src="/2020/Arp%E6%94%BB%E5%87%BB-Mac%E6%AC%BA%E9%AA%97%E5%AE%9E%E9%AA%8C/arp-5-2.png" alt></p>
 <h4 id="4-分别查看靶机和FTP服务器的Mac地址"><a href="#4-分别查看靶机和FTP服务器的Mac地址" class="headerlink" title="4. 分别查看靶机和FTP服务器的Mac地址"></a>4. 分别查看靶机和FTP服务器的Mac地址</h4><pre><code>#arp -a</code></pre><p>靶机上的Mac地址：<br><img src="/2020/Arp%E6%94%BB%E5%87%BB-Mac%E6%AC%BA%E9%AA%97%E5%AE%9E%E9%AA%8C/arp-6-1.png" alt></p>
 <p>FTP服务器上的Mac地址：<br><img src="/2020/Arp%E6%94%BB%E5%87%BB-Mac%E6%AC%BA%E9%AA%97%E5%AE%9E%E9%AA%8C/arp-6-2.png" alt></p>
 <h4 id="5-使用Windows（靶机）连接FTP服务器进行"><a href="#5-使用Windows（靶机）连接FTP服务器进行" class="headerlink" title="5. 使用Windows（靶机）连接FTP服务器进行"></a>5. 使用Windows（靶机）连接FTP服务器进行</h4><pre><code>&gt;ftp 192.168.233.168</code></pre><p><img src="/2020/Arp%E6%94%BB%E5%87%BB-Mac%E6%AC%BA%E9%AA%97%E5%AE%9E%E9%AA%8C/arp-7.png" alt></p>
 <h4 id="6-查看攻击机抓取的数据包，发现靶机使用的FTP账号及密码"><a href="#6-查看攻击机抓取的数据包，发现靶机使用的FTP账号及密码" class="headerlink" title="6. 查看攻击机抓取的数据包，发现靶机使用的FTP账号及密码"></a>6. 查看攻击机抓取的数据包，发现靶机使用的FTP账号及密码</h4><p>tcpdump抓到的数据包：<br><img src="/2020/Arp%E6%94%BB%E5%87%BB-Mac%E6%AC%BA%E9%AA%97%E5%AE%9E%E9%AA%8C/arp-8-1.png" alt><br><img src="/2020/Arp%E6%94%BB%E5%87%BB-Mac%E6%AC%BA%E9%AA%97%E5%AE%9E%E9%AA%8C/arp-8-2.png" alt></p>
-<p>wireshark抓到的数据包：<br><img src="/2020/Arp%E6%94%BB%E5%87%BB-Mac%E6%AC%BA%E9%AA%97%E5%AE%9E%E9%AA%8C/arp-8-3.png" alt><br><img src="/2020/Arp%E6%94%BB%E5%87%BB-Mac%E6%AC%BA%E9%AA%97%E5%AE%9E%E9%AA%8C/arp-8-4.png" alt></p>
+<p>Wireshark抓到的数据包：<br><img src="/2020/Arp%E6%94%BB%E5%87%BB-Mac%E6%AC%BA%E9%AA%97%E5%AE%9E%E9%AA%8C/arp-8-3.png" alt><br><img src="/2020/Arp%E6%94%BB%E5%87%BB-Mac%E6%AC%BA%E9%AA%97%E5%AE%9E%E9%AA%8C/arp-8-4.png" alt></p>
 <h3 id="0x03-结论"><a href="#0x03-结论" class="headerlink" title="0x03 结论"></a>0x03 结论</h3><p>FTP服务器<br>用户名：ftpuser<br>密码：ftpuser</p>
 <h3 id="0x04-防御"><a href="#0x04-防御" class="headerlink" title="0x04 防御"></a>0x04 防御</h3><p>设置ip-mac双向绑定（将mac地址设置为静态）</p>
+<ol>
+<li>Windows绑定IP：arp -s IP Mac地址（arp -s 157.55.85.212   00-aa-00-62-c6-09）</li>
+<li>Linux绑定IP：arp -s IP Mac地址（arp -s 157.55.85.212   00:aa:00:62:c6:09）</li>
+</ol>
 
       
       <!-- 打赏 -->
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/Arp%E6%94%BB%E5%87%BB-Mac%E6%AC%BA%E9%AA%97%E5%AE%9E%E9%AA%8C/" data-id="ck6svvq8t0001lwwr5z733w11"
+      <a data-url="http://yoursite.com/2020/Arp%E6%94%BB%E5%87%BB-Mac%E6%AC%BA%E9%AA%97%E5%AE%9E%E9%AA%8C/" data-id="ck6tcm1q30004gkwr9ty8ci3s"
         class="article-share-link">Share</a>
       
     </footer>
@@ -140,6 +146,15 @@
   
   
   <nav class="article-nav">
+    
+      <a href="/2020/Arp%E6%94%BB%E5%87%BB-DNS%E6%AC%BA%E9%AA%97%E5%B9%B6%E4%B8%8ECobalt-Strike%E7%BB%93%E5%90%88%E6%9E%84%E5%BB%BA%E9%92%93%E9%B1%BC%E7%BD%91%E7%AB%99%E5%AE%9E%E9%AA%8C/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            Arp攻击-DNS欺骗并与Cobalt Strike结合构建钓鱼网站实验
+          
+        </div>
+      </a>
     
     
       <a href="/2020/%E7%99%BD%E9%93%B6%E7%A5%A8%E6%8D%AE%E5%AE%9E%E9%AA%8C/" class="article-nav-link">
