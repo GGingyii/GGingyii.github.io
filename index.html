@@ -65,6 +65,81 @@
 
     
     
+    <article id="post-配置Nessus-AWVS的虚拟机教程" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/%E9%85%8D%E7%BD%AENessus-AWVS%E7%9A%84%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%95%99%E7%A8%8B/"
+    >配置Nessus+AWVS的虚拟机教程</a
+  >
+</h2>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/%E9%85%8D%E7%BD%AENessus-AWVS%E7%9A%84%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%95%99%E7%A8%8B/" class="article-date">
+  <time datetime="2020-03-28T05:59:05.000Z" itemprop="datePublished">2020-03-28</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%95%99%E7%A8%8B/">教程</a> / <a class="article-category-link" href="/categories/%E6%95%99%E7%A8%8B/%E6%89%AB%E6%8F%8F%E5%99%A8VMware%E7%89%88/">扫描器VMware版</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <h4 id="1-配置虚拟机前需要准备的工具："><a href="#1-配置虚拟机前需要准备的工具：" class="headerlink" title="1. 配置虚拟机前需要准备的工具："></a>1. 配置虚拟机前需要准备的工具：</h4><ul>
+<li><a href>Nessus_AWVS2合1.zip</a><br>1) 内附Nessus更新包</li>
+</ul>
+<h4 id="2-Nessus安装及配置过程："><a href="#2-Nessus安装及配置过程：" class="headerlink" title="2. Nessus安装及配置过程："></a>2. Nessus安装及配置过程：</h4><h5 id="2-1-导入虚拟机"><a href="#2-1-导入虚拟机" class="headerlink" title="2.1 导入虚拟机"></a>2.1 导入虚拟机</h5><p><img src="/2020/%E9%85%8D%E7%BD%AENessus-AWVS%E7%9A%84%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%95%99%E7%A8%8B/nessus-1.png" alt><br>双击”Nessus WVS2合1.ovf“导入虚拟机，路径为Nessus虚拟机的位置</p>
+<h5 id="2-2-配置虚拟网卡"><a href="#2-2-配置虚拟网卡" class="headerlink" title="2.2 配置虚拟网卡"></a>2.2 配置虚拟网卡</h5><p>1) 编辑 – 虚拟网络编辑器 –添加网络 VMnet2<br>2) 网络配置如图所示<br><img src="/2020/%E9%85%8D%E7%BD%AENessus-AWVS%E7%9A%84%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%95%99%E7%A8%8B/nessus-2.png" alt><br>3) 修改网络适配器为 自定义(VMnet2)<br><img src="/2020/%E9%85%8D%E7%BD%AENessus-AWVS%E7%9A%84%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%95%99%E7%A8%8B/nessus-3.png" alt></p>
+<h5 id="2-3-配置虚拟机"><a href="#2-3-配置虚拟机" class="headerlink" title="2.3 配置虚拟机"></a>2.3 配置虚拟机</h5><p>1) 虚拟机为Linux系统，账号/密码：root/toor<br>2) 登录后，修改 /etc/netplan/50-cloud-init.yaml，参数如下图<br><img src="/2020/%E9%85%8D%E7%BD%AENessus-AWVS%E7%9A%84%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%95%99%E7%A8%8B/nessus-4.png" alt><br>3) 保存后，执行 netplan apply 命令<br>4) 查看 ens33/ens34 网络命令：ifconfig ens33/34<br><img src="/2020/%E9%85%8D%E7%BD%AENessus-AWVS%E7%9A%84%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%95%99%E7%A8%8B/nessus-5.png" alt></p>
+<h5 id="2-4-进入Nessus的管理页面"><a href="#2-4-进入Nessus的管理页面" class="headerlink" title="2.4 进入Nessus的管理页面"></a>2.4 进入Nessus的管理页面</h5><p>1) Web地址：<br><a href="https://192.168.10.10:8834" target="_blank" rel="noopener">https://192.168.10.10:8834</a><br><a href="https://192.168.199.196:8834" target="_blank" rel="noopener">https://192.168.199.196:8834</a><br>2) Nessus的账号/密码：Nessus/Nessus<br><img src="/2020/%E9%85%8D%E7%BD%AENessus-AWVS%E7%9A%84%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%95%99%E7%A8%8B/nessus-6.png" alt></p>
+<h5 id="2-5-Nessus插件更新"><a href="#2-5-Nessus插件更新" class="headerlink" title="2.5 Nessus插件更新"></a>2.5 Nessus插件更新</h5><p>1) 更新包的默认名称为all-2.0-xxx.tar.gz<br><img src="/2020/%E9%85%8D%E7%BD%AENessus-AWVS%E7%9A%84%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%95%99%E7%A8%8B/nessus-7.png" alt></p>
+<p>2) 使用Xftp将更新包上传到 /root 目录下，执行命令：./nessus-plugins-update [插件包名]进行更新。<br><img src="/2020/%E9%85%8D%E7%BD%AENessus-AWVS%E7%9A%84%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%95%99%E7%A8%8B/nessus-8.png" alt></p>
+<h4 id="3-AWVS"><a href="#3-AWVS" class="headerlink" title="3. AWVS"></a>3. AWVS</h4><p>1) AWVS无需安装，Web地址：<br><a href="https://192.168.10.10:13443" target="_blank" rel="noopener">https://192.168.10.10:13443</a><br><a href="https://192.168.199.196:13443" target="_blank" rel="noopener">https://192.168.199.196:13443</a><br>2) AWVS账号/密码：<a href="mailto:wvs@com.cn">wvs@com.cn</a>/passw0rd!@#<br><img src="/2020/%E9%85%8D%E7%BD%AENessus-AWVS%E7%9A%84%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%95%99%E7%A8%8B/nessus-8.png" alt></p>
+
+      
+      <!-- 打赏 -->
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/%E9%85%8D%E7%BD%AENessus-AWVS%E7%9A%84%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%95%99%E7%A8%8B/" data-id="ck8bmg97c0000jkwrftuu0r4z"
+        class="article-share-link">Share</a>
+      
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
     <article id="post-Arp攻击-DNS欺骗并与Cobalt-Strike结合构建钓鱼网站实验" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -709,75 +784,6 @@
     </div>
     <footer class="article-footer">
       <a data-url="http://yoursite.com/2020/Apache%20Struts2%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E(S2-016)%E5%A4%8D%E7%8E%B0-%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/" data-id="ck6td4kno000018wr17kz769k"
-        class="article-share-link">Share</a>
-      
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
-    <article id="post-SQL手工注入漏洞测试(MySQL数据库)-解题思路" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/SQL%E6%89%8B%E5%B7%A5%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E%E6%B5%8B%E8%AF%95(MySQL%E6%95%B0%E6%8D%AE%E5%BA%93)-%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/"
-    >SQL手工注入漏洞测试(MySQL数据库)-解题思路</a
-  >
-</h2>
-  
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/SQL%E6%89%8B%E5%B7%A5%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E%E6%B5%8B%E8%AF%95(MySQL%E6%95%B0%E6%8D%AE%E5%BA%93)-%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/" class="article-date">
-  <time datetime="2020-01-07T08:43:11.000Z" itemprop="datePublished">2020-01-07</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/">解题思路</a> / <a class="article-category-link" href="/categories/%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/%E5%A2%A8%E8%80%85%E5%AD%A6%E9%99%A2%E9%9D%B6%E5%9C%BA/">墨者学院靶场</a>
-  </div>
-
-      
-      
-      
-    </div>
-    
-
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-      <h4 id="1-判断是否存在注入点，使用and语句判断注入点类型："><a href="#1-判断是否存在注入点，使用and语句判断注入点类型：" class="headerlink" title="1. 判断是否存在注入点，使用and语句判断注入点类型："></a>1. 判断是否存在注入点，使用and语句判断注入点类型：</h4><pre><code>/new_list.php?id=1 and 1=1 --+
-/new_list.php?id=1 and 1=2 --+ </code></pre><p><img src="/2020/SQL%E6%89%8B%E5%B7%A5%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E%E6%B5%8B%E8%AF%95(MySQL%E6%95%B0%E6%8D%AE%E5%BA%93)-%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/1.png" alt></p>
-      
-      <a class="article-more-link" href="/2020/SQL%E6%89%8B%E5%B7%A5%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E%E6%B5%8B%E8%AF%95(MySQL%E6%95%B0%E6%8D%AE%E5%BA%93)-%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/">More</a>
-      
-      
-      <!-- 打赏 -->
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/SQL%E6%89%8B%E5%B7%A5%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E%E6%B5%8B%E8%AF%95(MySQL%E6%95%B0%E6%8D%AE%E5%BA%93)-%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/" data-id="ck6td4koh000618wr92mrhdjn"
         class="article-share-link">Share</a>
       
     </footer>
